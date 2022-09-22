@@ -1,8 +1,8 @@
 package controller;
 
 import domain.BoardDTO;
-import service.boardservicer.BoardServiceImpl;
-import service.boardservicer.BoardService;
+import service.board.BoardServiceImpl;
+import service.board.BoardService;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -20,10 +20,10 @@ public class BoardReadController implements Command {
         if(boardDTO==null){
             return "error.jsp";
         }else{
-            req.setAttribute(boardDTO);
+            // req.setAttribute(boardDTO);
             return "index.jsp";
         }
-        return "List.jsp";
+        // return "List.jsp";
     }
 
 }

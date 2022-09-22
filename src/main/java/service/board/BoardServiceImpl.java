@@ -1,4 +1,4 @@
-package service.boardservicer;
+package service.board;
 
 import domain.BoardDTO;
 import model.domain.board.BoardDAO;
@@ -21,8 +21,8 @@ public class BoardServiceImpl implements BoardService {
 
 
     public BoardDTO readAll(){
-        asdfj;lkasjfl;sdkajas
-                dfasl;
+
         boardDAO.findAll();
+        return null;
     }
 }

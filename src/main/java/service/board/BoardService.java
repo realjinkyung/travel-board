@@ -1,4 +1,4 @@
-package service.boardservicer;
+package service.board;
 
 import domain.BoardDTO;
 

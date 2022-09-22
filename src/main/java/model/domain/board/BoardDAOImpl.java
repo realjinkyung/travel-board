@@ -18,7 +18,6 @@ public class BoardDAOImpl implements BoardDAO {
     }
 
     public BoardDTO findAll(){
-        asdfk;ljasdkl;asdjklfajsd;findAll()asdfal;sdj
-                return ;
+      return null;
     }
 }
