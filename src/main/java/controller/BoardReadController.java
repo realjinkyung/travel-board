@@ -8,6 +8,9 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.sql.SQLException;
+import java.util.List;
+import java.util.Objects;
 
 public class BoardReadController implements Command {
 
@@ -15,15 +18,19 @@ public class BoardReadController implements Command {
 
     @Override
     public String execute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        BoardDTO boardDTO = boardService.readAll();
+        List<BoardDTO> boardDTOList;
+        try {
+            boardDTOList = boardService.readAll();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
 
-        if(boardDTO==null){
+        if(Objects.isNull(boardDTOList)){
             return "error.jsp";
         }else{
-            // req.setAttribute(boardDTO);
-            return "index.jsp";
+            req.setAttribute("boardList", boardDTOList);
+            return "board.jsp";
         }
-        // return "List.jsp";
     }
 
 }

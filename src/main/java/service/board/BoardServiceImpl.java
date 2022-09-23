@@ -4,6 +4,9 @@ import domain.BoardDTO;
 import model.domain.board.BoardDAO;
 import model.domain.board.BoardDAOImpl;
 
+import java.sql.SQLException;
+import java.util.List;
+
 public class BoardServiceImpl implements BoardService {
 
     private static BoardService instance = new BoardServiceImpl();
@@ -19,10 +22,9 @@ public class BoardServiceImpl implements BoardService {
 
     }
 
+    @Override
+    public List<BoardDTO> readAll() throws SQLException {
 
-    public BoardDTO readAll(){
-
-        boardDAO.findAll();
-        return null;
+        return boardDAO.findAll();
     }
 }

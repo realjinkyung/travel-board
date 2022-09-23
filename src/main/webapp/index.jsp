@@ -8,10 +8,10 @@
 	<title>Home</title>
 </head>
 <body>
-	<h1>controller.frontController World!</h1>
+	<h1>controller.FrontController World!</h1>
 	<c:if test="${not empty param.name}">
 		<p>Name: ${param.name}</p>
 	</c:if>
-<a href ="/login.do"><button>로그인</button></a>
+<a href ="boardList.do"><button>게시물 리스트</button></a>
 </body>
 </html>

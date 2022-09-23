@@ -9,8 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("*.do")
-public class frontController extends HttpServlet {
+@WebServlet(name = "frontServlet", urlPatterns = "*.do")
+public class FrontController extends HttpServlet {
 	private static final String REDIRECT_PREfIX = "redirect:";
 
 	@Override
@@ -40,7 +40,7 @@ public class frontController extends HttpServlet {
 
 	private Command resolveCommand(String servletPath, String method) {
 		Command command = null;
-		if ("/login.do".equals(servletPath) && "GET".equalsIgnoreCase(method)) {
+		if ("/boardList.do".equals(servletPath) && "GET".equalsIgnoreCase(method)) {
 			command = new BoardReadController();
 		}
 
