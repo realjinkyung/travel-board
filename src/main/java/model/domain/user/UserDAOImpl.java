@@ -27,9 +27,10 @@ public class UserDAOImpl implements UserDAO{
 	  	PreparedStatement pstmt = null;
 	  	int result = 0;
 	  	
+//	  	System.out.println(user.getBirth()); // test용
 	  	try {
 				con = DBUtils.getConnection();
-				pstmt = con.prepareStatement("insert into user values(?, ?, ?, ?, ?, ?, ?)"); // 로그인 DB 연결
+				pstmt = con.prepareStatement("insert into user(username, password, name, phonenumber, email, birth, gender) values(?, ?, ?, ?, ?, ?, ?)"); // 로그인 DB 연결
 				
 				// 파라미터로 받은 user.getXXX()로 값 들고오기
 				pstmt.setString(1, user.getUsername());
@@ -40,7 +41,7 @@ public class UserDAOImpl implements UserDAO{
 				pstmt.setDate(6, user.getBirth());
 				pstmt.setString(7, user.getGender());
 				
-				result = pstmt.executeUpdate(); // 수행되는 쿼리 갯수만큼 count 증가 -> 지금은 하나의 쿼리
+				result = pstmt.executeUpdate(); 
 				
 				if(result == 1) {
 					return true; 
@@ -62,8 +63,8 @@ public class UserDAOImpl implements UserDAO{
 		
 		try {
 			con = DBUtils.getConnection();
-			pstmt = con.prepareStatement(sql1); // 로그인 DB 연결?
-			rset = pstmt.executeQuery(); // execute 실행 !!
+			pstmt = con.prepareStatement(sql1); // 로그인 DB 연결
+			rset = pstmt.executeQuery();
 			
 		} catch (SQLException e) {
 			// 컨트롤러로 이동

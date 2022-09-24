@@ -18,15 +18,16 @@ public class JoinFormContoller implements Command{
 
 	@Override
 	public String execute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		String username = (String)req.getAttribute("username");
-		String pw = (String)req.getAttribute("password");
-		String pwc = (String)req.getAttribute("passwordCheck");
-      	String name = (String)req.getAttribute("name");
-		Date birth = (Date)req.getAttribute("birth");
-		String phoneNumber = (String)req.getAttribute("phoneNumber");
-		String email = (String)req.getAttribute("email");
-		String gender = (String)req.getAttribute("gender");
+		String username = (String)req.getParameter("username");
+		String pw = (String)req.getParameter("password");
+		String pwc = (String)req.getParameter("passwordCheck");
+      	String name = (String)req.getParameter("name");
+		Date birth = Date.valueOf(req.getParameter("birth"));
+		String phoneNumber = (String)req.getParameter("phoneNumber");
+		String email = (String)req.getParameter("email");
+		String gender = (String)req.getParameter("gender");
 	
+		
 //		userService.메소드()
 		// 데이터값 입력 유무만 유효성 검증
 		if(username == null || username.trim().length() == 0 ||
@@ -36,36 +37,22 @@ public class JoinFormContoller implements Command{
 			birth == null ||
 			email == null || email.trim().length() == 0 ||
 			gender == null || gender.trim().length() == 0 ){
-//			req.getParameter("join.jsp");
 		}
-		return "redirect:error.jsp"; // ? write() 메소드 종료
 		
-//		boolean result = false;
+		boolean result = false;
 		
-//		try {
-			// 인터페이스 만들기
-//			result = userService.writeContent(new UserDTO(userId,userPW1,userName,userBirth,userEmail));
-			result = userService.writeContent(new UserDTO(0L,username,name,pw,"",0,true,"",phoneNumber,email,birth,gender));
-		} catch (SQLException e) {
+		try {
+			result = userService.writeContent(new UserDTO(1L,username,name,pw,"",0,true,"",phoneNumber,email,birth,gender));
+			System.out.println("결과 : " + result);
+		}catch (Exception e) {
 			e.printStackTrace();
-//			result = userService.writeContent(new UserDTO(username,pw,name,birth,email));
-//		} catch (SQLException e) {
-//			e.printStackTrace();
-//			request.setAttribute("error", "게시글 저장 시도 실패 재 시도 하세요");
-//		}
+		}
 		
-		// redirect: 서버가 접속하는사람(클라이언트)한테 다시 연결하라고 말해 줌, 연결만 다시 해 줌  
-		// forward : 접속자에게 말안하고 서버에서 알아서 처리함, 값 전달 + 연결
-//		if(result){
-//			return "join.do";
-//		}else{
-//			return "redirect:error.jsp";
-//		}
-//	}
-//		
-		
-		
-//		return null;
+		if(result) {
+			return "joinSuccess.jsp";
+		}else {
+			return "redirect:error.jsp";
+		}
 	}
 	
 }

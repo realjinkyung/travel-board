@@ -13,13 +13,12 @@ public class UserServiceImpl implements UserService{
         return instance;
     }
     
-//     메소드 - 어떤 기능?
+// 메소드 - 어떤 기능?
     // 회원가입
     @Override
-    public boolean wirteContent(UserDTO user) {
-    	// 회원 등록이 되게 ??
-    	userDAO.insertUser(user);
-    	return false;
+    public boolean writeContent(UserDTO user) {
+    	// 회원 등록
+    	return userDAO.insertUser(user);
     } 	
  	
  	// 로그인

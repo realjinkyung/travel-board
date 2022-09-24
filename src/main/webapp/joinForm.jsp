@@ -10,7 +10,7 @@
 	
 <body>
 	<div>
-		<form action="/join.do" method="post">
+		<form action="join.do" method="post">
 			<br><br>
 			<h3>회원가입</h3>
 			<br><br>
@@ -20,15 +20,7 @@
 			<p>이     름    : <input type="text" name="name" placeholder="이름을 입력하세요"> <br></p>
 			<p>생  년  월  일   : 
 			  	<div class="info" id="birth">
-			  		<select class="box" id="birth-year">
-			  			<option disabled selected>출생 연도<option>	
-			  		</select>
-			  		<select class="box" id="birth-month">
-			  			<option disabled selected>월<option>	
-			  		</select>
-			  		<select class="box" id="birth-day">
-			  			<option disabled selected>일<option>	
-			  		</select>
+			  		<input type="date" name="birth">
 			  	</div><br>
 			</p>
 			<p> 이  메  일      : <input type="text" name="email" placeholder="이메일을 입력하세요"><br></p>
