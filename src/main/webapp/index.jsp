@@ -12,6 +12,6 @@
 	<c:if test="${not empty param.name}">
 		<p>Name: ${param.name}</p>
 	</c:if>
-<a href ="boardList.do"><button>게시물 리스트</button></a>
+<a href ="post.do?postNo=1"><button>게시물 리스트</button></a>
 </body>
 </html>

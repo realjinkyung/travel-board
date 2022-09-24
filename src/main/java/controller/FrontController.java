@@ -42,8 +42,15 @@ public class FrontController extends HttpServlet {
 		Command command = null;
 		if ("/boardList.do".equals(servletPath) && "GET".equalsIgnoreCase(method)) {
 			command = new BoardReadController();
+		} else if ("/post.do".equals(servletPath) && "GET".equalsIgnoreCase(method)) { //FIXME URL
+			command = new PostReadController();
+		} else if ("/newPost.do".equals(servletPath) && "GET".equalsIgnoreCase(method)){ //FIXME URL
+			command = new ConnectNewPostController();
+		} else if ("/makePost.do".equals(servletPath) && "POST".equalsIgnoreCase(method)) { //FIXME URL
+			command = new ProducePostController();
+		} else if ("/edit.do".equals(servletPath) && "POST".equalsIgnoreCase(method)) { //FIXME URL
+			command = new ConnectNewPostController();
 		}
-
 		return command;
 	}
 
