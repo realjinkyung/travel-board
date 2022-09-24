@@ -44,8 +44,8 @@ public class FrontController extends HttpServlet {
 		Command command = null;
 		if ("/boardList.do".equals(servletPath) && "GET".equalsIgnoreCase(method)) {
 			command = new BoardReadController();
-//		} else if("/revise.do".equals(servletPath) && "GET".equalsIgnoreCase(method)) {
-//			command = new UserReviseController();
+		} else if("/revise.do".equals(servletPath) && "GET".equalsIgnoreCase(method)) {
+			command = new UserReviseController();
 		} else if ("/join.do".equals(servletPath) && "POST".equalsIgnoreCase(method)) {
 			command = new BoardReadController(); // 만들기 - 회원가입
 		} else if ("/login.do".equals(servletPath) && "POST".equalsIgnoreCase(method)) {

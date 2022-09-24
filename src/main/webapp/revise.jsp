@@ -20,12 +20,12 @@
         <td bgcolor="yellow"><input type="password" name="pass"></td>
     </tr>
     <tr>
-        <td align="right" bgcolor="yellow"><font size="2">이름 : </font></td>
-        <td bgcolor="yellow"><input type="text" name="name"></td>
+        <td align="right" bgcolor="yellow"><font size="2">비밀번호 재확인 : </font></td>
+        <td bgcolor="yellow"><input type="password" name="pass"></td>
     </tr>
     <tr>
-        <td align="right" bgcolor="yellow"><font size="2">주소 : </font></td>
-        <td bgcolor="yellow"><input type="text" name="adress"></td>
+        <td align="right" bgcolor="yellow"><font size="2">이름 : </font></td>
+        <td bgcolor="yellow"><input type="text" name="name"></td>
     </tr>
     <tr>
         <td align="right" bgcolor="yellow"><font size="2">성별 : </font></td>
@@ -35,11 +35,7 @@
         </td>
     </tr>
     <tr>
-        <td align="right" bgcolor="yellow"><font size="2">나이 : </font></td>
-        <td bgcolor="yellow"><input type="text" name="age"></td>
-    </tr>
-    <tr>
-        <td align="right" bgcolor="yellow"><font size="2">이메일 주소 : </font></td>
+        <td align="right" bgcolor="yellow"><font size="2">이메일 : </font></td>
         <td bgcolor="yellow"><input type="text" name="email"></td>
     </tr>
     <tr>

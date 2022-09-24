@@ -12,27 +12,28 @@ import javax.servlet.http.HttpServletResponse;
 import domain.BoardDTO;
 import service.board.BoardService;
 import service.board.BoardServiceImpl;
+import service.user.UserService;
+import service.user.UserServiceImpl;
 
-//public class UserReviseController implements Command {
+public class UserReviseController implements Command {
 
-//    private final UserReviseService userReviseService = BoardServiceImpl.getInstance();
+    private final UserService userService = UserServiceImpl.getInstance();
 
-//    @Override
-//    public String execute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-//        boolean result;
-//        
-//    	try {
-////            result = userReviseService.modifyUser();
-//        } catch (SQLException e) {
-//            throw new RuntimeException(e);
-//        }
-//
-//        if(result != true){
-//            return "error.jsp";
-//        }else{
-////            req.setAttribute("boardList", boardDTOList);
-//            return "board.jsp";
-//        }
-//    }
-//
-//}
+    @Override
+    public String execute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        boolean result;
+        
+    	try {
+            result = userService.modifyUser();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
+        if(result != true){
+            return "error.jsp";
+        }else{
+        	return "UserInfo.do";
+        }
+    }
+
+}

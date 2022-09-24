@@ -12,6 +12,30 @@ public class UserServiceImpl implements UserService{
     public static UserService getInstance(){
         return instance;
     }
+    @Override
+    public void login() {
+    	// TODO Auto-generated method stub
+ 
+    }
+    
+    @Override
+    public boolean modifyUser() {
+    	// TODO Auto-generated method stub
+    	return false;
+    }
+    
+    @Override
+    public boolean Revise() {
+    	// TODO Auto-generated method stub
+    	return false;
+    }
+    
+    @Override
+    public boolean wirteContent(UserDTO user) {
+    	// TODO Auto-generated method stub
+    	return false;
+    }
+    
     
 //     메소드 - 어떤 기능?
     // 회원가입
