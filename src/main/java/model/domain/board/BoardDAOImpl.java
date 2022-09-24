@@ -40,7 +40,6 @@ public class BoardDAOImpl implements BoardDAO {
                     .boardNo(rset.getLong("board_no"))
                     .boardName(rset.getString("board_name")).build());
         }
-
         DBUtils.close(con,pstmt,rset);
       return boardList;
     }

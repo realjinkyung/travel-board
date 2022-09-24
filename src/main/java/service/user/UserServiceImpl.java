@@ -15,28 +15,18 @@ public class UserServiceImpl implements UserService{
     
 //     메소드 - 어떤 기능?
     // 회원가입
- 	public boolean writeContent(UserDTO user) {
- 		// 회원 등록이 되게 ??
- 		userDAO.insertUser(user);
- 		
- 		 		
- 	}
- 	
+    @Override
+    public boolean wirteContent(UserDTO user) {
+    	// 회원 등록이 되게 ??
+    	userDAO.insertUser(user);
+    	return false;
+    } 	
  	
  	// 로그인
  	public void login() {
  		// 회원가입된 정보 ID, PW == 입력한 정보 ID, PW
  		// if 로그인 성공 else 실패
+ 		// if else
  	}
- 	
-   if() {
-	   
-	   
-   }else
-	   
-	   
-   }
- 	
- 	
-   
+
 }

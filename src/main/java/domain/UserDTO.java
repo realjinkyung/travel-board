@@ -10,6 +10,7 @@ import java.sql.Date;
 @ToString
 @Builder
 public class UserDTO {
+
     private Long userNo;		// 사용자 번호
     private String username;	// 사용자 id
     private String name;		// 사용자 이름

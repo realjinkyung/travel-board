@@ -1,5 +1,12 @@
 package service.post;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+
+import domain.PostDTO;
+import model.domain.file.FileDAO;
+import model.domain.file.FileDAOImpl;
+
 import domain.PostDTO;
 import domain.PostViewDTO;
 import model.domain.post.PostDAO;
@@ -17,6 +24,12 @@ public class PostServiceImpl implements PostService{
 
     public static PostServiceImpl getInstance(){
         return instance;
+    }
+    
+    @Override
+    public ArrayList<HashMap<String, Object>> allPostList(int pageNumber) {
+    	
+    	return postDAO.selectPostList(pageNumber);
     }
 
     @Override

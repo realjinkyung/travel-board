@@ -19,6 +19,5 @@ public class PostDTO {
     private Date createdAt;
     private Date modifiedAt;
     private Date deletedAt;
-    private Integer reportedNo;
-    private Integer favoriteNo;
+    private Long views;
 }

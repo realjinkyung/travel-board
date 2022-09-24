@@ -5,7 +5,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import org.omg.CORBA.Request;
 
 import domain.UserDTO;
 import utils.DBUtils;
