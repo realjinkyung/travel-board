@@ -1,5 +1,8 @@
 package model.domain.user;
 
-public interface UserDAO {
+import domain.UserDTO;
 
+public interface UserDAO {
+	public boolean insertUser(UserDTO user);
+	 public boolean login();
 }

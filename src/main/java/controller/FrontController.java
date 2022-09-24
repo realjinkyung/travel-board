@@ -19,12 +19,13 @@ public class FrontController extends HttpServlet {
 		resp.setCharacterEncoding("UTF-8");
 		System.out.println("sdsd");
 
+		System.out.println(req.getParameter("id"));
 		try {
 			Command command = resolveCommand(req.getServletPath(), req.getMethod());
 			String view = command.execute(req, resp);
 
 			if (view.startsWith(REDIRECT_PREfIX)) {
-				resp.sendRedirect(view.substring(REDIRECT_PREfIX.length()));
+				resp.sendRedirect(view.substring(REDIRECT_PREfIX.length())); ///???
 			} else {
 				RequestDispatcher rd = req.getRequestDispatcher(view);
 				rd.include(req, resp);
@@ -43,10 +44,21 @@ public class FrontController extends HttpServlet {
 		Command command = null;
 		if ("/boardList.do".equals(servletPath) && "GET".equalsIgnoreCase(method)) {
 			command = new BoardReadController();
-		} else if("/revise.do".equals(servletPath) && "GET".equalsIgnoreCase(method)) {
-			command = new UserReviseController();
+//		} else if("/revise.do".equals(servletPath) && "GET".equalsIgnoreCase(method)) {
+//			command = new UserReviseController();
+		} else if ("/join.do".equals(servletPath) && "POST".equalsIgnoreCase(method)) {
+			command = new BoardReadController(); // 만들기 - 회원가입
+		} else if ("/login.do".equals(servletPath) && "POST".equalsIgnoreCase(method)) {
+			command = new BoardReadController(); // 만들기 - 로그인
+		} else if ("/post.do".equals(servletPath) && "GET".equalsIgnoreCase(method)) { //FIXME URL
+			command = new PostReadController();
+		} else if ("/newPost.do".equals(servletPath) && "GET".equalsIgnoreCase(method)){ //FIXME URL
+			command = new ConnectNewPostController();
+		} else if ("/makePost.do".equals(servletPath) && "POST".equalsIgnoreCase(method)) { //FIXME URL
+			command = new ProducePostController();
+		} else if ("/edit.do".equals(servletPath) && "POST".equalsIgnoreCase(method)) { //FIXME URL
+			command = new ConnectNewPostController();
 		}
-
 		return command;
 	}
 

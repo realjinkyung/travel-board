@@ -10,14 +10,14 @@ import java.sql.Date;
 @NoArgsConstructor
 @ToString
 @Builder
-public class PostDTO {
+public class PostViewDTO {
     private Long postNo;
-    private Long userNo;
-    private Long boardNo;
+    private String username;
     private String title;
     private String content;
     private Date createdAt;
     private Date modifiedAt;
     private Date deletedAt;
+    private Integer reportedNo;
     private Long views;
 }
