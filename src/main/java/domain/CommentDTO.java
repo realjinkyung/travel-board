@@ -17,5 +17,4 @@ public class CommentDTO {
     private Date createdAt;
     private Date modifiedAt;
     private Date deletedAt;
-    private Integer reportedNo;
 }

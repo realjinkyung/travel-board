@@ -14,7 +14,6 @@ public class UserDTO {
     private String username;  // user id
     private String password;
     private String roleCode;
-    private int reportedNum;
     private boolean isBlind;
     private String profilePath;
     private String phoneNumber;

@@ -43,7 +43,6 @@ public class FrontController extends HttpServlet {
 		if ("/boardList.do".equals(servletPath) && "GET".equalsIgnoreCase(method)) {
 			command = new BoardReadController();
 		}
-
 		return command;
 	}
 
