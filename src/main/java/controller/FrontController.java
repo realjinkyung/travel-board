@@ -44,9 +44,9 @@ public class FrontController extends HttpServlet {
 		if ("/boardList.do".equals(servletPath) && "GET".equalsIgnoreCase(method)) {
 			command = new BoardReadController();
 		} else if ("/join.do".equals(servletPath) && "POST".equalsIgnoreCase(method)) {
-			command = new BoardReadController(); // 만들기 - 회원가입
+			command = new JoinFormContoller(); // 객체 만들기 - 회원가입
 		} else if ("/login.do".equals(servletPath) && "POST".equalsIgnoreCase(method)) {
-			command = new BoardReadController(); // 만들기 - 로그인
+			command = new LoginController(); // 객체 만들기 - 로그인
 
 		} else if ("/post.do".equals(servletPath) && "GET".equalsIgnoreCase(method)) { //FIXME URL
 			command = new PostReadController();

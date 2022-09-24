@@ -19,8 +19,7 @@ public class UserServiceImpl implements UserService{
  		// 회원 등록이 되게 ??
  		userDAO.insertUser(user);
  		
- 		
- 		
+ 		 		
  	}
  	
  	

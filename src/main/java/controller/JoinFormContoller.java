@@ -2,6 +2,7 @@ package controller;
 
 import java.io.IOException;
 import java.sql.Date;
+import java.sql.SQLException;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -22,6 +23,7 @@ public class JoinFormContoller implements Command{
 		String pwc = (String)req.getAttribute("passwordCheck");
       	String name = (String)req.getAttribute("name");
 		Date birth = (Date)req.getAttribute("birth");
+		String phoneNumber = (String)req.getAttribute("phoneNumber");
 		String email = (String)req.getAttribute("email");
 		String gender = (String)req.getAttribute("gender");
 	
@@ -43,7 +45,7 @@ public class JoinFormContoller implements Command{
 		try {
 			// 인터페이스 만들기
 //			result = userService.writeContent(new UserDTO(userId,userPW1,userName,userBirth,userEmail));
-			result = userService.writeContent(new UserDTO(username,pw,name,birth,email));
+			result = userService.writeContent(new UserDTO(0L,username,name,pw,"",0,true,"",phoneNumber,email,birth,gender));
 		} catch (SQLException e) {
 			e.printStackTrace();
 //			request.setAttribute("error", "게시글 저장 시도 실패 재 시도 하세요");
