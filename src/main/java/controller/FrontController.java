@@ -17,6 +17,7 @@ public class FrontController extends HttpServlet {
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		resp.setContentType("text/html");
 		resp.setCharacterEncoding("UTF-8");
+		System.out.println("sdsd");
 
 		try {
 			Command command = resolveCommand(req.getServletPath(), req.getMethod());
@@ -42,6 +43,8 @@ public class FrontController extends HttpServlet {
 		Command command = null;
 		if ("/boardList.do".equals(servletPath) && "GET".equalsIgnoreCase(method)) {
 			command = new BoardReadController();
+		} else if("/revise.do".equals(servletPath) && "GET".equalsIgnoreCase(method)) {
+			command = new UserReviseController();
 		}
 
 		return command;
