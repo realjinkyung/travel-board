@@ -18,12 +18,13 @@ public class FrontController extends HttpServlet {
 		resp.setContentType("text/html");
 		resp.setCharacterEncoding("UTF-8");
 
+		System.out.println(req.getParameter("id"));
 		try {
 			Command command = resolveCommand(req.getServletPath(), req.getMethod());
 			String view = command.execute(req, resp);
 
 			if (view.startsWith(REDIRECT_PREfIX)) {
-				resp.sendRedirect(view.substring(REDIRECT_PREfIX.length()));
+				resp.sendRedirect(view.substring(REDIRECT_PREfIX.length())); ///???
 			} else {
 				RequestDispatcher rd = req.getRequestDispatcher(view);
 				rd.include(req, resp);
@@ -42,8 +43,11 @@ public class FrontController extends HttpServlet {
 		Command command = null;
 		if ("/boardList.do".equals(servletPath) && "GET".equalsIgnoreCase(method)) {
 			command = new BoardReadController();
+		} else if ("/join.do".equals(servletPath) && "POST".equalsIgnoreCase(method)) {
+			command = new BoardReadController(); // 만들기 - 회원가입
+		} else if ("/login.do".equals(servletPath) && "POST".equalsIgnoreCase(method)) {
+			command = new BoardReadController(); // 만들기 - 로그인
 		}
-
 		return command;
 	}
 
