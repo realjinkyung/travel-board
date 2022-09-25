@@ -275,6 +275,7 @@
 	
 	<div class="post-wrap">
 		<h2>전체글보기</h2>
+		<a href="newPost.do"><button>새글쓰기</button></a>
 		<div>
 			<table>
 				<tr>
@@ -288,7 +289,7 @@
 					<c:forEach var="post" items="${postList}">
 						<tr>
 							<td class="post-no">${post.postNo}</td>
-							<td class="title">${post.title}</td>
+							<td class="title"><a href="post.do?postNo=${post.postNo}">${post.title}</a></td>
 							<td class="writer">${post.username}</td>
 							<td class="created-date">${post.createdAt}</td>
 							<td class="views">${post.views}</td>

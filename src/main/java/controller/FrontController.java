@@ -28,13 +28,12 @@ public class FrontController extends HttpServlet {
 				resp.sendRedirect(view.substring(REDIRECT_PREfIX.length())); ///???
 			} else {
 				RequestDispatcher rd = req.getRequestDispatcher(view);
-				rd.include(req, resp);
+				rd.forward(req, resp);
 			}
 		} catch (Exception ex) {
 			System.out.printf("", ex);
 
 			req.setAttribute("exception", ex);
-
 			RequestDispatcher rd = req.getRequestDispatcher("/error.jsp");
 			rd.forward(req, resp);
 		}
@@ -58,6 +57,16 @@ public class FrontController extends HttpServlet {
 			command = new ProducePostController();
 		} else if ("/edit.do".equals(servletPath) && "POST".equalsIgnoreCase(method)) { //FIXME URL
 			command = new ConnectNewPostController();
+		} else if ("/deletePost.do".equals(servletPath) && "GET".equalsIgnoreCase(method)) { //FIXME URL
+			command = new DeletePostController();
+		} else if ("/comments.do".equals(servletPath) && "GET".equalsIgnoreCase(method)) { //FIXME URL
+			command = new ReadCommentController();
+		} else if ("/addComment.do".equals(servletPath) && "POST".equalsIgnoreCase(method)) { //FIXME URL
+			command = new ProduceCommentController();
+		} else if ("/updateComment.do".equals(servletPath) && "GET".equalsIgnoreCase(method)) { //FIXME URL
+			command = new editCommentController();
+		} else if ("/deleteComment.do".equals(servletPath) && "GET".equalsIgnoreCase(method)) { //FIXME URL
+			command = new DeleteCommentController();
 		}
 		return command;
 	}

@@ -3,8 +3,6 @@ package service.post;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import domain.PostDTO;
-
 import domain.PostViewDTO;
 
 import javax.servlet.http.HttpServletRequest;
@@ -16,6 +14,8 @@ public interface PostService {
 
     PostViewDTO getByPostNo(Long postNo) throws SQLException;
 
-    int createPost(HttpServletRequest req) throws SQLException;
+    Long createPost(HttpServletRequest req) throws SQLException;
+
+    int erasePost(HttpServletRequest req) throws SQLException;
 
 }

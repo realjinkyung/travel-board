@@ -13,7 +13,9 @@ public interface PostDAO {
     PostViewDTO findByPostNo(Long postNo) throws SQLException;
 
     int insertPost(PostDTO postDTO) throws SQLException;
+    Long findPostByTitleAndContent(String title, String content) throws SQLException;
 
     int updatePost(PostDTO postDTO) throws SQLException;
 
+    int deletePost(Long postNo) throws SQLException;
 }

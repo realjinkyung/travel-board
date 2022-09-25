@@ -9,12 +9,18 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.SQLException;
 
-public class ProducePostController implements Command {
+public class DeletePostController implements Command {
     PostService postService = PostServiceImpl.getInstance();
+
+
     @Override
     public String execute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException, SQLException {
+        int result = postService.erasePost(req);
 
-        return "redirect:post.do?postNo=" + postService.createPost(req);
-
+        if(result == 1) {
+            return "redirect:boardList.do";
+        }else {
+            return "redirect:error.jsp";
+        }
     }
 }

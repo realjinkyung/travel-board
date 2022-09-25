@@ -19,6 +19,7 @@ public class PostReadController implements Command {
         PostViewDTO postViewDTO = postService.getByPostNo(postNo);
 
         req.setAttribute("postview", postViewDTO);
-        return "post.jsp";
+
+        return "comments.do";
     }
 }

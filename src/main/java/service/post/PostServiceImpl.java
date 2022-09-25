@@ -4,10 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import domain.PostDTO;
-import model.domain.file.FileDAO;
-import model.domain.file.FileDAOImpl;
 
-import domain.PostDTO;
 import domain.PostViewDTO;
 import model.domain.post.PostDAO;
 import model.domain.post.PostDAOImpl;
@@ -39,19 +36,36 @@ public class PostServiceImpl implements PostService{
     }
 
     @Override
-    public int createPost(HttpServletRequest req) throws SQLException {
+    public Long createPost(HttpServletRequest req) throws SQLException {
 
-        int result = 0;
+        Long result = 0L;
         String postNo = req.getParameter("postNo");
 
-        if(Objects.isNull(postNo)) {
-            result = postDAO.insertPost(makePostDTO(req,"insert",postNo));
+        if(Objects.equals("", postNo)) {
+            result = Long.valueOf(postDAO.insertPost(makePostDTO(req,"insert",postNo)));
+
+            if(result==1){
+
+                return postDAO.findPostByTitleAndContent(req.getParameter("title"), req.getParameter("content"));
+            }
+
         }else{
 
-            result = postDAO.updatePost(makePostDTO(req,"modify", postNo));
+            result = Long.valueOf(postDAO.updatePost(makePostDTO(req,"modify", postNo)));
+
+            if(result==1){
+                return Long.valueOf(postNo);
+            }
         }
 
         return result;
+
+    }
+
+    @Override
+    public int erasePost(HttpServletRequest req) throws SQLException {
+        Long postNo = Long.valueOf(req.getParameter("postNo"));
+        return postDAO.deletePost(postNo);
     }
 
     private PostDTO makePostDTO(HttpServletRequest req, String schedule, String postNo){
