@@ -31,6 +31,10 @@
 		.title {
 			width : 17rem;
 		}
+		.content {
+			resize: none;
+			font-size: 1rem;
+		}
 		.comment-content {
 			margin-top : 0.5rem;
 			width : 642px;
@@ -55,7 +59,7 @@
 	username :	<input type="text" class="username" name="username" value="${postview.username}" readonly>
 	createdAt : <input type="text" class="createdAt" value="${postview.createdAt}"><br/>
 	</div>
-	<div name="content" class="content" id="content">${postview.content}</div>
+	<textarea name="content" class="content" id="content" readonly>${postview.content}</textarea>
 	<input type="hidden" name="content" value="${postview.content}" class="content"><br/>
 	<input type="submit" value="수정" class="button">
 	<a href="deletePost.do?postNo=${postview.postNo}"><button class="button">삭제</button></a>
