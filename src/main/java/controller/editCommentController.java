@@ -14,7 +14,7 @@ public class editCommentController implements Command {
     @Override
     public String execute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException, SQLException {
         if(commentService.modifyComment(req) == 1){
-             return "redirect:post.do?"+req.getParameter("commentNo");
+             return "redirect:post.do?postNo="+req.getParameter("postNo");
         }
         return null;
     }

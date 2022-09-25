@@ -32,13 +32,16 @@
 			width : 17rem;
 		}
 		.comment-content {
-			border : 0.5rem black solid;
+			margin-top : 0.5rem;
 			width : 642px;
 		}
 		.comment-input {
 			margin-top : 1rem;
 			margin-bottom: 2rem;
 			width : 642px;
+		}
+		.modified {
+			opacity: 0.3;
 		}
 	</style>
 </head>
@@ -58,10 +61,11 @@
 	<a href="deletePost.do?postNo=${postview.postNo}"><button class="button">삭제</button></a>
 <%--	FIXME 버튼 오른쪽 정렬 --%>
 </form>
+
 <c:forEach var="comments" items="${comments}">
-	<div class="comment-content" id="comment${comments.commentNo}">${comments.content} - ${comments.username}
+	<div class="comment-content" id="comment${comments.commentNo}">${comments.content} - ${comments.username} / ${comments.createdAt} <span class="modified">${comments.modifiedAt}</span>
 <%--		username을 세션에서 받아와서 넘겨주는 로직 추가. username이 같은지 확인. --%>
-		<button onclick="modifyComment(${comments.commentNo}, ${comments.username})">수정</button>
+		<button onclick="modifyComment(${comments.commentNo}, '${comments.username}', ${postview.postNo})">수정</button>
 	<a href="deleteComment.do?commentNo=${comments.commentNo}&postNo=${postview.postNo}"><button>삭제</button></a>
 	</div>
 </c:forEach>
@@ -74,14 +78,25 @@
 
 
 <script>
-	function modifyComment(commentNum, username) {
-        const input = '<form action="/updateComment.do" method="post">' +
+	function modifyComment(commentNum, username, postNo) {
+        const input =
+			'<form action="updateComment.do" method="post" id="updateCommentForm '+ commentNum +'" >' +
 			'<input type="text" name="updateComment"/>' +
 			'<input type="hidden" name="username" value="' + username + '"/> ' +
 			'<input type="hidden" name="commentNo" value="'+ commentNum +'"/> ' +
-			'<input type="submit" value="댓글 수정"/>';
+			'<input type="hidden" name="postNo" value="'+ postNo +'"/>' +
+			'<input type="submit" value="댓글 수정"/>' +
+			'</form>';
+
+        let form = document.getElementById("updateCommentForm "+ commentNum);
         
-        document.getElementById("comment"+commentNum).insertAdjacentHTML("beforeend",input);
+        if(form == null){
+        	document.getElementById("comment" + commentNum).insertAdjacentHTML("beforeend",input);
+        } else {
+            form.remove();
+		}
+  
+  
 	}
 </script>
 </body>

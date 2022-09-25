@@ -3,12 +3,10 @@ package model.domain.comment;
 import domain.CommentViewDTO;
 import utils.DBUtils;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class CommentDAOImpl implements CommentDAO{
 
@@ -32,13 +30,21 @@ public class CommentDAOImpl implements CommentDAO{
         List<CommentViewDTO> commentDTOList = new ArrayList<>();
 
         while(rSet.next()){
-            commentDTOList.add(CommentViewDTO.builder()
+            CommentViewDTO commentViewDTO = CommentViewDTO.builder()
                     .commentNo(rSet.getLong("comments_no"))
                     .postNo(rSet.getLong("post_no"))
-                            .username(rSet.getString("username"))
+                    .username(rSet.getString("username"))
                     .createdAt(rSet.getDate("created_at"))
                     .content(rSet.getString("comment_content"))
-                    .build());
+                    .build();
+
+            Date modified = rSet.getDate("updated_at");
+            if(Objects.nonNull(modified)){
+                commentViewDTO.setCreatedAt(modified);
+                commentViewDTO.setModifiedAt(" - modified");
+            }
+
+            commentDTOList.add(commentViewDTO);
         }
 
         return commentDTOList;
@@ -72,7 +78,7 @@ public class CommentDAOImpl implements CommentDAO{
     @Override
     public int updateComment(Long commentNo, String username, String comment) throws SQLException {
         Connection con = DBUtils.getConnection();
-        PreparedStatement pstmt = con.prepareStatement("update comment set comment_content = ? where comment_no = ?;");
+        PreparedStatement pstmt = con.prepareStatement("update comment set comment_content = ?, updated_at = now() where comments_no = ?;");
         pstmt.setString(1, comment);
         pstmt.setLong(2, commentNo);
 

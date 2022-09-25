@@ -14,7 +14,7 @@ public class CommentViewDTO {
     private String username;
     private Long postNo;
     private Date createdAt;
-    private Date modifiedAt;
+    private String modifiedAt;
     private Date deletedAt;
     private String content;
 }
