@@ -1,5 +1,6 @@
-package controller;
+package controller.post;
 
+import controller.Command;
 import domain.PostDTO;
 import domain.PostViewDTO;
 import service.post.PostService;
@@ -16,7 +17,8 @@ public class PostReadController implements Command {
     @Override
     public String execute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException, SQLException {
         Long postNo = Long.parseLong(req.getParameter("postNo")); // FIXME 변수명 서로 확인하고 맞출 것
-        PostViewDTO postViewDTO = postService.getByPostNo(postNo);
+        boolean status = Boolean.parseBoolean(req.getParameter("status"));
+        PostViewDTO postViewDTO = postService.getByPostNo(postNo, status);
 
         req.setAttribute("postview", postViewDTO);
 

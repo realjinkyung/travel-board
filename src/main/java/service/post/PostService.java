@@ -12,7 +12,7 @@ public interface PostService {
 	
 	public ArrayList<HashMap<String, Object>> allPostList(int pageNumber);
 
-    PostViewDTO getByPostNo(Long postNo) throws SQLException;
+    PostViewDTO getByPostNo(Long postNo, boolean b) throws SQLException;
 
     Long createPost(HttpServletRequest req) throws SQLException;
 

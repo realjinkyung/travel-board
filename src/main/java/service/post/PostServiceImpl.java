@@ -30,8 +30,8 @@ public class PostServiceImpl implements PostService{
     }
 
     @Override
-    public PostViewDTO getByPostNo(Long postNo) throws SQLException {
-        PostViewDTO postDTO = postDAO.findByPostNo(postNo);
+    public PostViewDTO getByPostNo(Long postNo, boolean status) throws SQLException {
+        PostViewDTO postDTO = postDAO.findByPostNo(postNo, status);
         return postDTO;
     }
 

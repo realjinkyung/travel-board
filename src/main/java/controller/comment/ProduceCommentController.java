@@ -1,5 +1,6 @@
-package controller;
+package controller.comment;
 
+import controller.Command;
 import domain.CommentViewDTO;
 import service.comment.CommentService;
 import service.comment.CommentServiceImpl;

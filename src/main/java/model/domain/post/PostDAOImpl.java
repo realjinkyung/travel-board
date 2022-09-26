@@ -61,7 +61,7 @@ public class PostDAOImpl implements PostDAO {
     }
 
     @Override
-    public PostViewDTO findByPostNo(Long postNo) throws SQLException {
+    public PostViewDTO findByPostNo(Long postNo, boolean status) throws SQLException {
         Connection con = null;
         PreparedStatement pstmt = null;
         ResultSet rset = null;
@@ -96,7 +96,14 @@ public class PostDAOImpl implements PostDAO {
                     postView.setDeletedAt(deletedAt);
                 }
             }
+            if(status) {
+                pstmt = con.prepareStatement("update post set views= views+1 where post_no = ?");
+                pstmt.setLong(1, postNo);
+                pstmt.executeUpdate();
+            }
+
         }finally{
+
             DBUtils.close(con,pstmt,rset);
         }
         return postView;

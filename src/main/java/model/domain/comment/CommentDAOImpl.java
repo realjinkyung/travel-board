@@ -31,7 +31,7 @@ public class CommentDAOImpl implements CommentDAO{
 
         while(rSet.next()){
             CommentViewDTO commentViewDTO = CommentViewDTO.builder()
-                    .commentNo(rSet.getLong("comments_no"))
+                    .commentNo(rSet.getLong("comment_no"))
                     .postNo(rSet.getLong("post_no"))
                     .username(rSet.getString("username"))
                     .createdAt(rSet.getDate("created_at"))
@@ -66,7 +66,7 @@ public class CommentDAOImpl implements CommentDAO{
     @Override
     public int deleteComment(Long commentNo) throws SQLException {
         Connection con = DBUtils.getConnection();
-        PreparedStatement pstmt = con.prepareStatement("delete from comment where comments_no=?");
+        PreparedStatement pstmt = con.prepareStatement("delete from comment where comment_no=?");
         pstmt.setLong(1, commentNo);
         int result = pstmt.executeUpdate();
 
@@ -78,7 +78,7 @@ public class CommentDAOImpl implements CommentDAO{
     @Override
     public int updateComment(Long commentNo, String username, String comment) throws SQLException {
         Connection con = DBUtils.getConnection();
-        PreparedStatement pstmt = con.prepareStatement("update comment set comment_content = ?, updated_at = now() where comments_no = ?;");
+        PreparedStatement pstmt = con.prepareStatement("update comment set comment_content = ?, updated_at = now() where comment_no = ?;");
         pstmt.setString(1, comment);
         pstmt.setLong(2, commentNo);
 

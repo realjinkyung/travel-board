@@ -1,14 +1,27 @@
 package controller;
 
+import controller.comment.DeleteCommentController;
+import controller.comment.ProduceCommentController;
+import controller.comment.ReadCommentController;
+import controller.comment.editCommentController;
+import controller.post.ConnectNewPostController;
+import controller.post.DeletePostController;
+import controller.post.PostReadController;
+import controller.post.ProducePostController;
+
 import java.io.IOException;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+@MultipartConfig(fileSizeThreshold=2048*2048*10,
+		maxFileSize=2048*2048*50,
+		maxRequestSize=2048*2048*100)
 @WebServlet(name = "frontServlet", urlPatterns = "*.do")
 public class FrontController extends HttpServlet {
 	private static final String REDIRECT_PREfIX = "redirect:";

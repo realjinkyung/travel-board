@@ -1,5 +1,6 @@
-package controller;
+package controller.post;
 
+import controller.Command;
 import service.post.PostService;
 import service.post.PostServiceImpl;
 

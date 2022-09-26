@@ -289,7 +289,7 @@
 					<c:forEach var="post" items="${postList}">
 						<tr>
 							<td class="post-no">${post.postNo}</td>
-							<td class="title"><a href="post.do?postNo=${post.postNo}">${post.title}</a></td>
+							<td class="title"><a href="post.do?postNo=${post.postNo}&status=${true}">${post.title}</a></td>
 							<td class="writer">${post.username}</td>
 							<td class="created-date">${post.createdAt}</td>
 							<td class="views">${post.views}</td>

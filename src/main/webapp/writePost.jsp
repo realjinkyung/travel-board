@@ -8,7 +8,7 @@
 			justify-content: center;
 		}
 		.title {
-			width : 642px;
+			width : 640px;
 		}
 		.content{
             margin-top : 2rem;
@@ -27,7 +27,8 @@
   <h2>글쓰기</h2>
   <form action="makePost.do" method="post">
 	  <input type="hidden" name="postNo" value="${postNo}"/>
-	  <input type="text" class="title" name="title" value="${title}" placeholder="제목"/><br/>
+	  <input type="text" class="title" name="title" value="${title}" placeholder="제목"/>
+	  <input type="file" name="file" class="file" value="찾아보기"/> <br/>
 <%--	  <input type="text" class="content" name="content" value="${content}" placeholder="내용"/><br/>--%>
 	  <textarea name="content" class="content" placeholder="내용">${content}</textarea>
 <%--<input type="hidden" name="content" value="${}"> FIXME session에서 id값 받아서 입력해 줄 곳--%>

@@ -1,5 +1,6 @@
-package controller;
+package controller.comment;
 
+import controller.Command;
 import service.comment.CommentService;
 import service.comment.CommentServiceImpl;
 
@@ -9,13 +10,14 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.SQLException;
 
-public class editCommentController implements Command {
+public class DeleteCommentController implements Command {
     CommentService commentService = CommentServiceImpl.getInstance();
     @Override
     public String execute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException, SQLException {
-        if(commentService.modifyComment(req) == 1){
-             return "redirect:post.do?postNo="+req.getParameter("postNo");
-        }
-        return null;
+        Long commentNo = Long.valueOf(req.getParameter("commentNo"));
+            if(commentService.eraseComment(commentNo) == 1){
+                return "redirect:post.do?postNo="+req.getParameter("postNo");
+            }
+        return "error.jsp";
     }
 }
