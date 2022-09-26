@@ -44,7 +44,12 @@ public class FrontController extends HttpServlet {
 		Command command = null;
 		if ("/boardList.do".equals(servletPath) && "GET".equalsIgnoreCase(method)) {
 			command = new BoardReadController();
-		} else if("/revise.do".equals(servletPath) && "GET".equalsIgnoreCase(method)) {
+		} else if("/userinfo.do".equals(servletPath) && "GET".equalsIgnoreCase(method)) {
+			System.out.println("userInfo.do");
+			command = new UserInfoController();
+		} else if("/userRevisePage.do".equals(servletPath) && "GET".equalsIgnoreCase(method)) {
+			command = new UserRevisePageController();
+		}else if("/userRevise.do".equals(servletPath) && "POST".equalsIgnoreCase(method)) {
 			command = new UserReviseController();
 		} else if ("/join.do".equals(servletPath) && "POST".equalsIgnoreCase(method)) {
 			command = new BoardReadController(); // 만들기 - 회원가입
@@ -58,6 +63,8 @@ public class FrontController extends HttpServlet {
 			command = new ProducePostController();
 		} else if ("/edit.do".equals(servletPath) && "POST".equalsIgnoreCase(method)) { //FIXME URL
 			command = new ConnectNewPostController();
+			
+			
 		}
 		return command;
 	}

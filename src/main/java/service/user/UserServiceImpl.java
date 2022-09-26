@@ -37,6 +37,23 @@ public class UserServiceImpl implements UserService{
     }
     
     
+    @Override
+    public UserDTO selectUser(String username) {
+    
+    	
+    	return userDAO.selectUser(username);
+    }
+    
+    
+    @Override
+    public int updateUser(String username, UserDTO userRevise) {
+    	
+    	
+    	return userDAO.updateUser(username, userRevise);
+    }
+    
+    
+    
 //     메소드 - 어떤 기능?
     // 회원가입
 // 	public boolean writeContent(UserDTO user) {
@@ -69,5 +86,4 @@ public class UserServiceImpl implements UserService{
 //   }
 // 	
  	
-   
 }
