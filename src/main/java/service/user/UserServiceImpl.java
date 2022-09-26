@@ -24,11 +24,10 @@ public class UserServiceImpl implements UserService{
  	// 로그인
  	@Override
 	public boolean login(UserDTO user) {
+// 		System.out.println("dao"+user.getUsername());
+//		System.out.println("dao"+user.getPassword());
  		return userDAO.login(user);
 		// 회원가입된 정보 ID, PW == 입력한 정보 ID, PW
-		// if 로그인 성공 else 실패
-		// if else
 		
 	}
-
 }

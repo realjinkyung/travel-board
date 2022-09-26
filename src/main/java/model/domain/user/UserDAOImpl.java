@@ -63,7 +63,6 @@ public class UserDAOImpl implements UserDAO{
 		boolean result = false;
 		
 		String sql1 = "select * from user where username = ? and password = ?";
-		
 		try {
 			con = DBUtils.getConnection();
 			pstmt = con.prepareStatement(sql1); // 로그인 DB 연결
@@ -71,14 +70,14 @@ public class UserDAOImpl implements UserDAO{
 			pstmt.setString(1, user.getUsername());
 			pstmt.setString(2, user.getPassword());
 			
+		
+			
 			rset = pstmt.executeQuery();
-//			FileDTo fiel = new FileDTO();
 			
-			
-//			if(rset.next()) {
-//				if(rset.getString(1).equals(user.get))
-//				return 1; // 로그인 성공
-//			} 
+			if(rset.next()) {
+				System.out.println("qw");
+				return true; // 로그인 성공
+			} 
 			
 		} catch (SQLException e) {
 			// 컨트롤러로 이동
