@@ -7,5 +7,5 @@ public interface UserService {
 	public boolean writeContent(UserDTO user);
 
 	// 로그인
-	public void login();
+	public boolean login(UserDTO user);
 }

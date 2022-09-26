@@ -22,10 +22,13 @@ public class UserServiceImpl implements UserService{
     } 	
  	
  	// 로그인
- 	public void login() {
- 		// 회원가입된 정보 ID, PW == 입력한 정보 ID, PW
- 		// if 로그인 성공 else 실패
- 		// if else
- 	}
+ 	@Override
+	public boolean login(UserDTO user) {
+ 		return userDAO.login(user);
+		// 회원가입된 정보 ID, PW == 입력한 정보 ID, PW
+		// if 로그인 성공 else 실패
+		// if else
+		
+	}
 
 }

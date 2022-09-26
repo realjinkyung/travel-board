@@ -18,7 +18,7 @@ public class JoinFormContoller implements Command{
 
 	@Override
 	public String execute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		String username = (String)req.getParameter("username");
+		String username = (String)req.getParameter("username"); // 아이디
 		String pw = (String)req.getParameter("password");
 		String pwc = (String)req.getParameter("passwordCheck");
       	String name = (String)req.getParameter("name");
@@ -37,7 +37,7 @@ public class JoinFormContoller implements Command{
 			birth == null ||
 			email == null || email.trim().length() == 0 ||
 			gender == null || gender.trim().length() == 0 ){
-		}
+		} 
 		
 		boolean result = false;
 		
