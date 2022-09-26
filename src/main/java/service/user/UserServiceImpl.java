@@ -16,9 +16,13 @@ public class UserServiceImpl implements UserService{
 // 메소드 - 어떤 기능?
     // 회원가입
     @Override
-    public boolean writeContent(UserDTO user) {
-    	// 회원 등록
-    	return userDAO.insertUser(user);
+    public String writeContent(UserDTO user, String pwc) {
+//    	// 비밀번호 == 비밀번호 재확인
+    	if(user.getPassword().equals(pwc)) {  // String이라서 equals, ==으로 비교하면 객체의 주솟값을 비교하게 됨
+    		userDAO.insertUser(user);    
+    		return "";
+    	} 
+		return "패스워드";
     } 	
  	
  	// 로그인

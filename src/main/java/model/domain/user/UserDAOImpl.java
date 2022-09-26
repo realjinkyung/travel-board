@@ -70,12 +70,10 @@ public class UserDAOImpl implements UserDAO{
 			pstmt.setString(1, user.getUsername());
 			pstmt.setString(2, user.getPassword());
 			
-		
-			
 			rset = pstmt.executeQuery();
 			
 			if(rset.next()) {
-				System.out.println("qw");
+				System.out.println("로그인 중");
 				return true; // 로그인 성공
 			} 
 			

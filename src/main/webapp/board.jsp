@@ -242,7 +242,7 @@
 	<div class="board-wrap">
 		<div class="logo-area">
 			<a href="#">
-				<img src="logo."/><span>Jesu Story</span>
+				<img src="logo."/><span>Jeju Story</span>
 			</a>
 		</div>
 		<div class="board-area">

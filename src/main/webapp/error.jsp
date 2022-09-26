@@ -8,5 +8,7 @@
 </head>
 <body>
 	${exception}
+	${msg} 
+	${msg1}
 </body>
 </html>

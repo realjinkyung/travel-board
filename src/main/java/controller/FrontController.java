@@ -34,7 +34,6 @@ public class FrontController extends HttpServlet {
 			System.out.printf("", ex); 
 
 			req.setAttribute("exception", ex);
-			
 
 			RequestDispatcher rd = req.getRequestDispatcher("/error.jsp");
 			rd.forward(req, resp);

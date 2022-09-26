@@ -3,6 +3,7 @@ package controller;
 import java.io.IOException;
 import java.sql.Date;
 import java.sql.SQLException;
+import java.util.regex.Pattern;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -39,20 +40,28 @@ public class JoinFormContoller implements Command{
 			gender == null || gender.trim().length() == 0 ){
 		} 
 		
-		boolean result = false;
+//		boolean result = false;
+		
+//		String pattern = "/^[0-9a-zA-Z]([-_\\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\\.]?[0-9a-zA-Z])*\\.[a-zA-Z]{2,3}$/i\r\n";
+		String pattern = "^[_a-z0-9-]+(.[_a-z0-9-]+)*@(?:\\w+\\.)+\\w+$";
+		boolean emailResult = Pattern.matches(pattern, email);
+		System.out.println(emailResult);
 		
 		try {
-			result = userService.writeContent(new UserDTO(1L,username,name,pw,"",0,true,"",phoneNumber,email,birth,gender));
-			System.out.println("결과 : " + result);
+//			result = userService.writeContent(new UserDTO(1L,username,name,pw,"",0,true,"",phoneNumber,email,birth,gender), pwc);
+			if("패스워드".equals(userService.writeContent(new UserDTO(1L,username,name,pw,"",0,true,"",phoneNumber,email,birth,gender), pwc))) {
+				req.setAttribute("msg", "입력한 패스워드와 일치하지 않습니다. 다시 확인해주세요.");
+				return "error.jsp"; // ? error.jsp의 ${msg} 인자(파라미터) 전달 ex) get방식 : ?id=1234&pw=1111 => 보안을 위해 post방식
+//				email @ -> "이메일형식에 맞지 않습니다. @ 확인해주세요."
+			} else if(!emailResult) {
+				req.setAttribute("msg", "이메일형식에 맞지 않습니다.");
+				return "error.jsp"; 
+			} else {
+				return "joinSuccess.jsp";
+			}
 		}catch (Exception e) {
 			e.printStackTrace();
 		}
-		
-		if(result) {
-			return "joinSuccess.jsp";
-		}else {
-			return "redirect:error.jsp";
-		}
-	}
-	
+		return null;	
+	}	
 }
