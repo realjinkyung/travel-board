@@ -18,6 +18,7 @@ public class JoinFormContoller implements Command{
 
 	@Override
 	public String execute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		System.out.println("ii");
 		String username = (String)req.getAttribute("username");
 		String pw = (String)req.getAttribute("password");
 		String pwc = (String)req.getAttribute("passwordCheck");
@@ -37,22 +38,14 @@ public class JoinFormContoller implements Command{
 			email == null || email.trim().length() == 0 ||
 			gender == null || gender.trim().length() == 0 ){
 //			req.getParameter("join.jsp");
-		}
-		return "redirect:error.jsp"; // ? write() 메소드 종료
+		} //  메소드 종료
 		
-//		boolean result = false;
 		
-//		try {
-			// 인터페이스 만들기
-//			result = userService.writeContent(new UserDTO(userId,userPW1,userName,userBirth,userEmail));
-			result = userService.writeContent(new UserDTO(0L,username,name,pw,"",0,true,"",phoneNumber,email,birth,gender));
-		} catch (SQLException e) {
-			e.printStackTrace();
-//			result = userService.writeContent(new UserDTO(username,pw,name,birth,email));
-//		} catch (SQLException e) {
-//			e.printStackTrace();
-//			request.setAttribute("error", "게시글 저장 시도 실패 재 시도 하세요");
-//		}
+		boolean result = false;
+		
+		result = userService.writeContent(new UserDTO(0L,username,name,pw,"",0,true,"",phoneNumber,email,birth,gender));
+		
+		return "JoinSuccess.jsp"; // 끝나고 돌아갈 페이지
 		
 		// redirect: 서버가 접속하는사람(클라이언트)한테 다시 연결하라고 말해 줌, 연결만 다시 해 줌  
 		// forward : 접속자에게 말안하고 서버에서 알아서 처리함, 값 전달 + 연결
@@ -63,9 +56,5 @@ public class JoinFormContoller implements Command{
 //		}
 //	}
 //		
-		
-		
-//		return null;
 	}
-	
 }

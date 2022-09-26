@@ -17,7 +17,7 @@ public class FrontController extends HttpServlet {
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		resp.setContentType("text/html");
 		resp.setCharacterEncoding("UTF-8");
-		System.out.println("sdsd");
+		System.out.println(req.getServletPath());
 
 		System.out.println(req.getParameter("id"));
 		try {

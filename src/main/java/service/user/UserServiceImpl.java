@@ -16,7 +16,7 @@ public class UserServiceImpl implements UserService{
 //     메소드 - 어떤 기능?
     // 회원가입
     @Override
-    public boolean wirteContent(UserDTO user) {
+    public boolean writeContent(UserDTO user) {
     	// 회원 등록이 되게 ??
     	userDAO.insertUser(user);
     	return false;

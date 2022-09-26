@@ -13,7 +13,8 @@
 			<br>
 			비밀번호 : <input type="password", name="pw", placeholder="비밀번호를 입력하세요">
 			<br>
-			<input type="submit", value="로그인버튼">
+			<input type="submit", value="로그인">
+			<a href="./joinForm.jsp">회원가입</a>
 		</form>
 	</div>
 
