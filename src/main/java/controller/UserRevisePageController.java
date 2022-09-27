@@ -2,45 +2,40 @@ package controller;
 
 import java.io.IOException;
 import java.sql.Date;
+import java.sql.SQLException;
+import java.util.List;
+import java.util.Objects;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import domain.BoardDTO;
 import domain.UserDTO;
+import service.board.BoardService;
+import service.board.BoardServiceImpl;
 import service.user.UserService;
 import service.user.UserServiceImpl;
 
-public class UserReviseController implements Command {
+public class UserRevisePageController implements Command {
+
 private final UserService userService = UserServiceImpl.getInstance();
 	
 	
 	public String execute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        System.out.println("modifyTest");
-		UserDTO user = null;
-        int result = 0;
-        Date birth = Date.valueOf(req.getParameter("birth"));
-        user = UserDTO.builder()
-        		.profilePath("img_path")
-        		.name(req.getParameter("name"))
-        		.birth(birth)
-        		.gender(req.getParameter("gender"))
-        		.email(req.getParameter("email"))
-        		.phoneNumber(req.getParameter("phoneNumber"))
-        		.build();
+        UserDTO user = null; 
         
-        		
- 
     	try {
-    		result = userService.updateUser("dev", user);
+            user = userService.selectUser("dev");
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
-    	
-        if(result == 0){
+
+        if(user == null){
             return "error.jsp";
         }else{
-        	return "redirect:userinfo.do";
+        	req.setAttribute("user", user);
+        	return "userRevise.jsp";
         }
     }
 }	

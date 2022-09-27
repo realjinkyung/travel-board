@@ -13,6 +13,31 @@ public class UserServiceImpl implements UserService{
         return instance;
     }
     
+    @Override
+    public boolean modifyUser() {
+    	// TODO Auto-generated method stub
+    	return false;
+    }
+    
+    @Override
+    public boolean Revise() {
+    	// TODO Auto-generated method stub
+    	return false;
+    }
+    
+    @Override
+    public UserDTO selectUser(String username) {
+        
+    	return userDAO.selectUser(username);
+    }
+    
+    @Override
+    public int updateUser(String username, UserDTO userRevise) {
+    	
+    	
+    	return userDAO.updateUser(username, userRevise);
+    }
+    
 // 메소드 - 어떤 기능?
     // 회원가입
     @Override
@@ -23,8 +48,7 @@ public class UserServiceImpl implements UserService{
     		return "";
     	} 
 		return "패스워드";
-    } 	
- 	
+    }
  	// 로그인
  	@Override
 	public boolean login(UserDTO user) {

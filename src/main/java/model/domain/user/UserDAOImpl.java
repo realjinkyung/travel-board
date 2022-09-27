@@ -83,5 +83,92 @@ public class UserDAOImpl implements UserDAO{
 		}
 		return false;
 	}
+	
+	
+	
+	
+	@Override
+	public UserDTO selectUser(String username) {
+		Connection con = null;
+	  	PreparedStatement pstmt = null;
+	  	ResultSet rset = null;
+	  	
+	  	System.out.println("test user");
+	  	UserDTO user = null;
+	  	try {
+				con = DBUtils.getConnection();
+				pstmt = con.prepareStatement("select *from user where username=?"); // 로그인 DB 연결
+				
+				// 파라미터로 받은 user.getXXX()로 값 들고오기
+				pstmt.setString(1, username);
+				
+				
+				rset = pstmt.executeQuery();
+				
+				if(rset.next()) {
+					user = UserDTO.builder()
+					.profilePath(rset.getString("profile_path"))
+					.username(rset.getString("username"))
+					.name(rset.getString("name"))
+					.birth(rset.getDate("birth"))
+					.gender(rset.getString("gender"))
+					.email(rset.getString("email"))
+					.phoneNumber(rset.getString("phonenumber"))
+					.build();	
+				}
+	  	} catch (SQLException e) {
+	  		// 컨트롤러로 이동
+				e.printStackTrace();
+			}
+	  	
+	  	return user;
+	}
+	
+	
+	
+	
+// user updater
+	@Override
+	public int updateUser(String username, UserDTO userRevise) {
+		Connection con = null;
+	  	PreparedStatement pstmt = null;
+	  	int result = 0;
+	  	
+	  	try {
+				con = DBUtils.getConnection();
+				pstmt = con.prepareStatement("update user set profile_path = ?, name = ?, birth = ?, gender = ?, email = ?, phonenumber =?  where username = ?"); // 로그인 DB 연결
+				
+				// 파라미터로 받은 user.getXXX()로 값 들고오기
+				pstmt.setString(1, userRevise.getProfilePath());
+				pstmt.setString(2, userRevise.getName());
+				pstmt.setDate(3, userRevise.getBirth());
+				pstmt.setString(4, userRevise.getGender());
+				pstmt.setString(5, userRevise.getEmail());
+				pstmt.setString(6, userRevise.getPhoneNumber());
+				pstmt.setString(7, username);
+				
+				if(pstmt.executeUpdate() == 1) {
+					return 1;
+				}
+				System.err.println("result " + result);
+	  	} catch (SQLException e) {
+	  		// 컨트롤러로 이동
+				e.printStackTrace();
+			}
+	  	
+	  	return result;
+	}
+	
+	
+	
+	
+	
+	
+
+	
+	
+	
+	
+	
 }
 
