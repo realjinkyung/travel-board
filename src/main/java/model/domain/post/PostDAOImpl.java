@@ -118,8 +118,7 @@ public class PostDAOImpl implements PostDAO {
 		}finally {
 			DBUtils.close(con,pstmt,rset);
 		}
-    	
-        
+
       return postList;
     }
 
