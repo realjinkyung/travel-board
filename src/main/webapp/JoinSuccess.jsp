@@ -4,11 +4,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>JoinSuccess.jsp</title>
+<title>joinSuccess.jspe</title>
 </head>
 <body>
-<div>
-	<h2>회원가입이 성공하였습니다.</h2>
-</div>
+	<h3>joinSuccess</h3>
 </body>
 </html>
