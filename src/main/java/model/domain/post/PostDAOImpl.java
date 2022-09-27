@@ -7,17 +7,16 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
-import domain.BoardDTO;
 import domain.PostDTO;
 import domain.PostViewDTO;
+import org.modelmapper.ModelMapper;
 import utils.DBUtils;
 
 public class PostDAOImpl implements PostDAO {
 
     private static PostDAO instance = new PostDAOImpl();
+    ModelMapper modelMapper = new ModelMapper();
 
     private PostDAOImpl() {
     }
@@ -152,7 +151,7 @@ public class PostDAOImpl implements PostDAO {
     
     
     @Override
-    public PostViewDTO findByPostNo(Long postNo) throws SQLException {
+    public PostViewDTO findByPostNo(Long postNo, boolean status) throws SQLException {
         Connection con = null;
         PreparedStatement pstmt = null;
         ResultSet rset = null;
@@ -163,7 +162,7 @@ public class PostDAOImpl implements PostDAO {
             pstmt = con.prepareStatement("select p.post_no, u.username, p.board_no, p.title, p.content, p.created_at, p.updated_at, p.deleted_at,p.views " +
                                                "from post p inner join user u " +
                                                                    "on p.user_no = u.user_no " +
-                                              "where p.user_no = ?");
+                                              "where p.post_no = ?");
             pstmt.setLong(1, postNo);
 
             rset = pstmt.executeQuery();
@@ -187,7 +186,14 @@ public class PostDAOImpl implements PostDAO {
                     postView.setDeletedAt(deletedAt);
                 }
             }
+            if(status) {
+                pstmt = con.prepareStatement("update post set views= views+1 where post_no = ?");
+                pstmt.setLong(1, postNo);
+                pstmt.executeUpdate();
+            }
+
         }finally{
+
             DBUtils.close(con,pstmt,rset);
         }
         return postView;
@@ -212,6 +218,22 @@ public class PostDAOImpl implements PostDAO {
 
         return result;
     }
+    @Override
+    public Long findPostByTitleAndContent(String title, String content) throws SQLException {
+        Connection con = DBUtils.getConnection();
+        PreparedStatement pstmt = null;
+        ResultSet rset = null;
+
+        pstmt = con.prepareStatement("select post_no from post where title=? and content=?");
+        pstmt.setString(1, title);
+        pstmt.setString(2, content);
+
+        rset = pstmt.executeQuery();
+        if(rset.next()) {
+            return rset.getLong("post_no");
+        }
+        return 0L;
+    }
 
     @Override
     public int updatePost(PostDTO postDTO) throws SQLException {
@@ -224,6 +246,18 @@ public class PostDAOImpl implements PostDAO {
         int result = pstmt.executeUpdate();
 
         DBUtils.close(con,pstmt);
+        return result;
+    }
+
+    @Override
+    public int deletePost(Long postNo) throws SQLException {
+        Connection con = DBUtils.getConnection();
+        PreparedStatement pstmt = con.prepareStatement("delete from post where post_no = ?");
+        pstmt.setLong(1, postNo);
+        int result = pstmt.executeUpdate();
+
+        DBUtils.close(con, pstmt);
+
         return result;
     }
 }

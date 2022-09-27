@@ -383,6 +383,7 @@
 	
 	<div class="post-wrap">
 		<h2>전체글보기</h2>
+		<a href="newPost.do"><button>새글쓰기</button></a>
 		<div>
 			<table>
 				<tr>
@@ -398,7 +399,7 @@
 							<c:forEach var="post" items="${postList}">
 								<tr>
 									<td class="post-no">${post.postNo}</td>
-									<td class="title">${post.title}<b><c:if test="${post.commentCount != 0}">[${post.commentCount}]</c:if></b></td>
+									<td class="title"><a href="post.do?postNo=${post.postNo}&status=${true}">${post.title}</a><b><c:if test="${post.commentCount != 0}">[${post.commentCount}]</c:if></b></td>
 									<td class="writer">${post.username}</td>
 									<td class="created-date">${post.createdAt}</td>
 									<td class="views">${post.views}</td>
@@ -412,6 +413,7 @@
 						</tr>					
 					</c:otherwise>
 				</c:choose>
+
 			</table>
 			<div class="page-numbers">
 				<ul>
