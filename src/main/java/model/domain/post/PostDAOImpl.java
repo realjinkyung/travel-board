@@ -27,7 +27,7 @@ public class PostDAOImpl implements PostDAO {
     }
     
     @Override
-    public ArrayList<HashMap<String, Object>> selectPostList(int pageNumber) {
+    public ArrayList<HashMap<String, Object>> selectPostList(int pageNumber, String board, String searchOption, String searchContent) {
     	Connection con = null;
         PreparedStatement pstmt = null;
         ResultSet rset = null;
@@ -35,9 +35,71 @@ public class PostDAOImpl implements PostDAO {
         
     	try {
             con = DBUtils.getConnection();
-            pstmt = con.prepareStatement("select post_no, username, title, created_at, views from post join user using(user_no) limit ?, ?");
-            pstmt.setInt(1, (pageNumber - 1) * 18);
-            pstmt.setInt(2, pageNumber * 18);
+            String sql = "select *from (select *from (select post_no, board_no, username, title, created_at, views, content from post join user using(user_no)) sub join board using(board_no)) sub2 left outer join (select post_no, count(*) comment_count from comment group by post_no) sub3 using(post_no)";
+            if(board.equals("all")) {
+            	if(searchOption != null && !searchOption.equals("")) {
+            		switch (searchOption) {
+					case "title":
+						sql += " where title like ?";
+						break;
+					case "content":
+						sql += " where content like ?";
+						break;
+					case "writer":
+						sql += " where username like ?";
+						break;
+					default:
+						break;
+					}
+            	}
+            	sql += " limit ?, ?";
+            }else {
+            	sql += " where board_name = ?";
+            	
+            	if(searchOption != null && !searchOption.equals("")) {
+            		switch (searchOption) {
+					case "title":
+						sql += " and title like ?";
+						break;
+					case "content":
+						sql += " and content like ?";
+						break;
+					case "writer":
+						sql += " and username like ?";
+						break;
+					default:
+						break;
+					}
+            	}
+            	
+            	sql += " limit ?, ?";
+            }
+            pstmt = con.prepareStatement(sql);
+            
+            if(board.equals("all")) {
+            	if(searchOption != null && !searchOption.equals("")) {
+            		pstmt.setString(1,  "%" + searchContent + "%");
+                    pstmt.setInt(2, (pageNumber - 1) * 18);
+                    pstmt.setInt(3, pageNumber * 18);
+            	}else {
+            		pstmt.setInt(1, (pageNumber - 1) * 18);
+                    pstmt.setInt(2, pageNumber * 18);
+            	}
+            	 
+            }else {
+            	if(searchOption != null && !searchOption.equals("")) {
+            		pstmt.setString(1, board);
+            		pstmt.setString(2, "%" + searchContent + "%");
+                	pstmt.setInt(3, (pageNumber - 1) * 18);
+                    pstmt.setInt(4, pageNumber * 18);
+            	}else {
+            		pstmt.setString(1, board);
+                	pstmt.setInt(2, (pageNumber - 1) * 18);
+                    pstmt.setInt(3, pageNumber * 18);
+            	}
+            	
+            }
+           
             rset = pstmt.executeQuery();
 
             while (rset.next()){
@@ -47,6 +109,7 @@ public class PostDAOImpl implements PostDAO {
             	data.put("title",rset.getString("title"));
             	data.put("createdAt",rset.getLong("post_no"));
             	data.put("views",rset.getLong("views"));
+            	data.put("commentCount", rset.getInt("comment_count"));
             	
             	postList.add(data);
             }
@@ -61,6 +124,33 @@ public class PostDAOImpl implements PostDAO {
       return postList;
     }
 
+    @Override
+    public int selectPostCount() {
+    	Connection con = null;
+        PreparedStatement pstmt = null;
+        ResultSet rset = null;
+        int count = 0;
+        
+    	try {
+            con = DBUtils.getConnection();
+            pstmt = con.prepareStatement("select count(*) p_count from post");
+            rset = pstmt.executeQuery();
+
+            if (rset.next()){
+            	count = rset.getInt("p_count");
+            }
+
+    	}catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			DBUtils.close(con,pstmt,rset);
+		}
+    	
+        
+      return count;
+    }
+    
+    
     @Override
     public PostViewDTO findByPostNo(Long postNo) throws SQLException {
         Connection con = null;

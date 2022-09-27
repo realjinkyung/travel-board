@@ -7,6 +7,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.sql.Date;
 import java.sql.SQLException;
 
 public class ConnectNewPostController implements Command {
@@ -17,7 +18,8 @@ public class ConnectNewPostController implements Command {
         req.setAttribute("postNo", req.getParameter("postNo"));
         req.setAttribute("title", req.getParameter("title"));
         req.setAttribute("content", req.getParameter("content"));
-
+        
+        Date.valueOf(req.getParameter("test"));
         return "writePost.jsp";
 
     }

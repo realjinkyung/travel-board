@@ -9,7 +9,8 @@ import java.util.HashMap;
 
 public interface PostDAO {
 	// 로그인 1줄
-	public ArrayList<HashMap<String, Object>> selectPostList(int pageNumber);
+	public ArrayList<HashMap<String, Object>> selectPostList(int pageNumber, String board, String searchOption, String searchContent);
+	public int selectPostCount();
     PostViewDTO findByPostNo(Long postNo) throws SQLException;
 
     int insertPost(PostDTO postDTO) throws SQLException;

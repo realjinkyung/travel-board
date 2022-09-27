@@ -27,11 +27,15 @@ public class PostServiceImpl implements PostService{
     }
     
     @Override
-    public ArrayList<HashMap<String, Object>> allPostList(int pageNumber) {
-    	
-    	return postDAO.selectPostList(pageNumber);
+    public ArrayList<HashMap<String, Object>> allPostList(int pageNumber, String board, String searchOption, String searchContent){
+    	return postDAO.selectPostList(pageNumber, board, searchOption, searchContent);
     }
 
+    @Override
+    public int getPostCount() {
+    	return postDAO.selectPostCount();
+    }
+    
     @Override
     public PostViewDTO getByPostNo(Long postNo) throws SQLException {
         PostViewDTO postDTO = postDAO.findByPostNo(postNo);
