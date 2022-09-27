@@ -58,18 +58,18 @@ public class FrontController extends HttpServlet {
 			command = new BoardReadController();
 		} else if("/userinfo.do".equals(servletPath) && "GET".equalsIgnoreCase(method)) {
 			System.out.println("userInfo.do");
-			command = new UserInfoController();
+			command = new UserInfoController();											// 유저 정보 확인
 		} else if("/userRevisePage.do".equals(servletPath) && "GET".equalsIgnoreCase(method)) {
 			command = new UserRevisePageController();
 		}else if("/userRevise.do".equals(servletPath) && "POST".equalsIgnoreCase(method)) {
 			command = new UserReviseController();
-		} else if ("/join.do".equals(servletPath) && "POST".equalsIgnoreCase(method)) {
-			command = new JoinFormContoller();
+		} else if ("/join.do".equals(servletPath) && "POST".equalsIgnoreCase(method)) {	// 회원가입
+			command = new JoinFormContoller();											
 //		} else if("/revise.do".equals(servletPath) && "GET".equalsIgnoreCase(method)) {
 //			command = new UserReviseController();
-		}else if("/logout.do".equals(servletPath) && "GET".equalsIgnoreCase(method)) {
+		}else if("/logout.do".equals(servletPath) && "GET".equalsIgnoreCase(method)) { // 로그아웃
 			command = new LogOutController();
-		} else if ("/login.do".equals(servletPath) && "POST".equalsIgnoreCase(method)) {
+		} else if ("/login.do".equals(servletPath) && "POST".equalsIgnoreCase(method)) { // 로그인
 			command = new LoginController(); 
 		} else if ("/post.do".equals(servletPath) && "GET".equalsIgnoreCase(method)) { //FIXME URL
 			command = new PostReadController();

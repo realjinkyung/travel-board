@@ -86,7 +86,7 @@ public class UserDAOImpl implements UserDAO{
 	
 	
 	
-	
+	// 유저 정보 확인 
 	@Override
 	public UserDTO selectUser(String username) {
 		Connection con = null;
@@ -102,12 +102,12 @@ public class UserDAOImpl implements UserDAO{
 				// 파라미터로 받은 user.getXXX()로 값 들고오기
 				pstmt.setString(1, username);
 				
-				
 				rset = pstmt.executeQuery();
 				
 				if(rset.next()) {
+					// 빌더 패턴 (Builder Pattern)
 					user = UserDTO.builder()
-					.profilePath(rset.getString("profile_path"))
+					.profilePath(rset.getString("profile_path")) // 오른쪽은 데이터베이스 이름
 					.username(rset.getString("username"))
 					.name(rset.getString("name"))
 					.birth(rset.getDate("birth"))

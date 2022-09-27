@@ -14,8 +14,7 @@ import service.user.UserServiceImpl;
 
 public class UserReviseController implements Command {
 private final UserService userService = UserServiceImpl.getInstance();
-	
-	
+
 	public String execute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         System.out.println("modifyTest");
 		UserDTO user = null;
@@ -30,12 +29,10 @@ private final UserService userService = UserServiceImpl.getInstance();
         		.phoneNumber(req.getParameter("phoneNumber"))
         		.build();
         
-        		
- 
     	try {
-    		HttpSession session = req.getSession();
-    		String id = (String)session.getAttribute("username");
-    		result = userService.updateUser(id, user);
+    		HttpSession session = req.getSession(false); 			// 세션생성 - false 있는걸 가져옴
+    		String id = (String)session.getAttribute("username");// setAttribute("username")-> tomcat자동생성 방지
+    		result = userService.updateUser(id, user);    		    		
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

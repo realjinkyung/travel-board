@@ -297,7 +297,7 @@
 				<button onclick="location.href = 'login.jsp'"">로그인</button>
 			</c:when>
 			<c:otherwise>
-				<span>안녕하세요. <b><a href="userinfo.do">Test</a></b>님</span>
+				<span>안녕하세요. <b><a href="userinfo.do">${sessionScope.username}</a></b>님</span>
 				<button onclick="location.href = 'logout.do'">로그아웃</button>		
 			</c:otherwise>
 		</c:choose>

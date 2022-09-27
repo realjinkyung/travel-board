@@ -42,25 +42,22 @@ public class JoinFormContoller implements Command{
 
 		}
 
-		String pattern = "^[_a-z0-9-]+(.[_a-z0-9-]+)*@(?:\\w+\\.)+\\w+$";
-		boolean emailResult = Pattern.matches(pattern, email);
-		System.out.println(emailResult);
-		
+		// 패스워드 + email 유효성 검증
 		try {
-//			result = userService.writeContent(new UserDTO(1L,username,name,pw,"",0,true,"",phoneNumber,email,birth,gender), pwc);
-			if("패스워드".equals(userService.writeContent(new UserDTO(1L,username,name,pw,"",0,true,"",phoneNumber,email,birth,gender), pwc))) {
-				req.setAttribute("msg", "입력한 패스워드와 일치하지 않습니다. 다시 확인해주세요.");
-				return "error.jsp"; // ? error.jsp의 ${msg} 인자(파라미터) 전달 ex) get방식 : ?id=1234&pw=1111 => 보안을 위해 post방식
-//				email @ -> "이메일형식에 맞지 않습니다. @ 확인해주세요."
-			} else if(!emailResult) {
-				req.setAttribute("msg", "이메일형식에 맞지 않습니다.");
-				return "error.jsp"; 
-			} else {
-				return "joinSuccess.jsp";
+			String result = userService.writeContent(new UserDTO(1L,username,name,pw,"",0,true,"",phoneNumber,email,birth,gender), pwc);
+			
+			if("패스워드".equals(result)) {	   		 // 비밀번호가 재확인 비밀번호와 일치하지 않는다면
+				req.setAttribute("msg", "입력한 " + result + "와 일치하지 않습니다. 다시 확인해주세요."); // 오류 메시지
+				return "error.jsp";  				// 에러시 이동할 페이지
+			} else if("이메일".equals(result)) { 		// 이메일 형식이 맞지 않는다면
+				req.setAttribute("msg", "입력한 " + result + "이 형식에 맞지 않습니다. 다시 확인해주세요."); // 오류 메시지
+				return "error.jsp"; 		  		// 에러시 이동할 페이지
+			} else {											// 비밀번호와 이메일 검증이 성공적으로 끝났다면
+				return "board.jsp"; 			// 성공시 이동할 페이지 "board.jsp" ?
 			}
 		}catch (Exception e) {
 			e.printStackTrace();
 		}
-		return null;	
+		return null;										// ???
 	}
 }
