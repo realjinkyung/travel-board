@@ -6,6 +6,7 @@ import java.sql.Date;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import domain.UserDTO;
 import service.user.UserService;
@@ -32,7 +33,9 @@ private final UserService userService = UserServiceImpl.getInstance();
         		
  
     	try {
-    		result = userService.updateUser("dev", user);
+    		HttpSession session = req.getSession();
+    		String id = (String)session.getAttribute("username");
+    		result = userService.updateUser(id, user);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

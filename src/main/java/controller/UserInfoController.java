@@ -5,6 +5,7 @@ import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import domain.UserDTO;
 import service.user.UserService;
@@ -19,14 +20,18 @@ public class UserInfoController implements Command {
         UserDTO user = null; 
         
     	try {
-            user = userService.selectUser("dev");
+    		HttpSession session = req.getSession();
+    		String id = (String)session.getAttribute("username");
+            user = userService.selectUser(id);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
 
         if(user == null){
+        	System.out.println("정상적으로 안됨 ㅋㅋ");
             return "error.jsp";
         }else{
+        	System.out.println("정상적으로 됨");
         	req.setAttribute("user", user);
         	return "userinfo.jsp";
         }

@@ -9,6 +9,7 @@ import java.util.Objects;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import domain.BoardDTO;
 import domain.UserDTO;
@@ -26,7 +27,10 @@ private final UserService userService = UserServiceImpl.getInstance();
         UserDTO user = null; 
         
     	try {
-            user = userService.selectUser("dev");
+    		HttpSession session = req.getSession();
+    		String id = (String)session.getAttribute("username");
+    		
+            user = userService.selectUser(id);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

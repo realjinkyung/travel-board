@@ -16,11 +16,6 @@ public class ConnectNewPostController implements Command {
     @Override
     public String execute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException, SQLException {
 
-        req.setAttribute("postNo", req.getParameter("postNo"));
-        req.setAttribute("title", req.getParameter("title"));
-        req.setAttribute("content", req.getParameter("content"));
-        
-        Date.valueOf(req.getParameter("test"));
         return "writePost.jsp";
 
     }

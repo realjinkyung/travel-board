@@ -73,6 +73,7 @@ public class PostDAOImpl implements PostDAO {
             	
             	sql += " limit ?, ?";
             }
+            
             pstmt = con.prepareStatement(sql);
             
             if(board.equals("all")) {

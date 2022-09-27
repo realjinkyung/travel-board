@@ -54,6 +54,9 @@ public class SessionCheckFilter implements Filter {
 		// TODO Auto-generated method stub
 		whiteList.add("/joinForm.jsp");
 		whiteList.add("/login.do");
+		whiteList.add("/boardList.do");
+		whiteList.add("/post.do");
+		
 
 
 	}

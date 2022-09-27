@@ -94,6 +94,10 @@
 		font-weight: bold;
 		text-decoration: none;
 	}
+	
+	.login-area a:hover{
+		text-decoration: underline;
+	}
 	/* login-area css end */
 	
 	/* board-css start */
@@ -289,11 +293,11 @@
 <div class="wrap">
 	<div class="login-area">
 		<c:choose>
-			<c:when test="${sessionScope.id == null}">
-				<button>로그인</button>
+			<c:when test="${sessionScope.username == null}">
+				<button onclick="location.href = 'login.jsp'"">로그인</button>
 			</c:when>
 			<c:otherwise>
-				<span>안녕하세요. <b><a href="#">Test</a></b>님</span>
+				<span>안녕하세요. <b><a href="userinfo.do">Test</a></b>님</span>
 				<button onclick="location.href = 'logout.do'">로그아웃</button>		
 			</c:otherwise>
 		</c:choose>
@@ -427,12 +431,12 @@
 					</c:choose>
 					
 					<c:choose>
-						<c:when test="${(postCount%18) == 0}">
+						<c:when test="${(postCount%18) == 0 && (postCount%18) != 0}">
 							<c:forEach begin="1" end="${(postCount/18) - 1}" varStatus="i">
 								<li class="page-number"><a href="boardList.do?pageNumber=${i.index + 1}&board=${param.board}&search_option=${param.search_option}&search_content=${param.search_content}">${i.index + 1}</a></li>
 							</c:forEach>
 						</c:when>
-						<c:otherwise>
+						<c:otherwise>	
 							<c:forEach begin="1" end="${(postCount/18)}" varStatus="i">
 								<li class="page-number"><a href="boardList.do?pageNumber=${i.index + 1}&board=${param.board}&search_option=${param.search_option}&search_content=${param.search_content}">${i.index + 1}</a></li>
 							</c:forEach>	
