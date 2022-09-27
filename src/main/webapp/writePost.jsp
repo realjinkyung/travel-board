@@ -20,6 +20,7 @@
 		}
         .content::-webkit-input-placeholder {
             text-align: center;
+			align-content: center;
         }
 	</style>
 </head>
