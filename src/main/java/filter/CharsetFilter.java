@@ -12,7 +12,7 @@ public class CharsetFilter implements Filter {
     public void destroy() {
     }
 
-    @Override
+    @Override   
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8"); // 1 - 필터 거치기 전
         System.out.println("서블릿 전");
