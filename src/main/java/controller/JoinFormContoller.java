@@ -42,7 +42,6 @@ public class JoinFormContoller implements Command{
 		
 //		boolean result = false;
 		
-//		String pattern = "/^[0-9a-zA-Z]([-_\\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\\.]?[0-9a-zA-Z])*\\.[a-zA-Z]{2,3}$/i\r\n";
 		String pattern = "^[_a-z0-9-]+(.[_a-z0-9-]+)*@(?:\\w+\\.)+\\w+$";
 		boolean emailResult = Pattern.matches(pattern, email);
 		System.out.println(emailResult);
