@@ -4,5 +4,5 @@ import domain.UserDTO;
 
 public interface UserDAO {
 	public boolean insertUser(UserDTO user); // 회원가입
-	 public boolean login(); // 로그인
+	 public boolean login(UserDTO user); // 로그인
 }

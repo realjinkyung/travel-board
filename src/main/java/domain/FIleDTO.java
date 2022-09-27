@@ -14,4 +14,8 @@ public class FIleDTO {
     Long postNo;
     String filePath;
 
+//    public FileDTO(Long fileNO, Long postNO, STring filePath) {
+//    	
+//    }
+
 }

@@ -3,10 +3,10 @@ package service.user;
 import domain.UserDTO;
 
 public interface UserService {
-//	public boolean Revise
-	// 회원가입
-	public boolean writeContent(UserDTO user);
+
+	public String writeContent(UserDTO user, String pwc);
 
 	// 로그인
-	public void login();
+	public boolean login(UserDTO user);
+
 }

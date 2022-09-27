@@ -3,6 +3,7 @@ package controller;
 import java.io.IOException;
 import java.sql.Date;
 import java.sql.SQLException;
+import java.util.regex.Pattern;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -18,16 +19,17 @@ public class JoinFormContoller implements Command{
 
 	@Override
 	public String execute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		System.out.println("ii");
-		String username = (String)req.getAttribute("username");
-		String pw = (String)req.getAttribute("password");
-		String pwc = (String)req.getAttribute("passwordCheck");
-      	String name = (String)req.getAttribute("name");
-		Date birth = (Date)req.getAttribute("birth");
-		String phoneNumber = (String)req.getAttribute("phoneNumber");
-		String email = (String)req.getAttribute("email");
-		String gender = (String)req.getAttribute("gender");
+
+		String username = (String)req.getParameter("username"); // 아이디
+		String pw = (String)req.getParameter("password");
+		String pwc = (String)req.getParameter("passwordCheck");
+      	String name = (String)req.getParameter("name");
+		Date birth = Date.valueOf(req.getParameter("birth"));
+		String phoneNumber = (String)req.getParameter("phoneNumber");
+		String email = (String)req.getParameter("email");
+		String gender = (String)req.getParameter("gender");
 	
+		
 //		userService.메소드()
 		// 데이터값 입력 유무만 유효성 검증
 		if(username == null || username.trim().length() == 0 ||
@@ -37,24 +39,28 @@ public class JoinFormContoller implements Command{
 			birth == null ||
 			email == null || email.trim().length() == 0 ||
 			gender == null || gender.trim().length() == 0 ){
-//			req.getParameter("join.jsp");
-		} //  메소드 종료
+
+		}
+
+		String pattern = "^[_a-z0-9-]+(.[_a-z0-9-]+)*@(?:\\w+\\.)+\\w+$";
+		boolean emailResult = Pattern.matches(pattern, email);
+		System.out.println(emailResult);
 		
-		
-		boolean result = false;
-		
-		result = userService.writeContent(new UserDTO(0L,username,name,pw,"",0,true,"",phoneNumber,email,birth,gender));
-		
-		return "JoinSuccess.jsp"; // 끝나고 돌아갈 페이지
-		
-		// redirect: 서버가 접속하는사람(클라이언트)한테 다시 연결하라고 말해 줌, 연결만 다시 해 줌  
-		// forward : 접속자에게 말안하고 서버에서 알아서 처리함, 값 전달 + 연결
-//		if(result){
-//			return "join.do";
-//		}else{
-//			return "redirect:error.jsp";
-//		}
-//	}
-//		
+		try {
+//			result = userService.writeContent(new UserDTO(1L,username,name,pw,"",0,true,"",phoneNumber,email,birth,gender), pwc);
+			if("패스워드".equals(userService.writeContent(new UserDTO(1L,username,name,pw,"",0,true,"",phoneNumber,email,birth,gender), pwc))) {
+				req.setAttribute("msg", "입력한 패스워드와 일치하지 않습니다. 다시 확인해주세요.");
+				return "error.jsp"; // ? error.jsp의 ${msg} 인자(파라미터) 전달 ex) get방식 : ?id=1234&pw=1111 => 보안을 위해 post방식
+//				email @ -> "이메일형식에 맞지 않습니다. @ 확인해주세요."
+			} else if(!emailResult) {
+				req.setAttribute("msg", "이메일형식에 맞지 않습니다.");
+				return "error.jsp"; 
+			} else {
+				return "joinSuccess.jsp";
+			}
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;	
 	}
 }

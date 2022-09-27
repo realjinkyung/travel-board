@@ -17,21 +17,20 @@ public class FrontController extends HttpServlet {
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		resp.setContentType("text/html");
 		resp.setCharacterEncoding("UTF-8");
-		System.out.println(req.getServletPath());
 
 		System.out.println(req.getParameter("id"));
 		try {
 			Command command = resolveCommand(req.getServletPath(), req.getMethod());
 			String view = command.execute(req, resp);
 
-			if (view.startsWith(REDIRECT_PREfIX)) {
-				resp.sendRedirect(view.substring(REDIRECT_PREfIX.length())); ///???
+			if (view.startsWith(REDIRECT_PREfIX)) { 
+				resp.sendRedirect(view.substring(REDIRECT_PREfIX.length())); 
 			} else {
-				RequestDispatcher rd = req.getRequestDispatcher(view);
+				RequestDispatcher rd = req.getRequestDispatcher(view); 
 				rd.include(req, resp);
 			}
 		} catch (Exception ex) {
-			System.out.printf("", ex);
+			System.out.printf("", ex); 
 
 			req.setAttribute("exception", ex);
 
@@ -42,14 +41,15 @@ public class FrontController extends HttpServlet {
 
 	private Command resolveCommand(String servletPath, String method) {
 		Command command = null;
+		
 		if ("/boardList.do".equals(servletPath) && "GET".equalsIgnoreCase(method)) {
 			command = new BoardReadController();
 //		} else if("/revise.do".equals(servletPath) && "GET".equalsIgnoreCase(method)) {
 //			command = new UserReviseController();
 		} else if ("/join.do".equals(servletPath) && "POST".equalsIgnoreCase(method)) {
-			command = new JoinFormContoller(); // 객체 만들기 - 회원가입
+			command = new JoinFormContoller(); 
 		} else if ("/login.do".equals(servletPath) && "POST".equalsIgnoreCase(method)) {
-			command = new LoginController(); // 객체 만들기 - 로그인
+			command = new LoginController(); 
 		} else if ("/post.do".equals(servletPath) && "GET".equalsIgnoreCase(method)) { //FIXME URL
 			command = new PostReadController();
 		} else if ("/newPost.do".equals(servletPath) && "GET".equalsIgnoreCase(method)){ //FIXME URL
@@ -59,6 +59,7 @@ public class FrontController extends HttpServlet {
 		} else if ("/edit.do".equals(servletPath) && "POST".equalsIgnoreCase(method)) { //FIXME URL
 			command = new ConnectNewPostController();
 		}
+
 		return command;
 	}
 

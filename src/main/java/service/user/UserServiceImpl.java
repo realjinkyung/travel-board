@@ -13,20 +13,25 @@ public class UserServiceImpl implements UserService{
         return instance;
     }
     
-//     메소드 - 어떤 기능?
+// 메소드 - 어떤 기능?
     // 회원가입
     @Override
-    public boolean writeContent(UserDTO user) {
-    	// 회원 등록이 되게 ??
-    	userDAO.insertUser(user);
-    	return false;
+    public String writeContent(UserDTO user, String pwc) {
+//    	// 비밀번호 == 비밀번호 재확인
+    	if(user.getPassword().equals(pwc)) {  // String이라서 equals, ==으로 비교하면 객체의 주솟값을 비교하게 됨
+    		userDAO.insertUser(user);    
+    		return "";
+    	} 
+		return "패스워드";
     } 	
  	
  	// 로그인
- 	public void login() {
- 		// 회원가입된 정보 ID, PW == 입력한 정보 ID, PW
- 		// if 로그인 성공 else 실패
- 		// if else
- 	}
-
+ 	@Override
+	public boolean login(UserDTO user) {
+// 		System.out.println("dao"+user.getUsername());
+//		System.out.println("dao"+user.getPassword());
+ 		return userDAO.login(user);
+		// 회원가입된 정보 ID, PW == 입력한 정보 ID, PW
+		
+	}
 }
