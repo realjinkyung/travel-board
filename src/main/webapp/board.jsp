@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -61,18 +62,44 @@
 
 	.wrap{
 		width: 1500px;
-		border: 1px solid gray;
-		margin: 0 auto;
+		margin: 15px auto;
+		display: flex;
+		position: relative;
 	}
 	
+	/* login-area css start */
+	.login-area{
+		position: absolute;
+		top: 25px;
+		right: 30px;
+		font-size: 0.8rem;
+	}
 	
+	.login-area span{
+		margin-right: 15px;
+		letter-spacing: 0.5px;
+	}
 	
+	.login-area button{
+		padding: 5px 15px;
+		font-size: 0.8rem;
+		background-color: #03c75a;
+		border: none;
+		color: white;
+		cursor: pointer;
+	}
+	
+	.login-area a{
+		color: #03c75a;
+		font-weight: bold;
+		text-decoration: none;
+	}
+	/* login-area css end */
 	
 	/* board-css start */
 	
 	.board-wrap{
 		width: 20%;
-		border: 1px solid blue;
 	}
 	
 	.board-wrap > h2{
@@ -121,6 +148,15 @@
 		text-align: right;
 		font-size: 0.8rem;
 	}
+	
+	.board-area a{
+		color: black;
+		text-decoration: none;
+	}
+	
+	.board-area a.seleted{
+		color: orange;
+	}
 	/* board-css end */
 	
 	
@@ -135,7 +171,6 @@
 	 
 	.post-wrap{
 		width: 80%;
-		border: 1px solid red;
 		padding: 0 15px;
 	}
 	
@@ -175,32 +210,43 @@
 		text-align: center;
 	}
 	
+	.post-wrap table .title b{
+		font-weight: bold;
+		color: #03c75a;
+		
+	}
 	
+	.post-none{
+		padding: 333px 0;
+		text-align: center;
+		font-size: 0.8rem;
+			
+	}
 	.page-numbers{
 		text-align: center;
 		padding: 30px 0;
 	}
-	.page-numbers li{
+	.page-number{
 		display: inline-block;
 		margin: 0 7px;
 	}
 	
-	.page-numbers li a{
+	.page-number a{
 		padding: 4px 7px;
 	} 
 	
-	.page-numbers li.selected a{
+	.page-number.selected a{
 		color: #03c75a;
 		border: 1px solid lightgray;
 	}
-	.page-numbers li a{
+	.page-number a{
 		font-size: 0.8rem;
 		font-weight: bold;
 		color: black;
 		text-decoration: none;
 	}
 	
-	.page-numbers li a:hover {
+	.page-number a:hover {
 		text-decoration: underline;
 	}
 	
@@ -233,44 +279,104 @@
 	}
 	
 	/* post-css end */
+	
+	
 }
 </style>
 </head>
 <body>
 
-<div class="wrap" style="display: flex">
+<div class="wrap">
+	<div class="login-area">
+		<c:choose>
+			<c:when test="${sessionScope.id == null}">
+				<button>로그인</button>
+			</c:when>
+			<c:otherwise>
+				<span>안녕하세요. <b><a href="#">Test</a></b>님</span>
+				<button onclick="location.href = 'logout.do'">로그아웃</button>		
+			</c:otherwise>
+		</c:choose>
+	</div>
+	
 	<div class="board-wrap">
 		<div class="logo-area">
-			<a href="#">
-				<img src="logo."/><span>Jesu Story</span>
+			<a href="boardList.do">
+				<img src="logo."/><span>Jeju Story</span>
 			</a>
 		</div>
 		<div class="board-area">
-			<h3>전체보기</h3>
+			<h3><a id="board-all" href="boardList.do?board=all">전체보기</a></h3>
 			<div>
 				<h3>제주시</h3>
 				<ul>
-					<li>한경면</li>
-					<li>한림읍</li>
-					<li>애월읍</li>
-					<li>제주시</li>
-					<li>조천읍</li>
-					<li>구좌읍</li>		
+					<li><a id="board-1" href="boardList.do?board=한경면">한경면</a></li>
+					<li><a id="board-2" href="boardList.do?board=한림읍">한림읍</a></li>
+					<li><a id="board-3" href="boardList.do?board=애월읍">애월읍</a></li>
+					<li><a id="board-4" href="boardList.do?board=제주시">제주시</a></li>
+					<li><a id="board-5" href="boardList.do?board=조천읍">조천읍</a></li>
+					<li><a id="board-6" href="boardList.do?board=구좌읍">구좌읍</a></li>		
 				</ul>	
 			</div>
 				
 			<div>
 				<h3>서귀포시</h3>
 				<ul>
-					<li>한경면</li>
-					<li>한림읍</li>
-					<li>애월읍</li>
-					<li>제주시</li>
-					<li>조천읍</li>
-					<li>구좌읍</li>		
+					<li><a id="board-7" href="boardList.do?board=대정읍">대정읍</a></li>
+					<li><a id="board-8" href="boardList.do?board=안덕면">안덕면</a></li>
+					<li><a id="board-9" href="boardList.do?board=서귀포시">서귀포시</a></li>
+					<li><a id="board-10" href="boardList.do?board=남원면">남원면</a></li>
+					<li><a id="board-11" href="boardList.do?board=표선면">표선면</a></li>
+					<li><a id="board-12" href="boardList.do?board=성산읍">성산읍</a></li>		
 				</ul>	
 			</div>
 		</div>
+		<script type="text/javascript">
+			switch("${param.board}"){
+				case "all":
+					document.getElementById("board-all").classList.add("seleted");
+					break;
+				case "한경면":
+					document.getElementById("board-1").classList.add("seleted");
+					break;
+				case "한림읍":
+					document.getElementById("board-2").classList.add("seleted");
+					break;
+				case "애월읍":
+					document.getElementById("board-3").classList.add("seleted");
+					break;
+				case "제주시":
+					document.getElementById("board-4").classList.add("seleted");
+					break;
+				case "조천읍":
+					document.getElementById("board-5").classList.add("seleted");
+					break;
+				case "구좌읍":
+					document.getElementById("board-6").classList.add("seleted");
+					break;
+				case "대정읍":
+					document.getElementById("board-7").classList.add("seleted");
+					break;
+				case "안덕면":
+					document.getElementById("board-8").classList.add("seleted");
+					break;
+				case "서귀포시":
+					document.getElementById("board-9").classList.add("seleted");
+					break;
+				case "남원면":
+					document.getElementById("board-10").classList.add("seleted");
+					break;
+				case "표선면":
+					document.getElementById("board-11").classList.add("seleted");
+					break;
+				case "성산읍":
+					document.getElementById("board-12").classList.add("seleted");
+					break;
+				default:
+					document.getElementById("board-all").classList.add("seleted");
+					break;
+			}
+		</script>
 	</div>
 	
 	<div class="post-wrap">
@@ -284,35 +390,84 @@
 					<th width="15%">작성일</th>
 					<th width="10%">조회</th>
 				</tr>
-				<c:forEach begin="0" end="5">
-					<c:forEach var="post" items="${postList}">
+				<c:choose>
+					<c:when test="${fn:length(postList) != 0}">
+						<c:forEach begin="0" end="5">
+							<c:forEach var="post" items="${postList}">
+								<tr>
+									<td class="post-no">${post.postNo}</td>
+									<td class="title">${post.title}<b><c:if test="${post.commentCount != 0}">[${post.commentCount}]</c:if></b></td>
+									<td class="writer">${post.username}</td>
+									<td class="created-date">${post.createdAt}</td>
+									<td class="views">${post.views}</td>
+								</tr>
+							</c:forEach>
+						</c:forEach>
+					</c:when>
+					<c:otherwise>
 						<tr>
-							<td class="post-no">${post.postNo}</td>
-							<td class="title">${post.title}</td>
-							<td class="writer">${post.username}</td>
-							<td class="created-date">${post.createdAt}</td>
-							<td class="views">${post.views}</td>
-						</tr>
-					</c:forEach>
-				</c:forEach>
+							<td class="post-none" colspan="5"><p>게시물이 존재하지 않습니다.</p></td>
+						</tr>					
+					</c:otherwise>
+				</c:choose>
 			</table>
 			<div class="page-numbers">
 				<ul>
-					<li class="selected"><a href="#">1</a></li>
-					<c:forEach begin="2" end="5" varStatus="i">
-						<li><a href="#">${i.index}</a></li>
-					</c:forEach>
+					<c:choose>
+						<c:when test="${param.board == null}">
+							<li class="page-number"><a href="boardList.do?page_number=1&board=all">1</a></li>
+						</c:when>
+						<c:otherwise>
+							<li class="page-number"><a href="boardList.do?page_number=1&board=${param.board}&search_option=${param.search_option}&search_content=${param.search_content}">1</a></li>
+						</c:otherwise>
+					</c:choose>
+					
+					<c:choose>
+						<c:when test="${(postCount%18) == 0}">
+							<c:forEach begin="1" end="${(postCount/18) - 1}" varStatus="i">
+								<li class="page-number"><a href="boardList.do?pageNumber=${i.index + 1}&board=${param.board}&search_option=${param.search_option}&search_content=${param.search_content}">${i.index + 1}</a></li>
+							</c:forEach>
+						</c:when>
+						<c:otherwise>
+							<c:forEach begin="1" end="${(postCount/18)}" varStatus="i">
+								<li class="page-number"><a href="boardList.do?pageNumber=${i.index + 1}&board=${param.board}&search_option=${param.search_option}&search_content=${param.search_content}">${i.index + 1}</a></li>
+							</c:forEach>	
+						</c:otherwise>
+					</c:choose>
+					
 				</ul>
 			</div>
+
+			<script type="text/javascript">
+			if("${param.pageNumber}" == ''){
+				document.getElementsByClassName("page-number")[0].classList.add("selected");
+			}else{
+				document.getElementsByClassName("page-number")[${param.pageNumber - 1}].classList.add("selected");
+			}
+			</script>
 			<div class="search-area">
-				<select>
-					<option>제목</option>
-					<option>내용</option>
-					<option>작성자</option>
-				</select>
-				<input type="text" placeholder="검색어를 입력해주세요">
-				<button class="btn-search">검색</button>
+				<form name="search_form" action="boardList.do" method="get" onsubmit="return checkSearchForm();">
+					<input type="hidden" name="board" value="${param.board}">
+					<input type="hidden" name="page_number" value="${param.page_number}">
+					<select name="search_option">
+						<option value="title" selected="selected">제목</option>
+						<option value="content">내용</option>
+						<option value="writer">작성자</option>
+					</select>
+					<input type="text" name="search_content" placeholder="검색어를 입력해주세요">
+					
+					<button class="btn-search">검색</button>
+				</form>
 			</div>
+			<script type="text/javascript">
+				function checkSearchForm(){
+					let searchContent = search_form.search_content.value;
+					let board = search_form.board.value;
+					let page_number = search_form.page_number.value;
+					
+					return true;
+				}
+			</script>
 		</div>
 	</div>
 </div>

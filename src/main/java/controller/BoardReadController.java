@@ -9,6 +9,8 @@ import service.board.BoardService;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -23,29 +25,45 @@ public class BoardReadController implements Command {
     
     @Override
     public String execute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        List<BoardDTO> boardDTOList;
         ArrayList<HashMap<String, Object>> postList;
+        int postCount;
         int pageNumber;
-        
+        String board;
+        String searchOption;
+        String searchContent;
         try {
-        	if(req.getAttribute("pageNumber") == null) {
+        	if(req.getParameter("page_number") == null || req.getParameter("page_number").equals("")) {
         		pageNumber = 1;
         	}else {
-        		pageNumber = Integer.parseInt((String)req.getAttribute("pageNumber"));
+        		pageNumber = Integer.parseInt(req.getParameter("page_number"));
         	}
         	
-            boardDTOList = boardService.readAll();
-            postList = postService.allPostList(pageNumber);
-             
-        } catch (SQLException e) {
+        	if(req.getParameter("board") == null || req.getParameter("board").equals("")) {
+        		board = "all";
+        	}else {
+        		board = req.getParameter("board");
+        	}
+        	
+        	searchOption = req.getParameter("search_option");
+        	searchContent = req.getParameter("search_content");
+        	
+        	if(searchContent != null) {
+        		searchContent = searchContent.trim();
+        	}
+        	
+            postList = postService.allPostList(pageNumber, board, searchOption, searchContent);
+            postCount = postService.getPostCount();
+            
+            
+        } catch (Exception e) {
             throw new RuntimeException(e);
         }
 
-        if(Objects.isNull(boardDTOList)){
+        if(Objects.isNull(postList)){
             return "error.jsp";
         }else{
-            req.setAttribute("boardList", boardDTOList);
             req.setAttribute("postList", postList);
+            req.setAttribute("postCount", postCount);
             return "board.jsp";
         }
     }
