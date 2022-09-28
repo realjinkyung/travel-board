@@ -14,12 +14,17 @@
 <body>
 	<div class="container">
 		<div class="input-form-background row">			
-			<form class="form-horizontal" action='join.do' method="POST">
+			<form class="form-horizontal" action='join.do' method="POST" enctype="multipart/form-data">
 			  <fieldset>
 			    <div id="legend">
 			      <legend class="">Register</legend>
 			    </div>
-			    <div class="control-group">
+<%--				  프로필 사진 업로드 --%>
+				  <div class="control-group">
+					  <input type="file" name="image"/>
+				  </div>
+				
+				  <div class="control-group">
 			      <!-- 아이디 -->
 			      <label class="control-label"  for="username">아이디</label>
 			      <div class="controls">
@@ -83,8 +88,8 @@
 							<input type="radio" id="gender" name="gender"value="여">여성
 			      </div>
 			    </div>
-			    
-			    <div class="control-group">
+				
+				  <div class="control-group">
 			      <!-- Button -->
 			      <div class="controls">
 			        <button class="btn btn-success">Register</button>

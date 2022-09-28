@@ -21,8 +21,9 @@ private final UserService userService = UserServiceImpl.getInstance();
 		UserDTO user = null;
         int result = 0;
         Date birth = Date.valueOf(req.getParameter("birth"));
+		System.out.println("file" + req.getParameter("image"));
         user = UserDTO.builder()
-        		.profilePath("img_path")
+        		.profilePath(req.getParameter("image"))
         		.name(req.getParameter("name"))
         		.birth(birth)
         		.gender(req.getParameter("gender"))

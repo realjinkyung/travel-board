@@ -56,8 +56,8 @@ public class SessionCheckFilter implements Filter {
 		whiteList.add("/login.do");
 		whiteList.add("/boardList.do");
 		whiteList.add("/post.do");
-		
-
+		whiteList.add("/join.do");
+		whiteList.add("/image-upload.do");
 
 	}
 

@@ -107,6 +107,7 @@ public class UserDAOImpl implements UserDAO{
 				
 				if(rset.next()) {
 					user = UserDTO.builder()
+							.userNo(rset.getLong("user_no"))
 					.profilePath(rset.getString("profile_path"))
 					.username(rset.getString("username"))
 					.name(rset.getString("name"))

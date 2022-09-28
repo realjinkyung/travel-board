@@ -294,7 +294,7 @@
 	<div class="login-area">
 		<c:choose>
 			<c:when test="${sessionScope.username == null}">
-				<button onclick="location.href = 'login.jsp'"">로그인</button>
+				<button onclick="location.href = 'login.jsp'">로그인</button>
 			</c:when>
 			<c:otherwise>
 				<span>안녕하세요. <b><a href="userinfo.do">Test</a></b>님</span>
@@ -387,7 +387,7 @@
 	
 	<div class="post-wrap">
 		<h2>전체글보기</h2>
-		<a href="newPost.do"><button>새글쓰기</button></a>
+		<a href="newPost.do?status=1"><button>새글쓰기</button></a>
 		<div>
 			<table>
 				<tr>

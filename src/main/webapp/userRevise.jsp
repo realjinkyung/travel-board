@@ -169,7 +169,8 @@
 						<th id="th-profile">프로필 사진</th>
 						<td id="td-profile">
 							<div>
-								<img src=""><button>사진 변경</button>
+								<img src="">
+								<input type="file" name="image"/>
 							</div>
 						</td>
 					</tr>
