@@ -21,7 +21,11 @@ public class ReadCommentController implements Command {
     public String execute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException, SQLException {
         List<CommentViewDTO> commentDTOList = commentService.getAllComments(((PostViewDTO)req.getAttribute("postview")).getPostNo());
         req.setAttribute("comments", commentDTOList);
+        req.setAttribute("status", "post");
+        req.getAttribute("postId");
 
-        return "post.jsp";
+        // return "post.jsp";
+
+            return "image-load.do";
     }
 }

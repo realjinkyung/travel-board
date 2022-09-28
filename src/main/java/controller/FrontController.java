@@ -91,6 +91,10 @@ public class FrontController extends HttpServlet {
 			command = new DeleteCommentController();
 		} else if ("/image-upload.do".equals(servletPath) && "POST".equalsIgnoreCase(method)) { //FIXME URL
 			command = new ImageUploadController();
+		} else if ("/get-user.do".equals(servletPath) && "POST".equalsIgnoreCase(method)) { //FIXME URL
+			command = new GetUserController();
+		} else if ("/image-load.do".equals(servletPath) && "GET".equalsIgnoreCase(method)) { //FIXME URL
+			command = new ImageLoadController();
 		}
 
 		return command;

@@ -16,15 +16,18 @@ public class ProducePostController implements Command {
     PostService postService = PostServiceImpl.getInstance();
     @Override
     public String execute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException, SQLException {
-
+        Long postNo = postService.createPost(req);
         if(req.getParts() != null){
 
             req.setAttribute("status", "postImage");
+            req.setAttribute("postNo", postNo);
 
-            return "image-upload.do";
+            if(req.getPart("image").getSize() != 0) {
+                return "image-upload.do";
+            }
         }
 
-        return "redirect:post.do?postNo=" + postService.createPost(req);
+        return "redirect:post.do?postNo=" + postNo;
 
     }
 }

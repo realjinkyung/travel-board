@@ -58,10 +58,10 @@ public class JoinFormController implements Command{
 				return "error.jsp"; 
 			} else {
 
-				if(req.getParts() != null){
+				if(req.getPart("image").getSize() != 0){
 					UserDTO user = userService.selectUser(username);
-					req.setAttribute("userId", user.getUserNo());
-					req.setAttribute("username", user.getUsername());
+					req.setAttribute("user", user);
+					req.setAttribute("status", "profileImage");
 					return "image-upload.do";
 				}
 

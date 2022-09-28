@@ -26,7 +26,7 @@
 </head>
 <body>
 	<div id="pageTitle"></div>
-  <form action="makePost.do" method="post">
+  <form action="makePost.do" method="post" enctype="multipart/form-data">
 	  <select name="boardNo">
 		  <option value="1">한경면</option>
 		  <option value="2">한림읍</option>
@@ -43,7 +43,7 @@
 	  </select>
 	  <input type="hidden" name="postNo" value="${postNo}"/>
 	  <input type="text" class="title" name="title" value="${title}" placeholder="제목"/>
-	  <input type="file" name="file" class="file" value="찾아보기"/> <br/>
+	  <input type="file" name="image" class="file" value="찾아보기"/> <br/>
 <%--	  <input type="text" class="content" name="content" value="${content}" placeholder="내용"/><br/>--%>
 	  <textarea name="content" class="content" placeholder="내용">${content}</textarea>
 <%--<input type="hidden" name="content" value="${}"> FIXME session에서 id값 받아서 입력해 줄 곳--%>

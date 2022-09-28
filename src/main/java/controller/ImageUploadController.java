@@ -1,5 +1,6 @@
 package controller;
 
+import domain.UserDTO;
 import service.file.FileService;
 import service.file.FileServiceImpl;
 
@@ -14,22 +15,26 @@ public class ImageUploadController implements Command {
 
     @Override
     public String execute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException, SQLException {
-        Long userId = (Long) req.getAttribute("userId");
-        String username = (String) req.getAttribute("username");
+
         String status = (String) req.getAttribute("status");
-        int result = 0;
+        Long postNo = (Long) req.getAttribute("postNo");
+        UserDTO userDTO = (UserDTO) req.getAttribute("user");
+        String fileName = "";
 
-        if(status.equals("profileImage")) {
-            result = fileService.profileImageUpload(username, req);
+        if("profileImage".equals(status)) {
+            fileName = fileService.profileImageUpload(userDTO.getUsername(), req);
         }
-        if(status.equals("postImage")) {
-            result = fileService.postImageUpload(username, req);
+        if("postImage".equals(status)) {
+            fileName = fileService.postImageUpload(req);
         }
 
 
-        if(result == 1){
-            fileService.inputImage(userId, username);
+        if(fileName != "" && status.equals("profileImage")){
+            fileService.inputProfileImage(userDTO.getUserNo(), fileName);
             return "redirect:boardList.do";
+        } else if (fileName != "" && status.equals("postImage")) {
+            fileService.inputPostImage(postNo, fileName);
+            return "redirect:post.do?postNo=" + postNo;
         } else {
             req.setAttribute("msg", "file upload에 실패했습니다.");
             return "error.jsp";

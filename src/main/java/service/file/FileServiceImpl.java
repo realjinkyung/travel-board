@@ -1,5 +1,7 @@
 package service.file;
 
+import domain.PostViewDTO;
+import domain.UserDTO;
 import model.domain.file.FileDAO;
 import model.domain.file.FileDAOImpl;
 
@@ -11,7 +13,8 @@ import java.io.IOException;
 import java.sql.SQLException;
 
 public class FileServiceImpl implements FileService{
-    private static final String UPLOAD_DIR = "profile";
+    private static final String POST_IMAGE = "post/";
+    private static final String APPLICATION_PATH = "images/";
     private static FileService instance = new FileServiceImpl();
     FileDAO fileDAO = FileDAOImpl.getInstance();
     private FileServiceImpl(){ }
@@ -21,17 +24,21 @@ public class FileServiceImpl implements FileService{
     }
 
     @Override
-    public int inputImage(Long userId, String imagePath) throws SQLException {
+    public int inputProfileImage(Long userId, String imagePath) throws SQLException {
 
         return fileDAO.insertImage(userId, imagePath);
     }
 
     @Override
-    public int profileImageUpload(String username, HttpServletRequest req) throws ServletException, IOException {
+    public String profileImageUpload(String username, HttpServletRequest req) throws ServletException, IOException {
+        // String path = System.getProperty("user.dir");
+        // String status = (String) req.getAttribute("status");
+        // String uploadFilePath = path + "/webapp/" + APPLICATION_PATH + "/" + status;
         String applicationPath = req.getServletContext().getRealPath("");
-        String uploadFilePath = applicationPath + UPLOAD_DIR;
+        String uploadFilePath = applicationPath + APPLICATION_PATH;
         File image = new File(uploadFilePath);
-        int result = 0;
+
+        String fileNameForReturn = "";
 
         if(!image.exists()){
             image.mkdirs();
@@ -44,17 +51,56 @@ public class FileServiceImpl implements FileService{
             fileName = getFilename(part);
             if(!fileName.isEmpty()){
                 extension = fileName.split("\\.")[1];
+                fileNameForReturn = APPLICATION_PATH + "/" + username + "." + extension;
+                //images/asdf.png
                 part.write(uploadFilePath + File.separator + username + "." + extension);
-                result = 1;
             }
         }
-
-        return result;
+        req.getParts().clear();
+        return fileNameForReturn;
     }
 
     @Override
-    public int postImageUpload(String username, HttpServletRequest req) {
-        return 0;
+    public String postImageUpload(HttpServletRequest req) throws ServletException, IOException {
+
+        String applicationPath = req.getServletContext().getRealPath("");
+        Long postNo = (Long) req.getAttribute("postNo");
+        String uploadFilePath = applicationPath + APPLICATION_PATH + POST_IMAGE + postNo;
+        File image = new File(uploadFilePath);
+
+        if(!image.exists()){
+            image.mkdirs();
+        }
+
+        String fileName = null;
+        String extension = null;
+        String fileNameForReturn = "";
+
+        for(Part part : req.getParts()){
+            fileName = getFilename(part);
+            if(!fileName.isEmpty()){
+                extension = fileName.split("\\.")[1];
+                fileNameForReturn = APPLICATION_PATH + POST_IMAGE + postNo + File.separator + postNo + "." + extension;
+                part.write(uploadFilePath + File.separator +  postNo + "." + extension);
+            }
+        }
+        req.getParts().clear();
+        return fileNameForReturn;
+    }
+
+    @Override
+    public String imageLoad(UserDTO user) throws SQLException {
+        return fileDAO.findByUserId(user);
+    }
+
+    @Override
+    public String imageLoad(PostViewDTO post) throws SQLException {
+        return fileDAO.findByPostId(post);
+    }
+
+    @Override
+    public int inputPostImage(Long postNo, String fileName) throws SQLException {
+        return fileDAO.insertPostImage(postNo, fileName);
     }
 
     private String getFilename(Part part){
