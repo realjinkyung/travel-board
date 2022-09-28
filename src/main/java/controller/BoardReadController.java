@@ -54,7 +54,6 @@ public class BoardReadController implements Command {
             postList = postService.allPostList(pageNumber, board, searchOption, searchContent);
             postCount = postService.getPostCount();
             
-            
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

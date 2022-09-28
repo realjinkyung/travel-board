@@ -19,6 +19,9 @@ public class UserInfoController implements Command {
 	public String execute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         UserDTO user = null; 
         
+        
+     
+         
     	try {
     		HttpSession session = req.getSession();
     		String id = (String)session.getAttribute("username");
