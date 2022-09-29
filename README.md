@@ -6,17 +6,20 @@
 <br>
 
 ## 1. 개발 기간 & 참여 인원
-- 2022년 9월 22일~ 2022년 9월 30일
+- 2022년 9월 22일 ~ 2022년 9월 30일
 - 참여 인원 : 🐨[EastHonor](https://github.com/ehdgns07) | 🐧 [bsy7716](https://github.com/bsy7716) | 🐹 [kimkyeongwook69](https://github.com/kimkyeongwook69) | 🌱 [realjinkyung](https://github.com/realjinkyung)
 
 <br>
 
 ## 2. 주요 기능 및 서비스
 
-- 지역별 게시판 구분
-- 로그인 기능 → 필터
-- 댓글 기능, 신고 기능
-- 이미지 첨부
+- ✈️ 지역별 게시판 구분 Pagination
+- 👤 로그인 기능 → 필터 & 세션
+- 👤 회원가입 기능
+- 📄 게시글 CRUD
+- 💬 댓글 CRUD
+- 🚨 신고 기능
+- 📂 이미지 첨부
 
 <br>
 
