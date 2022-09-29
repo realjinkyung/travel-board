@@ -36,8 +36,9 @@ public class SessionCheckFilter implements Filter {
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
 		HttpServletRequest req = (HttpServletRequest) request;
 		HttpSession session = req.getSession(false);
-		String uri = whiteList.stream().filter((uriItem)-> uriItem.equals(req.getServletPath())).findFirst().orElse(null);
-
+		// System.out.println(req.getServletPath());
+		String uri = whiteList.stream().filter((uriItem)-> req.getServletPath().contains(uriItem)).findFirst().orElse(null);
+		System.out.println(uri);
 		if(Objects.isNull(uri)){
 			if(Objects.isNull(session) || Objects.isNull(session.getAttribute("username"))) {
 				req.getRequestDispatcher("/login.jsp").forward(request, response);
@@ -56,8 +57,10 @@ public class SessionCheckFilter implements Filter {
 		whiteList.add("/login.do");
 		whiteList.add("/boardList.do");
 		whiteList.add("/post.do");
-		
-
+		whiteList.add("/join.do");
+		whiteList.add("/image-upload.do");
+		whiteList.add("images");
+		whiteList.add("profile");
 
 	}
 

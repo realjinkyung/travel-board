@@ -33,7 +33,8 @@ public class UserInfoController implements Command {
         }else{
         	System.out.println("정상적으로 됨");
         	req.setAttribute("user", user);
-        	return "userinfo.jsp";
+            req.setAttribute("status", "profile");
+        	return "image-load.do";
         }
     }
 }	

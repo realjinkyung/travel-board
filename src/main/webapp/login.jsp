@@ -29,6 +29,13 @@
 	<script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
 	<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 	<!------ Include the above in your HEAD tag ---------->
+	<style>
+       .join{
+		   width:62px;
+		   margin-left : 11.2rem;
+	   }
+	   
+	</style>
 </head>
 <body>
 <div class="container">
@@ -64,6 +71,9 @@
 			  </fieldset>
 			</div>
 			</form>
+			<div class="controls">
+				<a href="joinForm.jsp"><button class="btn btn-success join"  >Join</button></a>
+			</div>
 		</div>
 	</div>
 

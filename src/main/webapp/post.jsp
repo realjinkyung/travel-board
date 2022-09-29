@@ -47,6 +47,9 @@
 		.modified {
 			opacity: 0.3;
 		}
+		.image {
+			width: 50%;
+		}
 	</style>
 </head>
 <body>
@@ -58,6 +61,9 @@
 	title : <input type="text" class="title" name="title" value="${postview.title}" readonly>
 	username :	<input type="text" class="username" name="username" value="${postview.username}" readonly>
 	createdAt : <input type="text" class="createdAt" value="${postview.createdAt}"><br/>
+	</div>
+	<div>
+	<img src = "${path}" class="image"/>
 	</div>
 	<textarea name="content" class="content" id="content" readonly>${postview.content}</textarea>
 	<input type="hidden" name="content" value="${postview.content}" class="content"><br/>

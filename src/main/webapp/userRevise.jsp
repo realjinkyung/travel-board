@@ -163,13 +163,14 @@
 		</div>
 		
 		<div class="user-info-table-wrap">
-			<form name="form_user_info" action="userRevise.do" method="post">
+			<form name="form_user_info" action="userRevise.do" method="post" enctype="multipart/form-data">
 				<table>
 					<tr>
 						<th id="th-profile">프로필 사진</th>
 						<td id="td-profile">
 							<div>
-								<img src=""><button>사진 변경</button>
+								<img src="">
+								<input type="file" name="image"/>
 							</div>
 						</td>
 					</tr>

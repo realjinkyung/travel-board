@@ -43,7 +43,7 @@ public class FrontController extends HttpServlet {
 				rd.forward(req, resp);
 			}
 		} catch (Exception ex) {
-			System.out.printf("", ex); 
+			ex.printStackTrace();
 
 			req.setAttribute("exception", ex);
 			RequestDispatcher rd = req.getRequestDispatcher("/error.jsp");
@@ -64,7 +64,7 @@ public class FrontController extends HttpServlet {
 		}else if("/userRevise.do".equals(servletPath) && "POST".equalsIgnoreCase(method)) {
 			command = new UserReviseController();
 		} else if ("/join.do".equals(servletPath) && "POST".equalsIgnoreCase(method)) {
-			command = new JoinFormContoller();
+			command = new JoinFormController();
 //		} else if("/revise.do".equals(servletPath) && "GET".equalsIgnoreCase(method)) {
 //			command = new UserReviseController();
 		}else if("/logout.do".equals(servletPath) && "GET".equalsIgnoreCase(method)) {
@@ -89,10 +89,15 @@ public class FrontController extends HttpServlet {
 			command = new editCommentController();
 		} else if ("/deleteComment.do".equals(servletPath) && "GET".equalsIgnoreCase(method)) { //FIXME URL
 			command = new DeleteCommentController();
+		} else if ("/image-upload.do".equals(servletPath) && "POST".equalsIgnoreCase(method)) { //FIXME URL
+			command = new ImageUploadController();
+		} else if ("/get-user.do".equals(servletPath) && "POST".equalsIgnoreCase(method)) { //FIXME URL
+			command = new GetUserController();
+		} else if ("/image-load.do".equals(servletPath) && "GET".equalsIgnoreCase(method)) { //FIXME URL
+			command = new ImageLoadController();
 		}
 
 		return command;
 	}
-
 
 }

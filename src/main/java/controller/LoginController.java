@@ -38,7 +38,7 @@ public class LoginController implements Command {
 			HttpSession session = req.getSession();
 			session.setAttribute("username", username);
 			
-			return "loginSuccess.jsp";			
+			return "redirect:boardList.do";
 		} else {
 			return "redirect:error.jsp";
 		}

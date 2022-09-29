@@ -2,7 +2,6 @@ package controller;
 
 import java.io.IOException;
 import java.sql.Date;
-import java.sql.SQLException;
 import java.util.regex.Pattern;
 
 import javax.servlet.ServletException;
@@ -13,7 +12,7 @@ import domain.UserDTO;
 import service.user.UserService;
 import service.user.UserServiceImpl;
 
-public class JoinFormContoller implements Command{
+public class JoinFormController implements Command{
 	
 	UserService userService = UserServiceImpl.getInstance();
 
@@ -28,6 +27,7 @@ public class JoinFormContoller implements Command{
 		String phoneNumber = (String)req.getParameter("phoneNumber");
 		String email = (String)req.getParameter("email");
 		String gender = (String)req.getParameter("gender");
+
 	
 		
 //		userService.메소드()
@@ -41,6 +41,7 @@ public class JoinFormContoller implements Command{
 			gender == null || gender.trim().length() == 0 ){
 
 		}
+
 
 		String pattern = "^[_a-z0-9-]+(.[_a-z0-9-]+)*@(?:\\w+\\.)+\\w+$";
 		boolean emailResult = Pattern.matches(pattern, email);
@@ -56,6 +57,14 @@ public class JoinFormContoller implements Command{
 				req.setAttribute("msg", "이메일형식에 맞지 않습니다.");
 				return "error.jsp"; 
 			} else {
+
+				if(req.getPart("image").getSize() != 0){
+					UserDTO user = userService.selectUser(username);
+					req.setAttribute("user", user);
+					req.setAttribute("status", "profileImage");
+					return "image-upload.do";
+				}
+
 				return "joinSuccess.jsp";
 			}
 		}catch (Exception e) {
