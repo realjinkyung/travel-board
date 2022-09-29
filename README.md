@@ -10,6 +10,7 @@
 - 팀 프로젝트
 - 🐨[EastHonor](https://github.com/ehdgns07) | 🐧 [bsy7716](https://github.com/bsy7716) | 🐹 [kimkyeongwook69](https://github.com/kimkyeongwook69) | 🌱 [realjinkyung](https://github.com/realjinkyung)
 
+<br>
 
 ## 주요 기능 및 서비스
 
@@ -18,7 +19,7 @@
 - 댓글 기능, 신고 기능
 - 이미지 첨부
 
-<br><br>
+<br>
 
 ## 개발 과정
 - 전체 프로젝트 관리 : [Projects에서 확인](https://github.com/users/realjinkyung/projects/3)
