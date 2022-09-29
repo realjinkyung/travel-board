@@ -204,6 +204,7 @@
 		<div class="btn-area">
 			<button id="btn-modify" onclick="location.href='userRevisePage.do'">수정</button>
 		</div>
+		
 	</div>
 </body>
 </html>

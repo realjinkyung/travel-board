@@ -160,7 +160,43 @@ public class UserDAOImpl implements UserDAO{
 	  	return result;
 	}
 	
-	
+	@Override
+	public boolean updateIsBlinded(String username) {
+		Connection con = null;
+	  	PreparedStatement pstmt = null;
+	  	ResultSet rs = null;
+	  	
+	  	int reportCount = 0;
+	  	
+	  	int result = 0;
+	  	
+	  	try {
+				con = DBUtils.getConnection();
+				pstmt = con.prepareStatement("select count(*) report_count from report where reported_user_no = (select user_no from user where username = ?)");
+				pstmt.setString(1, username);
+				rs = pstmt.executeQuery();
+				
+				if(rs.next()) {
+					reportCount = rs.getInt("report_count");
+					result = 1;
+				}
+				if(reportCount >= 10) {
+					System.out.println("신고 10회 이상!");
+					pstmt = con.prepareStatement("update user set is_blinded = 1 where username = ?");
+					pstmt.setString(1, username);
+					pstmt.executeUpdate();
+				}
+				
+				if(result == 1) {
+					return true;
+				}
+	  	} catch (SQLException e) {
+	  		// 컨트롤러로 이동
+				e.printStackTrace();
+		}
+	  	
+	  	return false;
+	}
 	
 	
 	

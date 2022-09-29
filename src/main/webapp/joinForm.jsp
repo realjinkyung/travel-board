@@ -3,15 +3,32 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="UTF-8">
-	<link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet" id="bootstrap-css">
-	<script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
-	<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-	<!------ Include the above in your HEAD tag ---------->
-	<title>회원가입</title>
+   <meta charset="UTF-8">
+   <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet" id="bootstrap-css">
+   <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+   <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+   <!------ Include the above in your HEAD tag ---------->
+   
+   <style>
+      .input-form-background row {
+          width: 100%;
+          height: 100vh;
+          position: relative;
+      }
+   
+      .max-wrap {
+         position: absolute;
+          left: 50%;
+          top: 50%;
+          transform: translate(-50%, -50%);
+      }
+   </style>
+   
+   <title>회원가입</title>
 </head>
-	
+   
 <body>
+
 	<div class="container">
 		<div class="input-form-background row">			
 			<form class="form-horizontal" action='join.do' method="POST" enctype="multipart/form-data">
@@ -99,5 +116,6 @@
 			</form>
 		</div>
 	</div>
+
 </body>
 </html>

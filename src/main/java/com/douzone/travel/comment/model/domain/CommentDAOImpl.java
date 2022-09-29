@@ -5,6 +5,7 @@ import com.douzone.travel.utils.DBUtils;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Objects;
 
@@ -22,9 +23,7 @@ public class CommentDAOImpl implements CommentDAO{
     @Override
     public List<CommentViewDTO> findAll(Long postNo) throws SQLException {
         Connection con = DBUtils.getConnection();
-        PreparedStatement pstmt = con.prepareStatement("select c.*, u.username \n" +
-                "from comment c inner join user u on c.user_no = u.user_no\n" +
-                "where post_no = ?");
+        PreparedStatement pstmt = con.prepareStatement("select *from (select c.*, u.username from comment c inner join user u on c.user_no = u.user_no where post_no = ?) sub left outer join (select comment_no, count(*) comment_report_count from report where comment_no is not null group by comment_no) sub2 using(comment_no)");
         pstmt.setLong(1, postNo);
         ResultSet rSet = pstmt.executeQuery();
         List<CommentViewDTO> commentDTOList = new ArrayList<>();
@@ -87,4 +86,37 @@ public class CommentDAOImpl implements CommentDAO{
         DBUtils.close(con, pstmt);
         return result;
     }
+    
+    
+    
+    @Override
+    public ArrayList<HashMap<String, Object>> selectAllComments(Long postNo) throws SQLException {
+        Connection con = DBUtils.getConnection();
+        PreparedStatement pstmt = con.prepareStatement("select *from (select c.*, u.username from comment c inner join user u on c.user_no = u.user_no where post_no = ?) sub left outer join (select comment_no, count(*) comment_report_count from report where comment_no is not null group by comment_no) sub2 using(comment_no)");
+        pstmt.setLong(1, postNo);
+        ResultSet rSet = pstmt.executeQuery();
+        ArrayList<HashMap<String, Object>> commentList = new ArrayList<>();
+        HashMap<String, Object> comment;
+        while(rSet.next()){
+        	comment = new HashMap<String, Object>();
+        	comment.put("commentNo",rSet.getLong("comment_no"));
+        	comment.put("postNo",rSet.getLong("post_no"));
+        	comment.put("username",rSet.getString("username"));
+        	comment.put("createdAt",rSet.getDate("created_at"));
+        	comment.put("content",rSet.getString("comment_content"));
+        	comment.put("commentReportCount",rSet.getInt("comment_report_count"));
+        	
+          
+            Date modified = rSet.getDate("updated_at");
+            if(Objects.nonNull(modified)){
+            	comment.put("createdAt", modified);
+            	comment.put("modifiedAt", " - modified");
+            }
+            
+            commentList.add(comment);
+        }
+
+        return commentList;
+    }
+    
 }

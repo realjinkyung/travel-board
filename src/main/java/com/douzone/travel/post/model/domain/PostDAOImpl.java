@@ -31,10 +31,10 @@ public class PostDAOImpl implements PostDAO {
         PreparedStatement pstmt = null;
         ResultSet rset = null;
         ArrayList<HashMap<String, Object>> postList= new ArrayList<HashMap<String, Object>>();
-        
+        System.out.println("pn : " +pageNumber);
     	try {
             con = DBUtils.getConnection();
-            String sql = "select *from (select *from (select post_no, board_no, username, title, created_at, views, content from post join user using(user_no)) sub join board using(board_no)) sub2 left outer join (select post_no, count(*) comment_count from comment group by post_no) sub3 using(post_no)";
+            String sql = "select *from (select *from (select *from (select post_no, board_no, username, user.is_blinded, title, created_at, views, content from post join user using(user_no)) sub join board using(board_no)) sub2 left outer join (select post_no, count(*) comment_count from comment group by post_no) sub3 using(post_no)) sub4 left outer join (select post_no, count(*) post_report_count from report where post_no is not null group by post_no) sub5 using (post_no)";
             if(board.equals("all")) {
             	if(searchOption != null && !searchOption.equals("")) {
             		switch (searchOption) {
@@ -74,28 +74,30 @@ public class PostDAOImpl implements PostDAO {
             	sql += " limit ?, ?";
             }
             
+            	System.out.println(sql);
+            
             pstmt = con.prepareStatement(sql);
             
             if(board.equals("all")) {
             	if(searchOption != null && !searchOption.equals("")) {
             		pstmt.setString(1,  "%" + searchContent + "%");
-                    pstmt.setInt(2, (pageNumber - 1) * 18);
-                    pstmt.setInt(3, pageNumber * 18);
+                    pstmt.setInt(2, (pageNumber - 1) * 10);
+                    pstmt.setInt(3, 10);
             	}else {
-            		pstmt.setInt(1, (pageNumber - 1) * 18);
-                    pstmt.setInt(2, pageNumber * 18);
+            		pstmt.setInt(1, (pageNumber - 1) * 10);
+                    pstmt.setInt(2, 10);
             	}
             	 
             }else {
             	if(searchOption != null && !searchOption.equals("")) {
             		pstmt.setString(1, board);
             		pstmt.setString(2, "%" + searchContent + "%");
-                	pstmt.setInt(3, (pageNumber - 1) * 18);
-                    pstmt.setInt(4, pageNumber * 18);
+                	pstmt.setInt(3, (pageNumber - 1) * 10);
+                    pstmt.setInt(4, 10);
             	}else {
             		pstmt.setString(1, board);
-                	pstmt.setInt(2, (pageNumber - 1) * 18);
-                    pstmt.setInt(3, pageNumber * 18);
+                	pstmt.setInt(2, (pageNumber - 1) * 10);
+                    pstmt.setInt(3, 10);
             	}
             	
             }
@@ -107,9 +109,11 @@ public class PostDAOImpl implements PostDAO {
             	data.put("postNo",rset.getLong("post_no"));
             	data.put("username", rset.getString("username"));
             	data.put("title",rset.getString("title"));
-            	data.put("createdAt",rset.getLong("post_no"));
+            	data.put("createdAt",rset.getDate("created_at"));
             	data.put("views",rset.getLong("views"));
             	data.put("commentCount", rset.getInt("comment_count"));
+            	data.put("isBlinded", rset.getInt("is_blinded"));
+            	data.put("postReportCount", rset.getInt("post_report_count"));
             	
             	postList.add(data);
             }
@@ -124,7 +128,8 @@ public class PostDAOImpl implements PostDAO {
     }
 
     @Override
-    public int selectPostCount() {
+    public int selectPostCount(String board) {
+    	String sql = "select count(*) p_count from post";
     	Connection con = null;
         PreparedStatement pstmt = null;
         ResultSet rset = null;
@@ -132,7 +137,18 @@ public class PostDAOImpl implements PostDAO {
         
     	try {
             con = DBUtils.getConnection();
-            pstmt = con.prepareStatement("select count(*) p_count from post");
+            
+            if(!board.equals("all")) {
+            	sql += " where board_no = (select board_no from board where board_name = ?)";
+            	System.out.println("sql : " + board);
+            }
+            pstmt = con.prepareStatement(sql);
+            
+            if(!board.equals("all")) {
+            	pstmt.setString(1, board);
+            }
+            
+            
             rset = pstmt.executeQuery();
 
             if (rset.next()){
@@ -149,6 +165,98 @@ public class PostDAOImpl implements PostDAO {
       return count;
     }
     
+    @Override
+    public int selectPostCount(int pageNumber, String board, String searchOption, String searchContent) {
+    	Connection con = null;
+        PreparedStatement pstmt = null;
+        ResultSet rset = null;
+        
+        int postCount = 0;
+        
+    	try {
+            con = DBUtils.getConnection();
+            String sql = "select count(*) postCount from (select *from (select *from (select post_no, board_no, username, user.is_blinded, title, created_at, views, content from post join user using(user_no)) sub join board using(board_no)) sub2 left outer join (select post_no, count(*) comment_count from comment group by post_no) sub3 using(post_no)) sub4 left outer join (select post_no, count(*) post_report_count from report where post_no is not null group by post_no) sub5 using (post_no)";
+            if(board.equals("all")) {
+            	if(searchOption != null && !searchOption.equals("")) {
+            		switch (searchOption) {
+					case "title":
+						sql += " where title like ?";
+						break;
+					case "content":
+						sql += " where content like ?";
+						break;
+					case "writer":
+						sql += " where username like ?";
+						break;
+					default:
+						break;
+					}
+            	}
+            	sql += " limit ?, ?";
+            }else {
+            	sql += " where board_name = ?";
+            	
+            	if(searchOption != null && !searchOption.equals("")) {
+            		switch (searchOption) {
+					case "title":
+						sql += " and title like ?";
+						break;
+					case "content":
+						sql += " and content like ?";
+						break;
+					case "writer":
+						sql += " and username like ?";
+						break;
+					default:
+						break;
+					}
+            	}
+            	
+            	sql += " limit ?, ?";
+            }
+            
+            	System.out.println(sql);
+            
+            pstmt = con.prepareStatement(sql);
+            
+            if(board.equals("all")) {
+            	if(searchOption != null && !searchOption.equals("")) {
+            		pstmt.setString(1,  "%" + searchContent + "%");
+                    pstmt.setInt(2, (pageNumber - 1) * 10);
+                    pstmt.setInt(3, 10);
+            	}else {
+            		pstmt.setInt(1, (pageNumber - 1) * 10);
+                    pstmt.setInt(2, 10);
+            	}
+            	 
+            }else {
+            	if(searchOption != null && !searchOption.equals("")) {
+            		pstmt.setString(1, board);
+            		pstmt.setString(2, "%" + searchContent + "%");
+                	pstmt.setInt(3, (pageNumber - 1) * 10);
+                    pstmt.setInt(4, 10);
+            	}else {
+            		pstmt.setString(1, board);
+                	pstmt.setInt(2, (pageNumber - 1) * 10);
+                    pstmt.setInt(3, 10);
+            	}
+            	
+            }
+           
+            rset = pstmt.executeQuery();
+
+            if (rset.next()){
+            	postCount = rset.getInt("postCount");
+            }
+
+    	}catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			DBUtils.close(con,pstmt,rset);
+		}
+
+      return postCount;
+    }
     
     @Override
     public PostViewDTO findByPostNo(Long postNo, boolean status) throws SQLException {
