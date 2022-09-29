@@ -1,4 +1,4 @@
-package com.douzone.travel.model.domain.report;
+package com.douzone.travel.report.model.domain;
 
 public class ReportDAOImpl implements ReportDAO {
 

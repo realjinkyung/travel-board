@@ -1,9 +1,9 @@
-package com.douzone.travel.service.post;
+package com.douzone.travel.post.service;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import com.douzone.travel.domain.PostViewDTO;
+import com.douzone.travel.post.domain.PostViewDTO;
 
 import javax.servlet.http.HttpServletRequest;
 import java.sql.SQLException;

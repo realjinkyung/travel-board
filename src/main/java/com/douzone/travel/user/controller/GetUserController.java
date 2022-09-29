@@ -1,8 +1,9 @@
-package com.douzone.travel.controller;
+package com.douzone.travel.user.controller;
 
-import com.douzone.travel.domain.UserDTO;
-import com.douzone.travel.service.user.UserService;
-import com.douzone.travel.service.user.UserServiceImpl;
+import com.douzone.travel.Command;
+import com.douzone.travel.user.domain.UserDTO;
+import com.douzone.travel.user.service.UserService;
+import com.douzone.travel.user.service.UserServiceImpl;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;

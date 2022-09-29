@@ -1,9 +1,9 @@
-package com.douzone.travel.controller.post;
+package com.douzone.travel.post.controller;
 
-import com.douzone.travel.controller.Command;
-import com.douzone.travel.domain.PostViewDTO;
-import com.douzone.travel.service.post.PostService;
-import com.douzone.travel.service.post.PostServiceImpl;
+import com.douzone.travel.Command;
+import com.douzone.travel.post.domain.PostViewDTO;
+import com.douzone.travel.post.service.PostService;
+import com.douzone.travel.post.service.PostServiceImpl;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;

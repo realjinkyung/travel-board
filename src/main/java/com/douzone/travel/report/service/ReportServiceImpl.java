@@ -1,7 +1,7 @@
-package com.douzone.travel.service.report;
+package com.douzone.travel.report.service;
 
-import com.douzone.travel.model.domain.report.ReportDAO;
-import com.douzone.travel.model.domain.report.ReportDAOImpl;
+import com.douzone.travel.report.model.domain.ReportDAO;
+import com.douzone.travel.report.model.domain.ReportDAOImpl;
 
 public class ReportServiceImpl implements ReportService{
     private static ReportService instance = new ReportServiceImpl();

@@ -1,7 +1,7 @@
-package com.douzone.travel.model.domain.file;
+package com.douzone.travel.file.model.domain;
 
-import com.douzone.travel.domain.PostViewDTO;
-import com.douzone.travel.domain.UserDTO;
+import com.douzone.travel.post.domain.PostViewDTO;
+import com.douzone.travel.user.domain.UserDTO;
 
 import java.sql.SQLException;
 

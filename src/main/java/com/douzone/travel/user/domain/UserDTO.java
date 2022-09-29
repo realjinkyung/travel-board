@@ -1,4 +1,4 @@
-package com.douzone.travel.domain;
+package com.douzone.travel.user.domain;
 
 import lombok.*;
 

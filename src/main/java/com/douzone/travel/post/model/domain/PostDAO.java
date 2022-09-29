@@ -1,7 +1,7 @@
-package com.douzone.travel.model.domain.post;
+package com.douzone.travel.post.model.domain;
 
-import com.douzone.travel.domain.PostDTO;
-import com.douzone.travel.domain.PostViewDTO;
+import com.douzone.travel.post.domain.PostDTO;
+import com.douzone.travel.post.domain.PostViewDTO;
 
 import java.sql.SQLException;
 import java.util.ArrayList;

@@ -1,6 +1,6 @@
-package com.douzone.travel.service.user;
+package com.douzone.travel.user.service;
 
-import com.douzone.travel.domain.UserDTO;
+import com.douzone.travel.user.domain.UserDTO;
 
 public interface UserService {
 

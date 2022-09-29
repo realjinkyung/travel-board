@@ -1,4 +1,4 @@
-package com.douzone.travel.controller;
+package com.douzone.travel.user.controller;
 
 import java.io.IOException;
 import java.sql.Date;
@@ -8,9 +8,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.douzone.travel.domain.UserDTO;
-import com.douzone.travel.service.user.UserService;
-import com.douzone.travel.service.user.UserServiceImpl;
+import com.douzone.travel.Command;
+import com.douzone.travel.user.domain.UserDTO;
+import com.douzone.travel.user.service.UserService;
+import com.douzone.travel.user.service.UserServiceImpl;
 
 public class UserReviseController implements Command {
 private final UserService userService = UserServiceImpl.getInstance();

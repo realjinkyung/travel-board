@@ -1,4 +1,4 @@
-package com.douzone.travel.service.report;
+package com.douzone.travel.report.service;
 
 public interface ReportService {
 }

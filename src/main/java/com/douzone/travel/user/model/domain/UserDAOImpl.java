@@ -1,4 +1,4 @@
-package com.douzone.travel.model.domain.user;
+package com.douzone.travel.user.model.domain;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -6,7 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 
-import com.douzone.travel.domain.UserDTO;
+import com.douzone.travel.user.domain.UserDTO;
 import com.douzone.travel.utils.DBUtils;
 
 public class UserDAOImpl implements UserDAO{

@@ -1,9 +1,9 @@
-package com.douzone.travel.service.file;
+package com.douzone.travel.file.service;
 
-import com.douzone.travel.domain.PostViewDTO;
-import com.douzone.travel.domain.UserDTO;
-import com.douzone.travel.model.domain.file.FileDAO;
-import com.douzone.travel.model.domain.file.FileDAOImpl;
+import com.douzone.travel.post.domain.PostViewDTO;
+import com.douzone.travel.user.domain.UserDTO;
+import com.douzone.travel.file.model.domain.FileDAO;
+import com.douzone.travel.file.model.domain.FileDAOImpl;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;

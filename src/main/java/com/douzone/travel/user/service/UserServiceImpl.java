@@ -1,8 +1,8 @@
-package com.douzone.travel.service.user;
+package com.douzone.travel.user.service;
 
-import com.douzone.travel.domain.UserDTO;
-import com.douzone.travel.model.domain.user.UserDAO;
-import com.douzone.travel.model.domain.user.UserDAOImpl;
+import com.douzone.travel.user.domain.UserDTO;
+import com.douzone.travel.user.model.domain.UserDAO;
+import com.douzone.travel.user.model.domain.UserDAOImpl;
 
 public class UserServiceImpl implements UserService{
     private static UserService instance = new UserServiceImpl();

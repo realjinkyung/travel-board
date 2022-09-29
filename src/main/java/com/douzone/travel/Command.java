@@ -1,4 +1,4 @@
-package com.douzone.travel.controller;
+package com.douzone.travel;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
