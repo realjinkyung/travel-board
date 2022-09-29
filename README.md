@@ -54,9 +54,9 @@
 | 레이아웃 디자인 | :heavy_check_mark: | :heavy_check_mark: |  |  |  |  |  |  |
 | DB 설계 | :heavy_check_mark: | :heavy_check_mark: |  |  |  |  |  |  |
 | 요구사항 설계 |  |  | :heavy_check_mark: | :heavy_check_mark: |  |  |  |  |
-| 개별 기능 구현 |  | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |  |  |  |  |
-| 개별 코드 리뷰 및 병합 |  |  |  |  | :heavy_check_mark: |  |  |  |
-| 발표 준비 |  |  |  |  |  | :heavy_check_mark: |  |  |
+| 개별 기능 구현 |  | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |  |
+| 개별 코드 리뷰 및 병합 |  |  |  |  | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |  |
+| 발표 준비 |  |  |  |  |  | :heavy_check_mark: | :heavy_check_mark: |  |
 | 발표 |  |  |  |  |  |  |  | :heavy_check_mark: |
 
 
