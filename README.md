@@ -39,7 +39,7 @@
  - JSP
  
  `Web Application Server`
- - Tomcat 9.0
+ - Apache Tomcat 9.0
  - JDBC
  
  `Front-end`
