@@ -12,14 +12,16 @@ import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
 
-public class FileServiceImpl implements FileService{
+public class FileServiceImpl implements FileService {
     private static final String POST_IMAGE = "post/";
     private static final String APPLICATION_PATH = "images/";
     private static FileService instance = new FileServiceImpl();
     FileDAO fileDAO = FileDAOImpl.getInstance();
-    private FileServiceImpl(){ }
 
-    public static FileService getInstance(){
+    private FileServiceImpl() {
+    }
+
+    public static FileService getInstance() {
         return instance;
     }
 
@@ -40,19 +42,19 @@ public class FileServiceImpl implements FileService{
 
         String fileNameForReturn = "";
 
-        if(!image.exists()){
+        if (!image.exists()) {
             image.mkdirs();
         }
 
         String fileName = null;
         String extension = null;
 
-        for(Part part : req.getParts()){
+        for (Part part : req.getParts()) {
             fileName = getFilename(part);
-            if(!fileName.isEmpty()){
+            if (!fileName.isEmpty()) {
                 extension = fileName.split("\\.")[1];
                 fileNameForReturn = APPLICATION_PATH + "/" + username + "." + extension;
-                //images/asdf.png
+                // images/asdf.png
                 part.write(uploadFilePath + File.separator + username + "." + extension);
             }
         }
@@ -68,7 +70,7 @@ public class FileServiceImpl implements FileService{
         String uploadFilePath = applicationPath + APPLICATION_PATH + POST_IMAGE + postNo;
         File image = new File(uploadFilePath);
 
-        if(!image.exists()){
+        if (!image.exists()) {
             image.mkdirs();
         }
 
@@ -76,15 +78,15 @@ public class FileServiceImpl implements FileService{
         String extension = null;
         String fileNameForReturn = "";
 
-        for(Part part : req.getParts()){
+        for (Part part : req.getParts()) {
             fileName = getFilename(part);
-            if(!fileName.isEmpty()){
+            if (!fileName.isEmpty()) {
                 extension = fileName.split("\\.")[1];
                 fileNameForReturn = APPLICATION_PATH + POST_IMAGE + postNo + File.separator + postNo + "." + extension;
-                part.write(uploadFilePath + File.separator +  postNo + "." + extension);
+                part.write(uploadFilePath + File.separator + postNo + "." + extension);
             }
         }
-        req.getParts().clear();
+
         return fileNameForReturn;
     }
 
@@ -103,12 +105,12 @@ public class FileServiceImpl implements FileService{
         return fileDAO.insertPostImage(postNo, fileName);
     }
 
-    private String getFilename(Part part){
+    private String getFilename(Part part) {
         String contentDisp = part.getHeader("content-disposition");
         String[] tokens = contentDisp.split(";");
-        for (String token : tokens){
-            if(token.trim().startsWith("filename")){
-                return token.substring(token.indexOf("=")+2, token.length()-1);
+        for (String token : tokens) {
+            if (token.trim().startsWith("filename")) {
+                return token.substring(token.indexOf("=") + 2, token.length() - 1);
             }
         }
         return "";
