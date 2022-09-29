@@ -7,7 +7,8 @@
 
 ## 1. 개발 기간 & 참여 인원
 - 2022년 9월 22일 ~ 2022년 9월 30일
-- 참여 인원 : 🐨[EastHonor](https://github.com/ehdgns07) | 🐧 [bsy7716](https://github.com/bsy7716) | 🐹 [kimkyeongwook69](https://github.com/kimkyeongwook69) | 🌱 [realjinkyung](https://github.com/realjinkyung)
+- 참여 인원   
+  🐨[EastHonor](https://github.com/ehdgns07) | 🐧 [bsy7716](https://github.com/bsy7716) | 🐹 [kimkyeongwook69](https://github.com/kimkyeongwook69) | 🌱 [realjinkyung](https://github.com/realjinkyung)  
 
 <br>
 
