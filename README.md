@@ -1,4 +1,4 @@
-<br><br>
+<br>
 
 # 🏝️ Jeju Story
 > 제주 여행 게시판입니다.
@@ -8,7 +8,8 @@
 ## 개발 기간 & 참여 인원
 - 2022년 9월 일~ 2022년 9월 29일
 - 팀 프로젝트
-- 
+- 🐨[EastHonor](https://github.com/ehdgns07) | 🐧 [bsy7716](https://github.com/bsy7716) | 🐹 [kimkyeongwook69](https://github.com/kimkyeongwook69) | 🌱 [realjinkyung](https://github.com/realjinkyung)
+
 
 ## 주요 기능 및 서비스
 
