@@ -22,6 +22,8 @@ public class GetUserController implements Command {
 
         if(req.getAttribute("status").equals("postImage")) {
             return "image-upload.do";
+        }else if(req.getAttribute("status").equals("post")){
+            return "comments.do";
         }
 
         return null;

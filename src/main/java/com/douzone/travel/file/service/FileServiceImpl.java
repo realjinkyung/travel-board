@@ -53,7 +53,7 @@ public class FileServiceImpl implements FileService {
             fileName = getFilename(part);
             if (!fileName.isEmpty()) {
                 extension = fileName.split("\\.")[1];
-                fileNameForReturn = APPLICATION_PATH + "/" + username + "." + extension;
+                fileNameForReturn = APPLICATION_PATH + username + "." + extension;
                 // images/asdf.png
                 part.write(uploadFilePath + File.separator + username + "." + extension);
             }
@@ -92,12 +92,12 @@ public class FileServiceImpl implements FileService {
 
     @Override
     public String imageLoad(UserDTO user) throws SQLException {
-        return fileDAO.findByUserId(user);
+        return fileDAO.findByUserId(user.getUserNo());
     }
 
     @Override
     public String imageLoad(PostViewDTO post) throws SQLException {
-        return fileDAO.findByPostId(post);
+        return fileDAO.findByPostId(post.getPostNo());
     }
 
     @Override

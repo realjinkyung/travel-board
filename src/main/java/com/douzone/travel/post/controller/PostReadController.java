@@ -21,8 +21,8 @@ public class PostReadController implements Command {	// 게시글 읽는 Control
 
         req.setAttribute("postview", postViewDTO);
         req.setAttribute("status", "post");
-        
+        req.setAttribute("username", postViewDTO.getUsername());
 
-        return "comments.do";
+        return "get-user.do";
     }
 }

@@ -255,6 +255,9 @@ h3 {
 	font-size: 0.7rem;
 	font-weight: bold;
 }
+.image{
+	width : 500px;
+}
 
 </style>
 </head>
@@ -264,11 +267,11 @@ h3 {
 	<div class="wrap">
 		<div style="width: 1000px; margin: 50px auto;">
 			<h2>상세 게시글 조회</h2>
-			<div class="post-header"">
+			<div class="post-header">
 				<h3>${postview.title}</h3>
 				<div class="post-header-content">
 					<div>
-						<img alt="" src="" style="">
+						<img alt="" src="${profilePath}" style="">
 					</div>
 					<div>
 						<p>
@@ -282,6 +285,9 @@ h3 {
 								${fn:length(comments)}</b></span>
 					</div>
 				</div>
+			</div>
+			<div class="image">
+				<img src="${path}"/>
 			</div>
 			<div class="post-content">
 				<p>${postview.content}</p>
