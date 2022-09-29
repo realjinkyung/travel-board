@@ -7,6 +7,7 @@
 	<link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet" id="bootstrap-css">
 	<script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
 	<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 	<style>
 		.input-form-background row {
 		    width: 100%;
@@ -44,6 +45,7 @@
 				      <label class="control-label"  for="username">아이디</label>
 				      <div class="controls">
 				        <input type="text" id="username" name="username" placeholder="아이디를 입력하세요" class="input-xlarge">
+				        <button type="button" onclick= "checkId()">아이디 중복체크</button>
 				      </div>
 				    </div>
 				 
@@ -116,5 +118,17 @@
 			</div>	
 		</div>	
 	</div>
+	<!-- <script type="text/javascript">
+		/* axios 아이디 중복 체크 */
+		/* GET : URL / POST : URL X */
+		function checkId() {
+			let checkUserId = document.getElementById("username").value 	/* "id 값"을  getElementById() 안에  + value 값을 들고 와야 함*/
+			console.log(checkUserId); /* 데이터 넘어옴 console */
+			axios.get("./join.do", /* 보내는 URL */
+						{params:{"checkUserId":checkUserId}}
+						).then(res => console.log(res)) /* 확인 */
+						/* 보낼 데이터 checkUserId(입력한 아이디)를 params로 보냄 , key : value JSON*/	 
+		}
+	</script> -->
 </body>
 </html>

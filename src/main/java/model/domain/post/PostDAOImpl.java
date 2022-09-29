@@ -34,7 +34,8 @@ public class PostDAOImpl implements PostDAO {
         
     	try {
             con = DBUtils.getConnection();
-            String sql = "select * "
+            String sql =
+            		"select * "
             			+ "from (select *"
             			+ "		from (select post_no, board_no, username, title, created_at, views, content "
             			+ "				from post join user using(user_no)) sub join board using(board_no)) sub2 "

@@ -56,17 +56,13 @@ public class SessionCheckFilter implements Filter {
 		// 세션이 필요없는 목록
 		whiteList.add("/joinForm.jsp"); // 회원가입
 		whiteList.add("/login.do");		// 로그인
-		whiteList.add("/login.jsp");	// 로그인
 		whiteList.add("/boardList.do"); // 게시판리스트
-//		whiteList.add("/post.do");		// 게시글
-//		whiteList.add("/post.jsp");		// 게시글
-//		whiteList.add("/comments.do"); 	// 댓글
-		whiteList.add("/board.jsp");	// 게시판?
-		whiteList.add("/error.jsp");	// 에러
-		whiteList.add("/index.jsp");
-
 		whiteList.add("/post.do");
 		whiteList.add("/join.do");
+//		whiteList.add("/board.jsp");	// 게시판?
+//		whiteList.add("/error.jsp");	// 에러
+//		whiteList.add("/index.jsp");
+
 		whiteList.add("/image-upload.do");
 		whiteList.add("images");
 		whiteList.add("profile");
