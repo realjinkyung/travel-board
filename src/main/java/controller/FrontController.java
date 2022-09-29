@@ -43,7 +43,7 @@ public class FrontController extends HttpServlet {
 				rd.forward(req, resp);
 			}
 		} catch (Exception ex) {
-			System.out.printf("", ex); 
+			ex.printStackTrace();
 
 			req.setAttribute("exception", ex);
 			RequestDispatcher rd = req.getRequestDispatcher("/error.jsp");
@@ -63,8 +63,13 @@ public class FrontController extends HttpServlet {
 			command = new UserRevisePageController();
 		}else if("/userRevise.do".equals(servletPath) && "POST".equalsIgnoreCase(method)) {
 			command = new UserReviseController();
+<<<<<<< HEAD
 		} else if ("/join.do".equals(servletPath) && "POST".equalsIgnoreCase(method)) {	// 회원가입
 			command = new JoinFormContoller();											
+=======
+		} else if ("/join.do".equals(servletPath) && "POST".equalsIgnoreCase(method)) {
+			command = new JoinFormController();
+>>>>>>> af51c7d18fb95c8d5a963c33b2add4e4b39c4ecd
 //		} else if("/revise.do".equals(servletPath) && "GET".equalsIgnoreCase(method)) {
 //			command = new UserReviseController();
 		}else if("/logout.do".equals(servletPath) && "GET".equalsIgnoreCase(method)) { // 로그아웃
@@ -88,11 +93,20 @@ public class FrontController extends HttpServlet {
 		} else if ("/updateComment.do".equals(servletPath) && "POST".equalsIgnoreCase(method)) { //FIXME URL
 			command = new editCommentController();	// session
 		} else if ("/deleteComment.do".equals(servletPath) && "GET".equalsIgnoreCase(method)) { //FIXME URL
+<<<<<<< HEAD
 			command = new DeleteCommentController();	// session
+=======
+			command = new DeleteCommentController();
+		} else if ("/image-upload.do".equals(servletPath) && "POST".equalsIgnoreCase(method)) { //FIXME URL
+			command = new ImageUploadController();
+		} else if ("/get-user.do".equals(servletPath) && "POST".equalsIgnoreCase(method)) { //FIXME URL
+			command = new GetUserController();
+		} else if ("/image-load.do".equals(servletPath) && "GET".equalsIgnoreCase(method)) { //FIXME URL
+			command = new ImageLoadController();
+>>>>>>> af51c7d18fb95c8d5a963c33b2add4e4b39c4ecd
 		}
 
 		return command;
 	}
-
 
 }

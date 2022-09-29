@@ -205,14 +205,14 @@ public class PostDAOImpl implements PostDAO {
     }
 
     @Override
-    public int insertPost(PostDTO postDTO) throws SQLException {
+    public int insertPost(PostDTO postDTO, String username) throws SQLException {
         Connection con = null;
         PreparedStatement pstmt = null;
         int result;
 
         con = DBUtils.getConnection();
-        pstmt = con.prepareStatement("insert into post (user_no, board_no, title, content, created_at) values(?,?,?,?,now())");
-        pstmt.setLong(1,postDTO.getUserNo());
+        pstmt = con.prepareStatement("insert into post (user_no, board_no, title, content, created_at) values((select user_no from user where username=?),?,?,?,now())");
+        pstmt.setString(1, username);
         pstmt.setLong(2,postDTO.getBoardNo());
         pstmt.setString(3,postDTO.getTitle());
         pstmt.setString(4,postDTO.getContent());

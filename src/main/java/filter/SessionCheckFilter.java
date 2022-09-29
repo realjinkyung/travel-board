@@ -35,9 +35,16 @@ public class SessionCheckFilter implements Filter {
 	 */
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
 		HttpServletRequest req = (HttpServletRequest) request;
+<<<<<<< HEAD
 		HttpSession session = req.getSession(false); // session 생성 
 		String uri = whiteList.stream().filter((uriItem)-> uriItem.equals(req.getServletPath())).findFirst().orElse(null); // ?
 
+=======
+		HttpSession session = req.getSession(false);
+		// System.out.println(req.getServletPath());
+		String uri = whiteList.stream().filter((uriItem)-> req.getServletPath().contains(uriItem)).findFirst().orElse(null);
+		System.out.println(uri);
+>>>>>>> af51c7d18fb95c8d5a963c33b2add4e4b39c4ecd
 		if(Objects.isNull(uri)){
 			if(Objects.isNull(session) || Objects.isNull(session.getAttribute("username"))) { // 톰캣 자동생성 방지 -> setAttribute에 username넣기
 				req.getRequestDispatcher("/login.jsp").forward(request, response);
@@ -51,6 +58,7 @@ public class SessionCheckFilter implements Filter {
 	 * @see Filter#init(FilterConfig)
 	 */
 	public void init(FilterConfig fConfig) throws ServletException {
+<<<<<<< HEAD
 		// 세션이 필요없는 목록
 		whiteList.add("/joinForm.jsp"); // 회원가입
 		whiteList.add("/login.do");		// 로그인
@@ -62,5 +70,17 @@ public class SessionCheckFilter implements Filter {
 		whiteList.add("/board.jsp");	// 게시판?
 		whiteList.add("/error.jsp");	// 에러
 		whiteList.add("/index.jsp");
+=======
+		// TODO Auto-generated method stub
+		whiteList.add("/joinForm.jsp");
+		whiteList.add("/login.do");
+		whiteList.add("/boardList.do");
+		whiteList.add("/post.do");
+		whiteList.add("/join.do");
+		whiteList.add("/image-upload.do");
+		whiteList.add("images");
+		whiteList.add("profile");
+
+>>>>>>> af51c7d18fb95c8d5a963c33b2add4e4b39c4ecd
 	}
 }

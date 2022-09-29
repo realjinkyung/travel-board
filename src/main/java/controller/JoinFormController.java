@@ -2,7 +2,6 @@ package controller;
 
 import java.io.IOException;
 import java.sql.Date;
-import java.sql.SQLException;
 import java.util.regex.Pattern;
 
 import javax.servlet.ServletException;
@@ -13,7 +12,7 @@ import domain.UserDTO;
 import service.user.UserService;
 import service.user.UserServiceImpl;
 
-public class JoinFormContoller implements Command{
+public class JoinFormController implements Command{
 	
 	UserService userService = UserServiceImpl.getInstance();
 
@@ -28,6 +27,7 @@ public class JoinFormContoller implements Command{
 		String phoneNumber = (String)req.getParameter("phoneNumber");
 		String email = (String)req.getParameter("email");
 		String gender = (String)req.getParameter("gender");
+
 	
 		
 //		userService.메소드()
@@ -42,6 +42,7 @@ public class JoinFormContoller implements Command{
 
 		}
 
+<<<<<<< HEAD:src/main/java/controller/JoinFormContoller.java
 		// 패스워드 + email 유효성 검증
 		try {
 			String result = userService.writeContent(new UserDTO(1L,username,name,pw,"",0,true,"",phoneNumber,email,birth,gender), pwc);
@@ -54,6 +55,32 @@ public class JoinFormContoller implements Command{
 				return "error.jsp"; 		  		// 에러시 이동할 페이지
 			} else {											// 비밀번호와 이메일 검증이 성공적으로 끝났다면
 				return "board.jsp"; 			// 성공시 이동할 페이지 "board.jsp" ?
+=======
+
+		String pattern = "^[_a-z0-9-]+(.[_a-z0-9-]+)*@(?:\\w+\\.)+\\w+$";
+		boolean emailResult = Pattern.matches(pattern, email);
+		System.out.println(emailResult);
+		
+		try {
+//			result = userService.writeContent(new UserDTO(1L,username,name,pw,"",0,true,"",phoneNumber,email,birth,gender), pwc);
+			if("패스워드".equals(userService.writeContent(new UserDTO(1L,username,name,pw,"",0,true,"",phoneNumber,email,birth,gender), pwc))) {
+				req.setAttribute("msg", "입력한 패스워드와 일치하지 않습니다. 다시 확인해주세요.");
+				return "error.jsp"; // ? error.jsp의 ${msg} 인자(파라미터) 전달 ex) get방식 : ?id=1234&pw=1111 => 보안을 위해 post방식
+//				email @ -> "이메일형식에 맞지 않습니다. @ 확인해주세요."
+			} else if(!emailResult) {
+				req.setAttribute("msg", "이메일형식에 맞지 않습니다.");
+				return "error.jsp"; 
+			} else {
+
+				if(req.getPart("image").getSize() != 0){
+					UserDTO user = userService.selectUser(username);
+					req.setAttribute("user", user);
+					req.setAttribute("status", "profileImage");
+					return "image-upload.do";
+				}
+
+				return "joinSuccess.jsp";
+>>>>>>> af51c7d18fb95c8d5a963c33b2add4e4b39c4ecd:src/main/java/controller/JoinFormController.java
 			}
 		}catch (Exception e) {
 			e.printStackTrace();

@@ -10,6 +10,7 @@ import model.domain.post.PostDAO;
 import model.domain.post.PostDAOImpl;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.sql.SQLException;
 import java.util.Objects;
 
@@ -46,7 +47,7 @@ public class PostServiceImpl implements PostService{
         String postNo = req.getParameter("postNo");
 
         if(Objects.equals("", postNo)) {
-            result = Long.valueOf(postDAO.insertPost(makePostDTO(req,"insert",postNo)));
+            result = Long.valueOf(postDAO.insertPost(makePostDTO(req,"insert",postNo), (String)req.getSession().getAttribute("username")));
 
             if(result==1){
 
@@ -75,7 +76,7 @@ public class PostServiceImpl implements PostService{
     private PostDTO makePostDTO(HttpServletRequest req, String schedule, String postNo){
         String title = req.getParameter("title");
         String content = req.getParameter("content");
-        Long userNo = Long.parseLong(req.getParameter("userNo"));
+        // Long userNo = Long.parseLong(req.getParameter("userNo"));
         Long boardNo = Long.parseLong(req.getParameter("boardNo"));
         PostDTO postDTO = null;
 
@@ -83,16 +84,22 @@ public class PostServiceImpl implements PostService{
             postDTO = PostDTO.builder()
                     .title(title)
                     .content(content)
-                    .userNo(userNo)
                     .boardNo(boardNo).build();
 
         } else if(schedule.equals("modify")){		// [ 게시글 수정 ]
             postDTO = PostDTO.builder()
+<<<<<<< HEAD
                     .postNo(Long.parseLong(postNo))	// 게시글 번호
                     .title(title)					// 게시글 제목
                     .content(content)				// 게시글 내용
                     .userNo(userNo)					// 사용자 번호?
                     .boardNo(boardNo).build();		// 게시판 번호
+=======
+                    .postNo(Long.parseLong(postNo))
+                    .title(title)
+                    .content(content)
+                    .boardNo(boardNo).build();
+>>>>>>> af51c7d18fb95c8d5a963c33b2add4e4b39c4ecd
 
         }
         return postDTO;
