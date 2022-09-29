@@ -32,7 +32,7 @@
  
  <br>
  
- ## 4. 사용 기술
+ ## 4. 개발 환경
  `Back-end`
  - Java
  - MySQL
