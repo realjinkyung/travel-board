@@ -19,31 +19,10 @@
 
 <br><br>
 
-## 페이지 구성 목록
-
-- User : 사용자 정보 조회
-    - 로그인 페이지
-        - 정보 수정
-    - 회원가입 페이지
-        - 비밀번호 일치
-        - 이메일 검증
-    
-- Post : 게시글 페이지
-    - 게시글 작성/조회/수정/삭제 
-
-- Comment : 댓글 페이지
-    - 댓글 작성/조회/수정/삭제 
-    
-- Report : 신고 페이지
-    - 게시글 신고
-    - 댓글 신고
-- file : 사진 파일 페이지
-- Borad : 게시판 페이지
-
 ## 개발 과정
-- 전체 프로젝트 관리 : 
-- 요구사항 명세 : 
-- 설계 : 
+- 전체 프로젝트 관리 : [Projects에서 확인] (https://github.com/users/realjinkyung/projects/3)
+- 요구사항 명세 : [Wiki에서 확인] (https://github.com/realjinkyung/travel-board/wiki/%EC%9A%94%EA%B5%AC-%EC%82%AC%ED%95%AD-%EB%AA%85%EC%84%B8%EC%84%9C-%F0%9F%94%A8)
+- 페이지 구성목록 및 게시판 설계 : [Wiki에서 확인] (https://github.com/realjinkyung/travel-board/wiki/%EC%A0%9C%EC%A3%BC%EC%9D%B4%EC%95%BC%EA%B8%B0-%EA%B2%8C%EC%8B%9C%ED%8C%90-%EC%84%A4%EA%B3%84-%F0%9F%94%A8)
 - 구현 
-    - Issue 관리 : 
+    - Issue 관리 : [Issue에서 확인]
     
