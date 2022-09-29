@@ -38,6 +38,12 @@
  - MySQL
  - JSP
  
+ `Web Application Server`
+ - Tomcat 9.0
+ - JDBC
+ 
  `Front-end`
  - CSS
  - Bootstrap
+ 
+
