@@ -7,6 +7,8 @@ import model.domain.comment.CommentDAOImpl;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class CommentServiceImpl implements CommentService{
@@ -53,5 +55,17 @@ public class CommentServiceImpl implements CommentService{
 
         // return 0;
 
+    }
+    
+    @Override
+    public ArrayList<HashMap<String, Object>> getAllComment(Long postNo) {
+    	ArrayList<HashMap<String, Object>> commentList = null;
+    	try {
+			 commentList = commentDAO.selectAllComments(postNo);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	return commentList;
     }
 }

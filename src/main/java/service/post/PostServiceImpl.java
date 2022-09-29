@@ -29,8 +29,13 @@ public class PostServiceImpl implements PostService{
     }
 
     @Override
-    public int getPostCount() {
-    	return postDAO.selectPostCount();
+    public int getPostCount(String board) {
+    	return postDAO.selectPostCount(board);
+    }
+    
+    @Override
+    public int selectPostCount(int pageNumber, String board, String searchOption, String searchContent) {
+    	return postDAO.selectPostCount(pageNumber, board, searchOption, searchContent);
     }
     
     @Override

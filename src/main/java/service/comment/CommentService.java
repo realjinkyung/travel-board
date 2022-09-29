@@ -4,6 +4,8 @@ import domain.CommentViewDTO;
 
 import javax.servlet.http.HttpServletRequest;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public interface CommentService {
@@ -14,4 +16,18 @@ public interface CommentService {
     int eraseComment(Long commentNo) throws SQLException;
 
     int modifyComment(HttpServletRequest req) throws SQLException;
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    ArrayList<HashMap<String, Object>> getAllComment(Long postNo);
 }

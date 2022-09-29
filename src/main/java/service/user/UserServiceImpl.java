@@ -56,6 +56,11 @@ public class UserServiceImpl implements UserService{
 //		System.out.println("dao"+user.getPassword());
  		return userDAO.login(user);
 		// 회원가입된 정보 ID, PW == 입력한 정보 ID, PW
-		
 	}
+ 	
+ 	@Override
+ 	public boolean updateIsBlinded(String username) {
+ 		// TODO Auto-generated method stub
+ 		return userDAO.updateIsBlinded(username);
+ 	}
 }

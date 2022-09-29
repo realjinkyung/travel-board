@@ -52,9 +52,16 @@ public class BoardReadController implements Command {
         	}
         	
             postList = postService.allPostList(pageNumber, board, searchOption, searchContent);
-            postCount = postService.getPostCount();
+            if(searchOption != null && !searchOption.equals("")) {
+            	postCount = postService.selectPostCount(pageNumber, board, searchOption, searchContent);
+            	System.out.println("1번 됨");
+            }else {
+            	postCount = postService.getPostCount(board);
+            	System.out.println("2번 됨" + board);
+            }
             
-            
+            System.out.println("pc = " + postCount);
+            System.out.println(postList);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

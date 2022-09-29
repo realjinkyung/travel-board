@@ -89,8 +89,12 @@ public class FrontController extends HttpServlet {
 			command = new editCommentController();
 		} else if ("/deleteComment.do".equals(servletPath) && "GET".equalsIgnoreCase(method)) { //FIXME URL
 			command = new DeleteCommentController();
+		}else if ("/reportCommentPage.do".equals(servletPath) && "POST".equalsIgnoreCase(method)) { //FIXME URL
+			command = new ReportCommentPageController();
+		}else if ("/reportComment.do".equals(servletPath) && "POST".equalsIgnoreCase(method)) { //FIXME URL
+			command = new ReportCommentController();
 		}
-
+			
 		return command;
 	}
 

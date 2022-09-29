@@ -14,4 +14,6 @@ public interface UserService {
 	public UserDTO selectUser(String username);
 	
 	public int updateUser(String username, UserDTO userRevise);
+	
+	public boolean updateIsBlinded(String username);
 }

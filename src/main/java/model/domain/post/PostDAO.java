@@ -11,7 +11,7 @@ public interface PostDAO {
 	// 로그인 1줄
 
 	public ArrayList<HashMap<String, Object>> selectPostList(int pageNumber, String board, String searchOption, String searchContent);
-	public int selectPostCount();
+	public int selectPostCount(String board);
     PostViewDTO findByPostNo(Long postNo, boolean status) throws SQLException;
     int insertPost(PostDTO postDTO) throws SQLException;
     Long findPostByTitleAndContent(String title, String content) throws SQLException;
@@ -19,4 +19,5 @@ public interface PostDAO {
     int updatePost(PostDTO postDTO) throws SQLException;
 
     int deletePost(Long postNo) throws SQLException;
+	int selectPostCount(int pageNumber, String board, String searchOption, String searchContent);
 }

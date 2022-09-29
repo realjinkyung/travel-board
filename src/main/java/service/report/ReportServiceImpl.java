@@ -9,7 +9,18 @@ public class ReportServiceImpl implements ReportService{
 
     private ReportServiceImpl(){ }
 
-    public ReportService getInstance(){
+    public static ReportService getInstance(){
         return instance;
+    }
+    
+    @Override
+    public int reportComment(int commentNum, String username, String targetUsername, int reportReason) {
+    	return reportDAO.reportComment(commentNum, username, targetUsername, reportReason);
+    }
+    
+    @Override
+    public int reportPost(int postNum, String username, String targetUsername, int reportReason) {
+    	
+    	return reportDAO.reportPost(postNum, username, targetUsername, reportReason);
     }
 }
