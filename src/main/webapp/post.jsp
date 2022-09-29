@@ -55,7 +55,7 @@
 <body>
 
 <a href="boardList.do"><button>첫페이지로</button></a><br/>
-<form action="edit.do" method="post">
+<form action="edit.do" method="post" onsubmit="return TestCheck();">
 	<input type="hidden" name="postNo" value="${postview.postNo}" />
 	<div class="title-line">
 	title : <input type="text" class="title" name="title" value="${postview.title}" readonly>
@@ -105,8 +105,21 @@
         } else {
             form.remove();
 		}
+    
   
-  
+	function TestCheck() {
+		if("${param.username}" == "${sessionScope.username}"){
+			alert("같음");
+			retuen true;
+		}else{
+			alert("권한이 없습니다.")
+			return false;
+		}
+		}
+	}
+    
+  	
+  	
 	}
 </script>
 </body>

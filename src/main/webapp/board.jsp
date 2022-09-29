@@ -403,7 +403,7 @@
 							<c:forEach var="post" items="${postList}">
 								<tr>
 									<td class="post-no">${post.postNo}</td>
-									<td class="title"><a href="post.do?postNo=${post.postNo}&status=${true}">${post.title}</a><b><c:if test="${post.commentCount != 0}">[${post.commentCount}]</c:if></b></td>
+									<td class="title"><a href="post.do?postNo=${post.postNo}&status=${true}&username=${post.username}">${post.title}</a><b><c:if test="${post.commentCount != 0}">[${post.commentCount}]</c:if></b></td>
 									<td class="writer">${post.username}</td>
 									<td class="created-date">${post.createdAt}</td>
 									<td class="views">${post.views}</td>

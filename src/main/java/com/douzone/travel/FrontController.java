@@ -69,8 +69,6 @@ public class FrontController extends HttpServlet {
 			command = new UserReviseController();
 		} else if ("/join.do".equals(servletPath) && "POST".equalsIgnoreCase(method)) {
 			command = new JoinFormController();
-//		} else if("/revise.do".equals(servletPath) && "GET".equalsIgnoreCase(method)) {
-//			command = new UserReviseController();
 		}else if("/logout.do".equals(servletPath) && "GET".equalsIgnoreCase(method)) {
 			command = new LogOutController();
 		} else if ("/login.do".equals(servletPath) && "POST".equalsIgnoreCase(method)) {
