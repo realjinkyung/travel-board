@@ -33,14 +33,13 @@
  <br>
  
  ## 4. 개발 환경
+
  `Back-end`
  - Java
+ - WAS : Apache Tomcat 9.0
+
+  `DB`
  - MySQL
- - JSP
- 
- `Web Application Server`
- - Apache Tomcat 9.0
- - JDBC
  
  `Front-end`
  - CSS
