@@ -5,14 +5,14 @@
 
 <br>
 
-## 개발 기간 & 참여 인원
+## 1. 개발 기간 & 참여 인원
 - 2022년 9월 일~ 2022년 9월 29일
 - 팀 프로젝트
 - 🐨[EastHonor](https://github.com/ehdgns07) | 🐧 [bsy7716](https://github.com/bsy7716) | 🐹 [kimkyeongwook69](https://github.com/kimkyeongwook69) | 🌱 [realjinkyung](https://github.com/realjinkyung)
 
 <br>
 
-## 주요 기능 및 서비스
+## 2. 주요 기능 및 서비스
 
 - 지역별 게시판 구분
 - 로그인 기능 → 필터
@@ -21,7 +21,7 @@
 
 <br>
 
-## 개발 과정
+## 3. 개발 과정
 - 전체 프로젝트 관리 : [Projects에서 확인](https://github.com/users/realjinkyung/projects/3)
 - 와이어프레임 설계 : 
 - 요구사항 명세 : [Wiki에서 확인](https://github.com/realjinkyung/travel-board/wiki/%EC%9A%94%EA%B5%AC-%EC%82%AC%ED%95%AD-%EB%AA%85%EC%84%B8%EC%84%9C-%F0%9F%94%A8)
