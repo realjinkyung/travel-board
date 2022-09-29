@@ -22,18 +22,7 @@
 
 <br>
 
-## 3. 프로젝트 일정 관리
-
-| schedule | 9/22 | 9/23 | 9/24 | 9/26 | 9/27 | 9/28 | 9/29 | 9/30 |
-| :-----: | :-----: | :-----: | :-----: | :-----: | :-----: | :-----: | :-----: | :-----: |
-| 주제 선정 | :heavy_check_mark: |  |  |  |  |  |  |  |
-| 레이아웃 디자인 | :heavy_check_mark: | :heavy_check_mark: |  |  |  |  |  |  |
-| DB 설계 | :heavy_check_mark: | :heavy_check_mark: |  |  |  |  |  |  |
-| 요구사항 설계 |  |  | :heavy_check_mark: | :heavy_check_mark: |  |  |  |  |
-| 개별 기능 구현 |  | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |  |
-| 개별 코드 리뷰 및 병합 |  |  |  |  | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |  |
-| 발표 준비 |  |  |  |  |  | :heavy_check_mark: | :heavy_check_mark: |  |
-| 발표 |  |  |  |  |  |  |  | :heavy_check_mark: |
+## 3. 프로젝트  실행 화면
 
  <br>
  
