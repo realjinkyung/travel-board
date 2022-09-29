@@ -17,7 +17,7 @@
 - 🙍🏻‍♂ 회원가입 | 로그인 기능 → 필터 & 세션 | 회원정보 수정
 - 📄 게시글 CRUD
 - 💬 댓글 CRUD
-- 🚨 신고 기능
+- 🚨 신고 기능  →  :shipit: 관리자 권한
 - 📂 이미지 첨부
 
 <br>
@@ -44,6 +44,7 @@
 - 페이지 구성목록 및 게시판 설계 : [Wiki에서 확인](https://github.com/realjinkyung/travel-board/wiki/%EC%A0%9C%EC%A3%BC%EC%9D%B4%EC%95%BC%EA%B8%B0-%EA%B2%8C%EC%8B%9C%ED%8C%90-%EC%84%A4%EA%B3%84-%F0%9F%94%A8)
 - 구현 
     - Issue 관리 : [Issue에서 확인](https://github.com/realjinkyung/travel-board/issues)
+    - 기능 구현 : [Projects에서 확인](https://github.com/users/realjinkyung/projects/3/views/1)
  
  <br>
  
