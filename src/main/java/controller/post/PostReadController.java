@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.SQLException;
 
-public class PostReadController implements Command {
+public class PostReadController implements Command {	// 게시글 읽는 Controller ?
     PostService postService = PostServiceImpl.getInstance();
     @Override
     public String execute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException, SQLException {

@@ -34,8 +34,6 @@
 	  <textarea name="content" class="content" placeholder="내용">${content}</textarea>
 <%--<input type="hidden" name="content" value="${}"> FIXME session에서 id값 받아서 입력해 줄 곳--%>
 <input type="hidden" name="userNo" value=1>
-<input type="hidden" name="userNo" value=${username}>
-<input type="hidden" name="userNo" value=${user.username}>
 <%--	FIXME 아이디 세션에서 받아와서 value에 넣어 줄것  --%>
 <%--<input type="hidden" name="boardNo" value=게시판 번호>--%>
 <input type="hidden" name="boardNo" value=1>

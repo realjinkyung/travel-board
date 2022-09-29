@@ -11,6 +11,6 @@ import java.sql.Date;
 @ToString
 @Builder
 public class BoardDTO {
-    private Long boardNo;		// 게시글 번호
-    private String boardName;	// 게시글
+    private Long boardNo;		// 게시판 번호
+    private String boardName;	// 게시판 이름
 }

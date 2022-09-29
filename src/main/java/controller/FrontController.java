@@ -80,15 +80,15 @@ public class FrontController extends HttpServlet {
 		} else if ("/edit.do".equals(servletPath) && "POST".equalsIgnoreCase(method)) { //FIXME URL
 			command = new ConnectNewPostController();
 		} else if ("/deletePost.do".equals(servletPath) && "GET".equalsIgnoreCase(method)) { //FIXME URL
-			command = new DeletePostController();
+			command = new DeletePostController();	// session
 		} else if ("/comments.do".equals(servletPath) && "GET".equalsIgnoreCase(method)) { //FIXME URL
 			command = new ReadCommentController();
 		} else if ("/addComment.do".equals(servletPath) && "POST".equalsIgnoreCase(method)) { //FIXME URL
 			command = new ProduceCommentController();
 		} else if ("/updateComment.do".equals(servletPath) && "POST".equalsIgnoreCase(method)) { //FIXME URL
-			command = new editCommentController();
+			command = new editCommentController();	// session
 		} else if ("/deleteComment.do".equals(servletPath) && "GET".equalsIgnoreCase(method)) { //FIXME URL
-			command = new DeleteCommentController();
+			command = new DeleteCommentController();	// session
 		}
 
 		return command;
