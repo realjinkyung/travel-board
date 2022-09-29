@@ -1,4 +1,4 @@
-package controller;
+package com.douzone.travel.user.controller;
 
 import java.io.IOException;
 
@@ -13,7 +13,7 @@ import service.report.ReportService;
 
 public class ReportCommentPageController implements Command{
 	
-	ReportService reportService = ReportServiceImpl.getInstance();
+	ReportService reportService = (ReportService) ReportServiceImpl.getInstance();
 
 
 	

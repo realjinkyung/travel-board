@@ -1,4 +1,4 @@
-package controller;
+package com.douzone.travel.user.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -7,14 +7,17 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.douzone.travel.Command;
+import com.douzone.travel.report.service.ReportServiceImpl;
+import com.douzone.travel.user.service.UserService;
+import com.douzone.travel.user.service.UserServiceImpl;
+
 import service.report.ReportService;
-import service.report.ReportServiceImpl;
-import service.user.UserService;
-import service.user.UserServiceImpl;
+
 
 public class ReportCommentController implements Command{
 	
-	ReportService reportService = ReportServiceImpl.getInstance();
+	ReportService reportService = (ReportService) ReportServiceImpl.getInstance();
 	UserService userService = UserServiceImpl.getInstance();
 
 	
