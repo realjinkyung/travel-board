@@ -101,7 +101,7 @@
 						  
 						      <div class="controls-btns"></div>
 							      <div class="controls">
-							        <button class="btn btn-success">Login</button>
+							        <button class="btn btn-success" type="submit">Login</button>
 							        <button class="btn btn-primary" onclick="location.href='joinForm.jsp'">Join</button>
 							      </div>
 						    </div>
