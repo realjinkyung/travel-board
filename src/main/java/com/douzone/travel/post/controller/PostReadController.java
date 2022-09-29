@@ -20,6 +20,8 @@ public class PostReadController implements Command {	// 게시글 읽는 Control
         PostViewDTO postViewDTO = postService.getByPostNo(postNo, status);
 
         req.setAttribute("postview", postViewDTO);
+        req.setAttribute("status", "post");
+        
 
         return "comments.do";
     }

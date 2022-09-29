@@ -115,13 +115,14 @@ input[type=submit]{
 						<input type="submit" value="작성">
 					</div>
 					
-					<!-- 
-						<input type="file" name="file" class="file" value="찾아보기" />
-					 -->
+					
 				</form>
 			</div>
 		</div>
 	</div>
+	<!-- 
+						<input type="file" name="file" class="file" value="찾아보기" />
+					 -->
 	<jsp:include page="footer.jsp" />
 
 </body>
