@@ -14,10 +14,6 @@ import service.user.UserServiceImpl;
 
 public class UserReviseController implements Command {
 private final UserService userService = UserServiceImpl.getInstance();
-<<<<<<< HEAD
-=======
-	
->>>>>>> af51c7d18fb95c8d5a963c33b2add4e4b39c4ecd
 
 	public String execute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		UserDTO user = null;
@@ -32,19 +28,11 @@ private final UserService userService = UserServiceImpl.getInstance();
         		.email(req.getParameter("email"))
         		.phoneNumber(req.getParameter("phoneNumber"))
         		.build();
-<<<<<<< HEAD
         
     	try {
     		HttpSession session = req.getSession(false); 			// 세션생성 - false 있는걸 가져옴
-    		String id = (String)session.getAttribute("username");// setAttribute("username")-> tomcat자동생성 방지
+    		id = (String)session.getAttribute("username");// setAttribute("username")-> tomcat자동생성 방지
     		result = userService.updateUser(id, user);    		    		
-=======
-
-    	try {
-    		HttpSession session = req.getSession();
-			id = (String)session.getAttribute("username");
-    		result = userService.updateUser(id, user);
->>>>>>> af51c7d18fb95c8d5a963c33b2add4e4b39c4ecd
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

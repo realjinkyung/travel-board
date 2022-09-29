@@ -88,18 +88,10 @@ public class PostServiceImpl implements PostService{
 
         } else if(schedule.equals("modify")){		// [ 게시글 수정 ]
             postDTO = PostDTO.builder()
-<<<<<<< HEAD
                     .postNo(Long.parseLong(postNo))	// 게시글 번호
                     .title(title)					// 게시글 제목
                     .content(content)				// 게시글 내용
-                    .userNo(userNo)					// 사용자 번호?
                     .boardNo(boardNo).build();		// 게시판 번호
-=======
-                    .postNo(Long.parseLong(postNo))
-                    .title(title)
-                    .content(content)
-                    .boardNo(boardNo).build();
->>>>>>> af51c7d18fb95c8d5a963c33b2add4e4b39c4ecd
 
         }
         return postDTO;

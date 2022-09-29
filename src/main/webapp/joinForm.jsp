@@ -29,7 +29,6 @@
 	
 <body>
 	<div class="container">
-<<<<<<< HEAD
 		<div class="input-form-background row">	
 			<div class="max-wrap">
 				<form class="form-horizontal" action='join.do' method="POST">
@@ -112,7 +111,6 @@
 				  </fieldset>
 				</form>
 			</div>		
-=======
 		<div class="input-form-background row">			
 			<form class="form-horizontal" action='join.do' method="POST" enctype="multipart/form-data">
 			  <fieldset>
@@ -197,7 +195,6 @@
 			    </div>
 			  </fieldset>
 			</form>
->>>>>>> af51c7d18fb95c8d5a963c33b2add4e4b39c4ecd
 		</div>
 	</div>
 </body>
