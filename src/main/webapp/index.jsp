@@ -8,7 +8,7 @@
 	<title>Home</title>
 </head>
 <body>
-	<h1>controller.FrontController World!</h1>
+	<h1>com.douzone.travel.FrontController World!</h1>
 	<c:if test="${not empty param.name}">
 		<p>Name: ${param.name}</p>
 	</c:if>

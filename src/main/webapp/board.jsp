@@ -7,7 +7,7 @@
 <style type="text/css">
 	/* http://meyerweb.com/eric/tools/css/reset/ 
 	   v2.0 | 20110126
-	   License: none (public domain)
+	   License: none (public com.douzone.travel.domain)
 	*/
 	
 	html, body, div, span, applet, object, iframe,
