@@ -60,7 +60,7 @@ public class PostServiceImpl implements PostService{
 
         }else{
 
-            result = Long.valueOf(postDAO.updatePost(makePostDTO(req,"modify", postNo)));
+            result = Long.valueOf(postDAO.updatePost(makePostDTO(req,"modify", postNo))); // 게시글 수정
 
             if(result==1){
                 return Long.valueOf(postNo);
@@ -90,12 +90,12 @@ public class PostServiceImpl implements PostService{
                     .content(content)
                     .boardNo(boardNo).build();
 
-        } else if(schedule.equals("modify")){
+        } else if(schedule.equals("modify")){		// [ 게시글 수정 ]
             postDTO = PostDTO.builder()
-                    .postNo(Long.parseLong(postNo))
-                    .title(title)
-                    .content(content)
-                    .boardNo(boardNo).build();
+                    .postNo(Long.parseLong(postNo))	// 게시글 번호
+                    .title(title)					// 게시글 제목
+                    .content(content)				// 게시글 내용
+                    .boardNo(boardNo).build();		// 게시판 번호
 
         }
         return postDTO;

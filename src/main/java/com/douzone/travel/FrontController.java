@@ -62,7 +62,7 @@ public class FrontController extends HttpServlet {
 			command = new BoardReadController();
 		} else if("/userinfo.do".equals(servletPath) && "GET".equalsIgnoreCase(method)) {
 			System.out.println("userInfo.do");
-			command = new UserInfoController();
+			command = new UserInfoController();											// 유저 정보 확인
 		} else if("/userRevisePage.do".equals(servletPath) && "GET".equalsIgnoreCase(method)) {
 			command = new UserRevisePageController();
 		}else if("/userRevise.do".equals(servletPath) && "POST".equalsIgnoreCase(method)) {
@@ -82,15 +82,15 @@ public class FrontController extends HttpServlet {
 		} else if ("/edit.do".equals(servletPath) && "POST".equalsIgnoreCase(method)) { //FIXME URL
 			command = new ConnectNewPostController();
 		} else if ("/deletePost.do".equals(servletPath) && "GET".equalsIgnoreCase(method)) { //FIXME URL
-			command = new DeletePostController();
+			command = new DeletePostController();	// session
 		} else if ("/comments.do".equals(servletPath) && "GET".equalsIgnoreCase(method)) { //FIXME URL
 			command = new ReadCommentController();
 		} else if ("/addComment.do".equals(servletPath) && "POST".equalsIgnoreCase(method)) { //FIXME URL
 			command = new ProduceCommentController();
 		} else if ("/updateComment.do".equals(servletPath) && "POST".equalsIgnoreCase(method)) { //FIXME URL
-			command = new editCommentController();
+			command = new editCommentController();	// session
 		} else if ("/deleteComment.do".equals(servletPath) && "GET".equalsIgnoreCase(method)) { //FIXME URL
-			command = new DeleteCommentController();
+			command = new DeleteCommentController();	// session
 		} else if ("/image-upload.do".equals(servletPath) && "POST".equalsIgnoreCase(method)) { //FIXME URL
 			command = new ImageUploadController();
 		} else if ("/get-user.do".equals(servletPath) && "POST".equalsIgnoreCase(method)) { //FIXME URL

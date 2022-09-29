@@ -10,6 +10,7 @@ import java.sql.SQLException;
 
 public interface PostService {
 	
+	// ??
 	public ArrayList<HashMap<String, Object>> allPostList(int pageNumber, String board, String searchOption, String searchContent);
 	public int getPostCount(String board);
 	public int selectPostCount(int pageNumber, String board, String searchOption, String searchContent);	

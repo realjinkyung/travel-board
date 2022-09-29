@@ -43,6 +43,8 @@ public class LoginController implements Command {
 		} else {
 			return "redirect:error.jsp";
 		}
+		
+		
 	}
 
 }

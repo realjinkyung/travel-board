@@ -20,6 +20,7 @@ private final UserService userService = UserServiceImpl.getInstance();
 	public String execute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         UserDTO user = null; 
         
+        // UserInfoController와 UserReviseController를 연결해주는 역할
     	try {
     		HttpSession session = req.getSession();
     		String id = (String)session.getAttribute("username");
@@ -28,7 +29,7 @@ private final UserService userService = UserServiceImpl.getInstance();
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
-
+    	    	
         if(user == null){
             return "error.jsp";
         }else{

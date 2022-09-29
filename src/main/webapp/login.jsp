@@ -29,7 +29,37 @@
 	<script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
 	<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 	<!------ Include the above in your HEAD tag ---------->
+	
 	<style>
+		.wrap {
+			width: 100%;
+			height: 100vh;
+			position: relative;
+		}
+		
+		.max-wrap {
+			position: absolute;
+			left: 50%;
+			top: 50%;
+			transform: translate(-50%, -50%);
+		}
+		
+		.form-horizontal .control-label {
+			float: none;
+			width: none;
+			padding: 0;
+			text-align: left;
+			
+		}
+		
+		.form-horizontal .control-group {
+			margin: 30px;
+		}
+		
+		.form-horizontal .controls {
+			margin: 0;
+		}
+		
        .join{
 		   width:62px;
 		   margin-left : 11.2rem;
@@ -38,44 +68,55 @@
 	</style>
 </head>
 <body>
-<div class="container">
+	<div class="container">
 		<div class="input-form-background row">			
 			<form class="form-horizontal" name="frm" action='login.do' method="POST">
-			<div class="align-self-center">
-			  <fieldset>
-			    <div id="legend">
-			      <legend class="">Login</legend>
-			    </div>
-			    <div class="control-group">
-			      <!-- Username -->
-			      <label class="control-label"  for="username">아이디</label>
-			      <div class="controls">
-			        <input type="text" id="username" name="id" placeholder="아이디를 입력하세요" class="input-xlarge">
-			      </div>
-			    </div>
-			 
-			    <div class="control-group">
-			      <!-- Password-->
-			      <label class="control-label" for="password">비밀번호</label>
-			      <div class="controls">
-			        <input type="password" id="password" name="pw" placeholder="비밀번호를 입력하세요" class="input-xlarge">
-			      </div>
-			    </div>
-			    
-			    <div class="control-group">
-			      <!-- Button -->
-			      <div class="controls">
-			        <button class="btn btn-success">Login</button>
-			      </div>
-			    </div>
-			  </fieldset>
-			</div>
+				<div class="align-self-center">
+				  <fieldset>
+				  	<div class="wrap"> 
+					  	<div class="max-wrap"> 
+						  	
+						    <div id="legend">
+						      <legend class="">Login</legend>
+						    </div>
+						    
+						    <div class="control-group">
+						      <!-- Username -->
+						      <div class="controls">
+						        <label class="control-label"  for="username">아이디</label>   
+						        <input type="text" id="username" name="id" placeholder="아이디를 입력하세요" class="input-xlarge">
+						      </div>
+						    </div>
+						 
+						    <div class="control-group">
+						      <!-- Password-->
+						      <div class="controls">
+						   		<label class="control-label" for="password">비밀번호</label>
+						        <input type="password" id="password" name="pw" placeholder="비밀번호를 입력하세요" class="input-xlarge">
+						      </div>
+						    </div>
+						    
+						    <div class="control-group">
+						      <!-- Button -->
+						  
+						      <div class="controls-btns"></div>
+							      <div class="controls">
+							        <button class="btn btn-success" type="submit">Login</button>
+							        <button class="btn btn-primary" onclick="location.href='joinForm.jsp'">Join</button>
+							      </div>
+						    </div>
+					    </div>
+				    </div>
+				    
+				  </fieldset>
+				</div>
 			</form>
 			<div class="controls">
 				<a href="joinForm.jsp"><button class="btn btn-success join"  >Join</button></a>
 			</div>
 		</div>
 	</div>
+
 
 <!--  =======
    <meta charset="UTF-8">
@@ -187,5 +228,6 @@
    </div>
 >>>>>>> suyoung
  -->
+
 </body>
 </html>

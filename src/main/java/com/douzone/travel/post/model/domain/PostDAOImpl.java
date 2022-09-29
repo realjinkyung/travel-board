@@ -34,8 +34,15 @@ public class PostDAOImpl implements PostDAO {
         System.out.println("pn : " +pageNumber);
     	try {
             con = DBUtils.getConnection();
-            String sql = "select *from (select *from (select *from (select post_no, board_no, username, user.is_blinded, title, created_at, views, content from post join user using(user_no)) sub join board using(board_no)) sub2 left outer join (select post_no, count(*) comment_count from comment group by post_no) sub3 using(post_no)) sub4 left outer join (select post_no, count(*) post_report_count from report where post_no is not null group by post_no) sub5 using (post_no)";
-            if(board.equals("all")) {
+
+            String sql = "select * "
+            			+ "from (select *"
+            			+ "		from (select post_no, board_no, username, title, created_at, views, content "
+            			+ "				from post join user using(user_no)) sub join board using(board_no)) sub2 "
+	            						+ "left outer join (select post_no, count(*) comment_count "
+	            						+ "					from comment group by post_no) sub3 using(post_no)";
+            if(board.equals("all")) {	// 검색기능 -> select box - 제목/내용/작성자 쿼리에 추가 // board랑 all 어딨냐? 
+
             	if(searchOption != null && !searchOption.equals("")) {
             		switch (searchOption) {
 					case "title":
@@ -51,12 +58,12 @@ public class PostDAOImpl implements PostDAO {
 						break;
 					}
             	}
-            	sql += " limit ?, ?";
+            	sql += " limit ?, ?";	// 몇 개씩 볼건지 설정 default값 0~1000 ex) 0~50
             }else {
-            	sql += " where board_name = ?";
+            	sql += " where board_name = ?"; // input(text) 검색 내용
             	
             	if(searchOption != null && !searchOption.equals("")) {
-            		switch (searchOption) {
+            		switch (searchOption) {	// searchOption의 값에 해당하는 case 실행 - title/content/writer 을 찾는다
 					case "title":
 						sql += " and title like ?";
 						break;
@@ -78,7 +85,7 @@ public class PostDAOImpl implements PostDAO {
             
             pstmt = con.prepareStatement(sql);
             
-            if(board.equals("all")) {
+            if(board.equals("all")) {			// pagenation
             	if(searchOption != null && !searchOption.equals("")) {
             		pstmt.setString(1,  "%" + searchContent + "%");
                     pstmt.setInt(2, (pageNumber - 1) * 10);
@@ -267,7 +274,7 @@ public class PostDAOImpl implements PostDAO {
 
         try{
             con = DBUtils.getConnection();
-            pstmt = con.prepareStatement("select p.post_no, u.username, p.board_no, p.title, p.content, p.created_at, p.updated_at, p.deleted_at,p.views " +
+            pstmt = con.prepareStatement("select p.post_no, u.username, p.board_no, p.title, p.content, p.created_at, p.updated_at, p.deleted_at, p.views " +
                                                "from post p inner join user u " +
                                                                    "on p.user_no = u.user_no " +
                                               "where p.post_no = ?");
@@ -295,7 +302,7 @@ public class PostDAOImpl implements PostDAO {
                 }
             }
             if(status) {
-                pstmt = con.prepareStatement("update post set views= views+1 where post_no = ?");
+                pstmt = con.prepareStatement("update post set views = views+1 where post_no = ?");
                 pstmt.setLong(1, postNo);
                 pstmt.executeUpdate();
             }

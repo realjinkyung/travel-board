@@ -9,6 +9,6 @@ import lombok.*;
 @ToString
 @Builder
 public class BoardDTO {
-    private Long boardNo;
-    private String boardName;
+    private Long boardNo;		// 게시판 번호
+    private String boardName;	// 게시판 이름
 }

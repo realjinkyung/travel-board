@@ -330,6 +330,16 @@ h3 {
 				</c:forEach>
 			</div>
 		</div>
+
+<a href="boardList.do"><button>첫페이지로</button></a><br/>
+<!--  <form action="edit.do" method="post" onsubmit="return TestCheck();">
+	<input type="hidden" name="postNo" value="${postview.postNo}" />
+	<div class="title-line">
+	title : <input type="text" class="title" name="title" value="${postview.title}" readonly>
+	username :	<input type="text" class="username" name="username" value="${postview.username}" readonly>
+	createdAt : <input type="text" class="createdAt" value="${postview.createdAt}"><br/>
+	-->
+
 	</div>
 	
 	<form action="edit.do" method="post" id="edit_form">
@@ -389,6 +399,7 @@ h3 {
         } else {
             form.remove();
 		}
+
 	}
 	
 	function deleteComment(commentNo){
@@ -405,7 +416,6 @@ h3 {
 		
 		
 		reportForm.submit();
-	}
 </script>
 <jsp:include page="footer.jsp"/>
 </body>
