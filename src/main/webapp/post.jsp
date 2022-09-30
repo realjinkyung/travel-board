@@ -297,6 +297,7 @@ h3 {
 				<button class="btn-delete post">삭제</button>
 				<button class="btn-report post"
 					onclick="report('${postview.postNo}', 0, '${sessionScope.username}', '${postview.username}', '${postview.content}', 'post');">신고</button>
+<%--				onclick="report(0, '${comment.commentNo}', '${sessionScope.username}', '${comment.username}', '${comment.content}', 'comment');">신고</button>--%>
 			</div>
 			<div class="comment-write">
 				<div>
@@ -417,8 +418,9 @@ h3 {
 			location.href = "deleteComment.do?commentNo=" + commentNo + "&postNo=${postview.postNo}";
 		}
 		
-		function report(postNum ,commentNum, username, targetUsername, content, reportKinds) {
-			reportForm.postNum.value = postNum;
+		function report(postNum , commentNum, username, targetUsername, content, reportKinds) {
+            
+            reportForm.postNum.value = postNum;
 			reportForm.commentNum.value = commentNum;
 			reportForm.username.value = username;
 			reportForm.targetUsername.value = targetUsername;
