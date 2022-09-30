@@ -144,17 +144,30 @@
 		text-align: right;
 		padding: 10px 30px;
 		padding-right: 0px;
+		position: relative;
 	}
 	
 	
 	#btn-modify{
+		position: absolute;
 		padding: 7px 15px;
 		border: 1px solid lightgray;
 		background-color: white;
 		font-weight: bold;
 		cursor: pointer;
-
+		right: 0;
 	}
+	
+	#btn-home{
+		position: absolute;
+		padding: 7px 15px;
+		border: 1px solid lightgray;
+		background-color: white;
+		font-weight: bold;
+		cursor: pointer;
+		left: 0;
+	}
+	
 </style>
 </head>
 <body>
@@ -202,6 +215,7 @@
 			</table>
 		</div>
 		<div class="btn-area">
+			<button id="btn-home" onclick="location.href='boardList.do'">홈으로</button>
 			<button id="btn-modify" onclick="location.href='userRevisePage.do'">수정</button>
 		</div>
 		

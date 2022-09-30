@@ -30,7 +30,7 @@
 	<div class="container">
 		<div class="input-form-background row">	
 			<div class="max-wrap">
-				<form class="form-horizontal" action='join.do' method="POST">
+				<form class="form-horizontal" action='join.do' method="POST" enctype="multipart/form-data">
 				  <fieldset>
 				  
 				    <div id="legend">

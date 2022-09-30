@@ -40,13 +40,39 @@ input[type=text] {
 	font-size: 0.8rem;
 	outline: none;
 }
+.submit-area{
+	font-size: 0.8rem;
+	position: relative;
+	height: 40px;
+}
+
+
+.submit-area label{
+	position: absolute;
+	border: none;
+	background-color: #03c75a;
+	color: white;
+	padding: 8px 15px;
+	cursor: pointer;
+	margin-top: 10px;
+	left: 0;
+}
 
 input[type=submit]{
+	position: absolute;
 	border: none;
 	background-color: #03c75a;
 	color: white;
 	padding: 5px 15px;
 	cursor: pointer;
+	margin-top: 10px;
+	right: 0;
+}
+
+.category{
+	width: 100%;
+	padding: 10px 15px;
+	margin-bottom: 10px;
 }
 </style>
 </head>
@@ -99,10 +125,8 @@ input[type=submit]{
 		<div style="width: 1000px; margin: 0 auto;">
 			<div id="pageTitle"></div>
 			<div style="border-top: 2px solid gray; padding: 10px 0; border-bottom: 1px solid gray;">
-				
-				
 				<form action="makePost.do" method="post" enctype="multipart/form-data">
-					<select name="boardNo">
+					<select name="boardNo" class="category">
 						<option value="1">한경면</option>
 						<option value="2">한림읍</option>
 						<option value="3">애월읍</option>
@@ -116,16 +140,27 @@ input[type=submit]{
 						<option value="11">표선면</option>
 						<option value="12">성산읍</option>
 					</select>
+					<input id="input-file" type="file" name="image" class="file" value="찾아보기" style="display: none"/> <br/>
+					
+					
+					
+					
+					
+					
+					
 					<input type="hidden" name="postNo" value="${postNo}"/>
 					<input type="text" class="title" name="title" value="${title}" placeholder="제목"/>
-					<input type="file" name="image" class="file" value="찾아보기"/> <br/>
+					
 					<%--	  <input type="text" class="content" name="content" value="${content}" placeholder="내용"/><br/>--%>
 					<textarea name="content" class="content" placeholder="내용">${content}</textarea>
 					<%--<input type="hidden" name="content" value="${}"> FIXME session에서 id값 받아서 입력해 줄 곳--%>
 					<input type="hidden" name="userNo" value=1>
 					<%--	FIXME 아이디 세션에서 받아와서 value에 넣어 줄것  --%>
 					<%--<input type="hidden" name="boardNo" value=게시판 번호>--%>
-					<input type="submit" value="작성">
+					<div class="submit-area">
+						<label for="input-file">파일 첨부</label>
+						<input type="submit" value="작성">
+					</div>
 				</form>
 			</div>
 		</div>
