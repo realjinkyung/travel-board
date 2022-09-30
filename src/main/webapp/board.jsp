@@ -557,7 +557,7 @@
 						</c:choose>
 					</table>
 					<div class="btn-new-area">
-						<a href="newPost.do"><button class="btn-new-post">새글쓰기</button></a>
+						<a href="newPost.do?status=1"><button class="btn-new-post">새글쓰기</button></a>
 					</div>
 				</div>
 				<div class="page-numbers">

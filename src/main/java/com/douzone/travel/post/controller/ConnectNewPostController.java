@@ -18,6 +18,7 @@ public class ConnectNewPostController implements Command {
         req.setAttribute("status",req.getParameter("status"));
         req.setAttribute("title", req.getParameter("title"));
         req.setAttribute("content", req.getParameter("content"));
+        req.setAttribute("postNo", req.getParameter("postNo"));
 
         return "writePost.jsp";
 

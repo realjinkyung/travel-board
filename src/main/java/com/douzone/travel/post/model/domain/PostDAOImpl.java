@@ -52,7 +52,7 @@ public class PostDAOImpl implements PostDAO {
 						break;
 					}
             	}
-            	sql += " limit ?, ?";	// 몇 개씩 볼건지 설정 default값 0~1000 ex) 0~50
+            	sql += "order by post_no desc limit ?, ?";	// 몇 개씩 볼건지 설정 default값 0~1000 ex) 0~50
             }else {
             	sql += " where board_name = ?"; // input(text) 검색 내용
             	
@@ -72,7 +72,7 @@ public class PostDAOImpl implements PostDAO {
 					}
             	}
             	
-            	sql += " limit ?, ?";
+            	sql += "order by post_no desc limit ?, ?";
             }
             
             	System.out.println(sql);

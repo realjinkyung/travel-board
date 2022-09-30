@@ -303,7 +303,7 @@ h3 {
 					<h3 class="comment-h3">댓글 작성</h3>
 					<div class="comment-write-box">
 						<h4>
-							<b>${postview.username}</b>
+							<b>${sessionScope.username}</b>
 						</h4>
 						<input id="input-comment-content" type="text"
 							placeholder="댓글을 남겨보세요">
@@ -319,7 +319,7 @@ h3 {
 				<c:forEach items="${comments}" var="comment">
 					<div class="comment-item">
 						<div class="comment-img">
-							<img alt="" src="">
+							<img alt="" src="${profilePath}">
 						</div>
 						<div class="comment-content-area">
 							<p class="comment-username">

@@ -178,6 +178,7 @@ input[type=submit]{
         document.getElementById("pageTitle").innerHTML = "<h2> 게시글 작성 </h2>";
     } else {
         console.log("in status2")
+        console.log(status)
         document.getElementById("pageTitle").innerHTML = "<h2> 게시글 수정 </h2>";
     }
 </script>

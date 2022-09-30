@@ -10,6 +10,7 @@ import com.douzone.travel.post.model.domain.PostDAO;
 import com.douzone.travel.post.model.domain.PostDAOImpl;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.sql.SQLException;
 import java.util.Objects;
 
@@ -49,6 +50,8 @@ public class PostServiceImpl implements PostService{
 
         Long result = 0L;
         String postNo = req.getParameter("postNo");
+        HttpSession session = req.getSession(false);
+
 
         if(Objects.equals("", postNo)) {
             result = Long.valueOf(postDAO.insertPost(makePostDTO(req,"insert",postNo), (String)req.getSession().getAttribute("username")));
@@ -59,9 +62,10 @@ public class PostServiceImpl implements PostService{
             }
 
         }else{
-
-            result = Long.valueOf(postDAO.updatePost(makePostDTO(req,"modify", postNo))); // 게시글 수정
-
+            PostViewDTO post = postDAO.findByPostNo(Long.valueOf(postNo),false);
+            if(post.getUsername().equals(session.getAttribute("username"))) {
+                result = Long.valueOf(postDAO.updatePost(makePostDTO(req, "modify", postNo))); // 게시글 수정
+            }
             if(result==1){
                 return Long.valueOf(postNo);
             }
