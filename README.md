@@ -22,12 +22,8 @@
 - 📂 이미지 첨부
 
 <br>
-
-## 3. 프로젝트  실행 화면
-
- <br>
  
-## 4. 개발 과정
+## 3. 개발 과정
 - 전체 프로젝트 관리 : [Projects에서 확인](https://github.com/users/realjinkyung/projects/3)
 - 와이어프레임 설계 : [Wiki에서 확인](https://github.com/realjinkyung/travel-board/wiki/%EC%99%80%EC%9D%B4%EC%96%B4%ED%94%84%EB%A0%88%EC%9E%84-%EC%84%A4%EA%B3%84-%F0%9F%94%A8)
 - 요구사항 명세 : [Wiki에서 확인](https://github.com/realjinkyung/travel-board/wiki/%EC%9A%94%EA%B5%AC-%EC%82%AC%ED%95%AD-%EB%AA%85%EC%84%B8%EC%84%9C-%F0%9F%94%A8)
@@ -38,7 +34,7 @@
  
  <br>
  
- ## 5. 개발 환경
+ ## 4. 개발 환경
 
  `Back-end`
  - Java
