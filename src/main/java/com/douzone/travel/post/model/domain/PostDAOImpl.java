@@ -31,7 +31,6 @@ public class PostDAOImpl implements PostDAO {
         PreparedStatement pstmt = null;
         ResultSet rset = null;
         ArrayList<HashMap<String, Object>> postList= new ArrayList<HashMap<String, Object>>();
-        System.out.println("pn : " +pageNumber);
     	try {
             con = DBUtils.getConnection();
 

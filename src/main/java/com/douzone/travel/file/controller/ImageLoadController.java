@@ -25,7 +25,6 @@ public class ImageLoadController implements Command {
         if(req.getAttribute("status").equals("profile")) {
             UserDTO user = (UserDTO) req.getAttribute("user");
             path = fileService.imageLoad(user);
-            System.out.println("path:" + path);
 
             req.setAttribute("user", user);
             req.setAttribute("path", path);

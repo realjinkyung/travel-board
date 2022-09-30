@@ -39,8 +39,6 @@ public class ReportCommentController implements Command{
 				result1 = reportService.reportPost(postNum, username, targetUsername, reportReason);
 			}
 			
-			System.out.println(result1);
-			
 			if(result1 == 1) {
 				result2 = userService.updateIsBlinded(targetUsername);
 				System.out.println("블라인드 업데이트 수행");

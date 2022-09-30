@@ -60,7 +60,6 @@ public class JoinFormController implements Command {
 
 		String pattern = "^[_a-z0-9-]+(.[_a-z0-9-]+)*@(?:\\w+\\.)+\\w+$";
 		boolean emailResult = Pattern.matches(pattern, email);
-		System.out.println(emailResult);
 		
 		try {
 //			result = userService.writeContent(new UserDTO(1L,username,name,pw,"",0,true,"",phoneNumber,email,birth,gender), pwc);

@@ -32,10 +32,8 @@ public class UserInfoController implements Command {
         }
 
         if(user == null){
-        	System.out.println("정상적으로 안됨 ㅋㅋ");
             return "error.jsp";
         }else{
-        	System.out.println("정상적으로 됨");
         	req.setAttribute("user", user);
             req.setAttribute("status", "profile");
         	return "image-load.do";
