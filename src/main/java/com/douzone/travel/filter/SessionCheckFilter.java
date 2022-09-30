@@ -13,6 +13,7 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
@@ -35,8 +36,10 @@ public class SessionCheckFilter implements Filter {
 	 */
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
 		HttpServletRequest req = (HttpServletRequest) request;
-		HttpSession session = req.getSession(false); // session 생성 
+		HttpSession session = req.getSession(false); // session 생성
 //		String uri = whiteList.stream().filter((uriItem)-> uriItem.equals(req.getServletPath())).findFirst().orElse(null); // ?
+
+		System.out.println(req.getServletPath());
 
 		String uri = whiteList.stream().filter((uriItem)-> req.getServletPath().contains(uriItem)).findFirst().orElse(null);
 //		System.out.println(uri);

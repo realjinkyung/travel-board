@@ -5,26 +5,6 @@
 <head>
 	<meta charset="UTF-8">
 	<title>로그인</title>
-	<script type="text/javascript">
-		// 유효성 검증 예정
-		window.onload = function() {
-			document.frm.onsubmit = function() {
-				var id = document.frm.id;
-				var pw = document.frm.pw;
-				
-				if(!id.value) {
-					alert("아이디를 입력하세요")
-					id.focus();
-					return false;
-				}
-				if(!pw.value) {
-					alert("비밀번호를 입력하세요")
-					pw.focus();
-					return false;
-				}
-			}
-		}	
-	</script>
 	<link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet" id="bootstrap-css">
 	<script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
 	<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
@@ -102,7 +82,7 @@
 						      <div class="controls-btns"></div>
 							      <div class="controls">
 							        <button class="btn btn-success" type="submit">Login</button>
-							        <button class="btn btn-primary" onclick="location.href='joinForm.jsp'">Join</button>
+							        <a class="btn btn-primary" onclick="location.href='joinForm.jsp'">Join</a>
 							      </div>
 						    </div>
 					    </div>
@@ -116,7 +96,24 @@
 			</div>
 		</div>
 	</div>
+	<script type="text/javascript">
+        // 유효성 검증 예정
+            document.frm.onsubmit = function() {
+                let id = document.frm.id;
+                let pw = document.frm.pw;
 
+                if(!id.value) {
+                    alert("아이디를 입력하세요")
+                    id.focus();
+                    return false;
+                }
+                if(!pw.value) {
+                    alert("비밀번호를 입력하세요")
+                    pw.focus();
+                    return false;
+                }
+            }
+	</script>
 
 <!--  =======
    <meta charset="UTF-8">

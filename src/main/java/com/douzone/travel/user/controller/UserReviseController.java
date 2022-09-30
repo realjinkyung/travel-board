@@ -20,20 +20,23 @@ private final UserService userService = UserServiceImpl.getInstance();
 		UserDTO user = null;
         int result = 0;
 		String id ="";
-        Date birth = Date.valueOf(req.getParameter("birth"));
+        Date birth = null;
+		HttpSession session = null;
 
-        user = UserDTO.builder()
-        		.name(req.getParameter("name"))
-        		.birth(birth)
-        		.gender(req.getParameter("gender"))
-        		.email(req.getParameter("email"))
-        		.phoneNumber(req.getParameter("phoneNumber"))
-        		.build();
         
     	try {
-    		HttpSession session = req.getSession(false); 			// 세션생성 - false 있는걸 가져옴
+			birth = Date.valueOf(req.getParameter("birth"));
+			user = UserDTO.builder()
+					.name(req.getParameter("name"))
+					.birth(birth)
+					.gender(req.getParameter("gender"))
+					.email(req.getParameter("email"))
+					.phoneNumber(req.getParameter("phoneNumber"))
+					.build();
+
+    		session = req.getSession(false); 			// 세션생성 - false 있는걸 가져옴
     		id = (String)session.getAttribute("username");// setAttribute("username")-> tomcat자동생성 방지
-    		result = userService.updateUser(id, user);    		    		
+    		result = userService.updateUser(id, user);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -43,9 +46,13 @@ private final UserService userService = UserServiceImpl.getInstance();
         }
 			UserDTO userForModify = userService.selectUser(id);
 			req.setAttribute("user", userForModify);
-			req.setAttribute("status", "profileImage");
 
-			return "image-upload.do";
+			if(req.getPart("image").getSize() == 0) {
+				req.setAttribute("status", "profileImage");
+				return "image-upload.do";
+			}
+
+			return "/redirect:userinfo.do";
 
 		// return "redirect:userinfo.do";
     }

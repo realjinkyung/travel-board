@@ -12,6 +12,7 @@ import com.douzone.travel.post.controller.ProducePostController;
 import com.douzone.travel.file.controller.ImageLoadController;
 import com.douzone.travel.file.controller.ImageUploadController;
 import com.douzone.travel.user.controller.*;
+import lombok.extern.slf4j.Slf4j;
 
 import java.io.IOException;
 
@@ -22,7 +23,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 @MultipartConfig(fileSizeThreshold=2048*2048*10,
 		maxFileSize=2048*2048*50,
 		maxRequestSize=2048*2048*100)
