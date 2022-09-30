@@ -1,13 +1,13 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page contentType="text/html;charset=UTF-8" language="java"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <html>
 <head>
-	<title>POST</title>
+<title>POST</title>
 
-	<link rel="stylesheet" href="header.css">
-	<link rel="stylesheet" href="footer.css">
-	
+<link rel="stylesheet" href="header.css">
+<link rel="stylesheet" href="footer.css">
+
 <style>
 .footer {
 	margin-left: 0;
@@ -233,11 +233,11 @@ h3 {
 	background-color: red;
 }
 
-.modify-comment-area{
+.modify-comment-area {
 	text-align: right;
 }
 
-.modify-comment-area input[type=text]{
+.modify-comment-area input[type=text] {
 	margin: 5px 0;
 	padding: 7px 10px;
 	width: 100%;
@@ -246,37 +246,48 @@ h3 {
 	outline: none;
 }
 
-.modify-comment-area button{
+.modify-comment-area input[type=submit] {
 	border: none;
 	background-color: white;
 	color: gray;
-	padding: 5px 10px;
+	padding: 5px 0;
 	cursor: pointer;
+	font-size: 0.7rem;
+	font-weight: bold;
 }
+.image{
+	width : 500px;
+}
+
 </style>
 </head>
 <body>
-<jsp:include page="header.jsp"/>
+	<jsp:include page="header.jsp" />
+
 	<div class="wrap">
 		<div style="width: 1000px; margin: 50px auto;">
 			<h2>상세 게시글 조회</h2>
-			<div class="post-header"">
+			<div class="post-header">
 				<h3>${postview.title}</h3>
 				<div class="post-header-content">
 					<div>
-						<img alt="" src="" style="">
+						<img alt="" src="${profilePath}" style="">
 					</div>
 					<div>
-						<p><b>${postview.username}</b></p>
-						<p class="createdAt-views">${postview.createdAt} 조회 1234</p>
+						<p>
+							<b>${postview.username}</b>
+						</p>
+						<p class="createdAt-views">${postview.createdAt}조회 1234</p>
 					</div>
+
 					<div>
-						<img src = "${path}" class="image"/>
-					</div>
-					<div>
-						<span><b style="font-weight: bold;">댓글 ${fn:length(comments)}</b></span>
+						<span><b style="font-weight: bold;">댓글
+								${fn:length(comments)}</b></span>
 					</div>
 				</div>
+			</div>
+			<div class="image">
+				<img src="${path}"/>
 			</div>
 			<div class="post-content">
 				<p>${postview.content}</p>
@@ -284,139 +295,144 @@ h3 {
 			<div class="post-btn-area">
 				<button class="btn-modify post" onclick="modifyPost();">수정</button>
 				<button class="btn-delete post">삭제</button>
-				<button class="btn-report post" onclick="report('${postview.postNo}', 0, '${sessionScope.username}', '${postview.username}', '${postview.content}', 'post');">신고</button>
+				<button class="btn-report post"
+					onclick="report('${postview.postNo}', 0, '${sessionScope.username}', '${postview.username}', '${postview.content}', 'post');">신고</button>
 			</div>
 			<div class="comment-write">
 				<div>
 					<h3 class="comment-h3">댓글 작성</h3>
 					<div class="comment-write-box">
-						<h4><b>${postview.username}</b></h4>
-						<input id="input-comment-content" type="text" placeholder="댓글을 남겨보세요">
+						<h4>
+							<b>${postview.username}</b>
+						</h4>
+						<input id="input-comment-content" type="text"
+							placeholder="댓글을 남겨보세요">
 						<div class="text-align-right">
 							<button class="btn-comment-register" onclick="addComment();">등록</button>
 						</div>
 					</div>
-					
+
 				</div>
 			</div>
-			
+
 			<div class="comment-list">
 				<c:forEach items="${comments}" var="comment">
-					<div class="comment-item" >
+					<div class="comment-item">
 						<div class="comment-img">
 							<img alt="" src="">
 						</div>
 						<div class="comment-content-area">
-							<p class="comment-username"><b>${comment.username}</b></p>
-							
+							<p class="comment-username">
+								<b>${comment.username}</b>
+							</p>
+
 							<c:choose>
 								<c:when test="${comment.commentReportCount >= 5}">
-									<p class="comment-content" id="comment${comment.commentNo}">댓글 신고로 인해 블라인드 된 댓글입니다.</p>
+									<p class="comment-content" id="comment${comment.commentNo}">댓글
+										신고로 인해 블라인드 된 댓글입니다.</p>
 								</c:when>
 								<c:otherwise>
-									<p class="comment-content" id="comment${comment.commentNo}">${comment.content}<span class="modified">${comment.modifiedAt}</span></p>
+									<p class="comment-content" id="comment${comment.commentNo}">${comment.content}<span
+											class="modified">${comment.modifiedAt}</span>
+									</p>
 								</c:otherwise>
 							</c:choose>
 							<p>${postview.createdAt}</p>
 						</div>
 						<div class="comment-button-area">
 							<div>
-								<button class="btn-modify" onclick="modifyComment(${comment.commentNo}, '${comment.username}', ${postview.postNo})">수정</button>
-								<button class="btn-delete" onclick="deleteComment('${comment.commentNo}');">삭제</button>
-								<button class="btn-report" onclick="report(0, '${comment.commentNo}', '${sessionScope.username}', '${comment.username}', '${comment.content}', 'comment');">신고</button>
+								<button class="btn-modify"
+									onclick="modifyComment('${comment.commentNo}', '${comment.username}', '${postview.postNo}')">수정</button>
+								<button class="btn-delete"
+									onclick="deleteComment('${comment.commentNo}');">삭제</button>
+								<button class="btn-report"
+									onclick="report(0, '${comment.commentNo}', '${sessionScope.username}', '${comment.username}', '${comment.content}', 'comment');">신고</button>
 							</div>
 						</div>
 					</div>
 				</c:forEach>
 			</div>
 		</div>
-
-<a href="boardList.do"><button>첫페이지로</button></a><br/>
-<!--  <form action="edit.do" method="post" onsubmit="return TestCheck();">
-	<input type="hidden" name="postNo" value="${postview.postNo}" />
-	<div class="title-line">
-	title : <input type="text" class="title" name="title" value="${postview.title}" readonly>
-	username :	<input type="text" class="username" name="username" value="${postview.username}" readonly>
-	createdAt : <input type="text" class="createdAt" value="${postview.createdAt}"><br/>
-	-->
-
 	</div>
-	
+
 	<form action="edit.do" method="post" id="edit_form">
-		<input type="hidden" name="postNo" value="${postview.postNo}" />
-		<input type="hidden" name="title" value="${postview.title}" />
-		<input type="hidden" name="username" value="${postview.username}" />
-		<input type="hidden" name="createdAt" value="${postview.createdAt}" />
-		<input type="hidden" name="content" value="${postview.content}" />
-		
+		<input type="hidden" name="postNo" value="${postview.postNo}" /> <input
+			type="hidden" name="title" value="${postview.title}" /> <input
+			type="hidden" name="username" value="${postview.username}" /> <input
+			type="hidden" name="createdAt" value="${postview.createdAt}" /> <input
+			type="hidden" name="content" value="${postview.content}" />
+
 	</form>
-	
+
 	<form action="addComment.do" method="post" id="add_form">
-		<input type="hidden" id="comment-content" name="commentContent"/>
-		<input type="hidden" name="postNo" value="${postview.postNo}"/>
+		<input type="hidden" id="comment-content" name="commentContent" /> <input
+			type="hidden" name="postNo" value="${postview.postNo}" />
 	</form>
-	
+
 	<form action="reportCommentPage.do" method="post" name="reportForm">
-		<input type="hidden" name="postNum"/>
-		<input type="hidden" name="commentNum"/>
-		<input type="hidden" name="username"/>
-		<input type="hidden" name="targetUsername"/>
-		<input type="hidden" name="content"/>
-		<input type="hidden" name="report_kinds"/>
+		<input type="hidden" name="postNum" /> <input type="hidden"
+			name="commentNum" /> <input type="hidden" name="username" /> <input
+			type="hidden" name="targetUsername" /> <input type="hidden"
+			name="content" /> <input type="hidden" name="report_kinds" />
 	</form>
-	
-	<script>
 
-	function modifyPost(){
-		document.getElementById("edit_form").submit();
-	}
-	
-	function addComment(){
-		let inputContent = document.getElementById("input-comment-content").value;
-		let formContent = document.getElementById("comment-content");
-		
-		formContent.value = inputContent;
-
-		document.getElementById("add_form").submit();
-	}
-	
-	function modifyComment(commentNum, username, postNo) {
-        const input =
-			'<form action="updateComment.do" method="post" id="updateCommentForm '+ commentNum +'" >' +
-			'<div class="modify-comment-area">' +
-			'<input class="modify-input" type="text" name="updateComment"/>' +
-			'<input type="hidden" name="username" value="' + username + '"/> ' +
-			'<input type="hidden" name="commentNo" value="'+ commentNum +'"/> ' +
-			'<input type="hidden" name="postNo" value="'+ postNo +'"/>' +
-			'<input type="submit" value="댓글 수정"/>' +
-			'</div>' +
-			'</form>';
-
-        let form = document.getElementById("updateCommentForm "+ commentNum);
-        
-        if(form == null){
-        	document.getElementById("comment" + commentNum).insertAdjacentHTML("beforeend",input);
-        } else {
-            form.remove();
+	<script type="text/javascript">
+		function modifyPost(){
+			document.getElementById("edit_form").submit();
 		}
+		
+		function addComment(){
+			let inputContent = document.getElementById("input-comment-content").value;
+			let formContent = document.getElementById("comment-content");
+			
+			formContent.value = inputContent;
+	
+			document.getElementById("add_form").submit();
+		}
+		
+		function modifyComment(commentNum, username, postNo) {
+			
+	        const input =
+				'<form action="updateComment.do" method="post" id="updateCommentForm '+ commentNum +'" >' +
+				'<div class="modify-comment-area">' +
+				'<input class="modify-input" type="text" name="updateComment"/>' +
+				'<input type="hidden" name="username" value="' + username + '"/> ' +
+				'<input type="hidden" name="commentNo" value="'+ commentNum +'"/> ' +
+				'<input type="hidden" name="postNo" value="'+ postNo +'"/>' +
+				'<input type="submit" value="댓글 수정"/>' +
+				'</div>' +
+				'</form>';
+	
+	        let form = document.getElementById("updateCommentForm "+ commentNum);
+	        
+	        if(form == null){
+	        	document.getElementById("comment" + commentNum).insertAdjacentHTML("beforeend",input);
+	        } else {
+	            form.remove();
+			}
+	
+		}
+		
+		function deleteComment(commentNo){
+			location.href = "deleteComment.do?commentNo=" + commentNo + "&postNo=${postview.postNo}";
+		}
+		
+		function report(postNum ,commentNum, username, targetUsername, content, reportKinds) {
+			reportForm.postNum.value = postNum;
+			reportForm.commentNum.value = commentNum;
+			reportForm.username.value = username;
+			reportForm.targetUsername.value = targetUsername;
+			reportForm.content.value = content;
+			reportForm.report_kinds.value = reportKinds;
+			
+			
+			reportForm.submit();
+		}
+	</script>
 
-	}
 	
-	function deleteComment(commentNo){
-		location.href = "deleteComment.do?commentNo=" + commentNo + "&postNo=${postview.postNo}";
-	}
-	
-	function report(postNum ,commentNum, username, targetUsername, content, reportKinds) {
-		reportForm.postNum.value = postNum;
-		reportForm.commentNum.value = commentNum;
-		reportForm.username.value = username;
-		reportForm.targetUsername.value = targetUsername;
-		reportForm.content.value = content;
-		reportForm.report_kinds.value = reportKinds;
-		
-		
-		reportForm.submit();
-</script>
-<jsp:include page="footer.jsp"/>
+
+
+	<jsp:include page="footer.jsp" />
 </body>
 </html>

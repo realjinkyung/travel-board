@@ -26,9 +26,15 @@ public class FileDAOImpl implements FileDAO {
     @Override
     public int insertImage(Long userId, String imagePath) throws SQLException {
         Connection con = DBUtils.getConnection();
-        PreparedStatement pstmt = con.prepareStatement("insert into file (user_no, file_path) values(?, ?)");
-        pstmt.setLong(1, userId);
-        pstmt.setString(2, imagePath);
+        PreparedStatement pstmt = null;
+        if(findByUserId(userId) != null){
+            pstmt = con.prepareStatement("update file set file_path = ?");
+            pstmt.setString(1, imagePath);
+        } else {
+            pstmt = con.prepareStatement("insert into file (user_no, file_path) values(?, ?)");
+            pstmt.setLong(1, userId);
+            pstmt.setString(2, imagePath);
+        }
 
         int result = pstmt.executeUpdate();
 
@@ -38,12 +44,12 @@ public class FileDAOImpl implements FileDAO {
     }
 
     @Override
-    public String findByUserId(UserDTO user) throws SQLException {
+    public String findByUserId(Long userId) throws SQLException {
         String path = null;
 
         Connection con = DBUtils.getConnection();
         PreparedStatement pstmt = con.prepareStatement("select * from file where user_no=?");
-        pstmt.setLong(1, user.getUserNo());
+        pstmt.setLong(1, userId);
         ResultSet rset = pstmt.executeQuery();
 
         if(rset.next()) {
@@ -56,11 +62,11 @@ public class FileDAOImpl implements FileDAO {
     }
 
     @Override
-    public String findByPostId(PostViewDTO post) throws SQLException {
+    public String findByPostId(Long postNo) throws SQLException {
         String path = null;
         Connection con = DBUtils.getConnection();
         PreparedStatement pstmt = con.prepareStatement("select * from file where post_no = ?");
-        pstmt.setLong(1,post.getPostNo());
+        pstmt.setLong(1, postNo);
 
         ResultSet rset = pstmt.executeQuery();
         if(rset.next()){
@@ -74,9 +80,15 @@ public class FileDAOImpl implements FileDAO {
     @Override
     public int insertPostImage(Long postNo, String fileName) throws SQLException {
         Connection con = DBUtils.getConnection();
-        PreparedStatement pstmt = con.prepareStatement("insert into file (post_no, file_path) values (?, ?)");
-        pstmt.setLong(1,postNo);
-        pstmt.setString(2, fileName);
+        PreparedStatement pstmt  = null;
+        if(findByPostId(postNo) != null){
+            pstmt = con.prepareStatement("update file set file_path = ?");
+            pstmt.setString(1, fileName);
+        } else {
+            pstmt = con.prepareStatement("insert into file (post_no, file_path) values (?, ?)");
+            pstmt.setLong(1, postNo);
+            pstmt.setString(2, fileName);
+        }
 
         int result = pstmt.executeUpdate();
 

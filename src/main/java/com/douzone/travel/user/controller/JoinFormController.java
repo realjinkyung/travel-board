@@ -79,7 +79,7 @@ public class JoinFormController implements Command {
 					req.setAttribute("status", "profileImage");
 					return "image-upload.do";
 				}
-				return "joinSuccess.jsp";
+				return "redirect:boardList.do";
 			}
 		}catch (Exception e) {
 			e.printStackTrace();

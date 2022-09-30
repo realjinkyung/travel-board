@@ -16,6 +16,8 @@ public class ConnectNewPostController implements Command {
     public String execute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException, SQLException {
 
         req.setAttribute("status",req.getParameter("status"));
+        req.setAttribute("title", req.getParameter("title"));
+        req.setAttribute("content", req.getParameter("content"));
 
         return "writePost.jsp";
 

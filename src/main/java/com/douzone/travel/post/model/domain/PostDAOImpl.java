@@ -35,14 +35,8 @@ public class PostDAOImpl implements PostDAO {
     	try {
             con = DBUtils.getConnection();
 
-            String sql = "select * "
-            			+ "from (select *"
-            			+ "		from (select post_no, board_no, username, title, created_at, views, content "
-            			+ "				from post join user using(user_no)) sub join board using(board_no)) sub2 "
-	            						+ "left outer join (select post_no, count(*) comment_count "
-	            						+ "					from comment group by post_no) sub3 using(post_no)";
-            if(board.equals("all")) {	// 검색기능 -> select box - 제목/내용/작성자 쿼리에 추가 // board랑 all 어딨냐? 
-
+            String sql = "select *from (select *from (select *from (select post_no, board_no, username, user.is_blinded, title, created_at, views, content from post join user using(user_no)) sub join board using(board_no)) sub2 left outer join (select post_no, count(*) comment_count from comment group by post_no) sub3 using(post_no)) sub4 left outer join (select post_no, count(*) post_report_count from report where post_no is not null group by post_no) sub5 using (post_no)";
+            if(board.equals("all")) {
             	if(searchOption != null && !searchOption.equals("")) {
             		switch (searchOption) {
 					case "title":

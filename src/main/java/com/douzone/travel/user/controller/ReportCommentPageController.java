@@ -7,14 +7,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.douzone.travel.Command;
+import com.douzone.travel.report.service.ReportService;
 import com.douzone.travel.report.service.ReportServiceImpl;
 
-import service.report.ReportService;
+
+
 
 public class ReportCommentPageController implements Command{
 	
 	ReportService reportService = (ReportService) ReportServiceImpl.getInstance();
-
 
 	
 	@Override

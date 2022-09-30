@@ -8,16 +8,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.douzone.travel.Command;
+
+import com.douzone.travel.report.service.ReportService;
 import com.douzone.travel.report.service.ReportServiceImpl;
 import com.douzone.travel.user.service.UserService;
 import com.douzone.travel.user.service.UserServiceImpl;
 
-import service.report.ReportService;
-
-
 public class ReportCommentController implements Command{
 	
-	ReportService reportService = (ReportService) ReportServiceImpl.getInstance();
+	ReportService reportService = ReportServiceImpl.getInstance();
 	UserService userService = UserServiceImpl.getInstance();
 
 	

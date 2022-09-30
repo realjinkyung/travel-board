@@ -141,16 +141,36 @@
 	}
 	
 	.btn-area{
-		text-align: right;
 		padding: 10px 30px;
 		padding-right: 0px;
+		position: relative;
 	}
 	
-	
-	#btn-modify{
+	#btn-home{
+		position: absolute;
 		padding: 7px 15px;
 		border: 1px solid lightgray;
 		background-color: white;
+		font-weight: bold;
+		cursor: pointer;
+		left: 0;
+	}
+	
+	#btn-modify{
+		position: absolute;
+		padding: 7px 15px;
+		border: 1px solid lightgray;
+		background-color: white;
+		font-weight: bold;
+		right: 0;
+	}
+	
+	#label-file{
+		border: 1px solid lightgray;
+		background-color: white;
+		padding: 7px 15px;
+		cursor: pointer;
+		font-size: 0.7rem;
 		font-weight: bold;
 	}
 </style>
@@ -170,7 +190,8 @@
 						<td id="td-profile">
 							<div>
 								<img src="">
-								<input type="file" name="image"/>
+								<label id="label-file" for="profile-input">사진 변경</label>
+								<input id="profile-input" type="file" name="image" style="display: none;"/>
 							</div>
 						</td>
 					</tr>
@@ -199,6 +220,7 @@
 			</form>
 		</div>
 		<div class="btn-area">
+			<button id="btn-home" onclick="location.href='boardList.do'">홈으로</button>
 			<button id="btn-modify" onclick="checkForm();">수정</button>
 		</div>
 		<script type="text/javascript">
